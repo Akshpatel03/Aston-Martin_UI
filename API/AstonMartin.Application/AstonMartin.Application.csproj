@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="contentful.csharp" Version="8.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AstonMartin.Domain\AstonMartin.Domain.csproj" />
+    <ProjectReference Include="..\AstonMartin.Infrastructure\AstonMartin.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
