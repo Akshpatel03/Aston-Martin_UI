@@ -1,0 +1,146 @@
+.appBar {
+  position: "fixed";
+  z-index: 100;
+  top: 0;
+  width: "100%";
+  padding: 10px;
+  z-index: 1000; 
+  background-color: #000000; 
+}
+.card-text{
+    position: absolute ;
+    top: 0%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 24px;
+}
+.card{
+    width: min-content;
+    padding: 30px;
+
+}
+.card-action{
+    height: 56px;
+    width: 100%;
+    padding-inline: 16px;
+}
+.button-explored{
+    background-color: #00665E;
+    width: 100%; 
+    border-radius: 0;
+}
+.button-enquire{
+    width: 100%;
+    background-color: #EEF0F0;
+    color: #00665E;
+    border-color: #EEF0F0;
+    border-radius: 0,
+}
+.button-configure{
+    color: #00665E;
+    width: 100%;
+}
+.image-header{
+    position: absolute;
+    top: 80%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.image-title{
+    font-size: 24px;
+}
+.image-description{
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.image-text{
+    font-size: 15px;
+}
+.description-text{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+.image-paragrapg{
+    padding-block: 50px;
+}
+.text-h1{
+    margin-bottom: 20px;
+}
+.tab-text{
+    color: #7D7E7E;
+    font-weight: 700;
+}
+.car-header{
+    position: absolute;
+    top: 27%; 
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+.car-title{
+    font-size: 16px;
+    font-weight: 400;
+}
+.car-description{
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.car-text{
+    font-size: 15px;
+}
+.fontColor {
+    color: "#7d7e7e";
+    font-weight: "bolder";
+   
+}
+.tabBar{
+    position: sticky;
+    top: 100px;
+    overflow: hidden;
+}
+
+.content {
+    padding-inline: 100px;
+    width: 40%; 
+    display: flex;
+    align-items: center;
+  }
+.content-text{
+   width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+.image-container {
+    width: 60%; 
+    height: 100%;
+  }
+  .flex-container {
+    display: flex;
+    background-color: white;
+    margin: 40px;
+  }
+  .block-container {
+    display: flex;
+    background-color: black;
+    margin: 40px;
+    color: white;
+  }
+  .content-image{
+    position: relative;
+    padding-block: 50px;
+    width:60%;
+  }
+  .image-block{
+    width:100%
+  }
+
+
