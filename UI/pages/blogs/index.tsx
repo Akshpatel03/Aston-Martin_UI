@@ -1,6 +1,7 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import blogService from "../../services/blog-service";
 import { BlogListProps } from "@/utils/interface";
+import Link from "next/link";
 
 const BlogList = ({ blogs }: BlogListProps) => {
   return (
@@ -11,6 +12,9 @@ const BlogList = ({ blogs }: BlogListProps) => {
           <li key={blog.slug}>
             {blog.title}
             {blog.publishDate}
+            <Link href={`/blogs/${blog.slug}`}>
+              <h2>{blog.title}</h2>
+            </Link>
           </li>
         ))}
       </ul>
@@ -18,13 +22,12 @@ const BlogList = ({ blogs }: BlogListProps) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await blogService.getBlog();
   return {
     props: {
       blogs: res,
     },
-    revalidate: 60,
   };
 };
 
