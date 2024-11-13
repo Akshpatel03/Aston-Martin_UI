@@ -4,10 +4,7 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import { toast } from "react-toastify";
 import Config from "@/config";
-import { UNAUTHORIZED, INTERNAL_SERVER_ERROR } from "@/utils/constants";
-import { HttpStatusCodes } from "@/utils/enums/http-status-codes";
 
 axios.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
@@ -15,10 +12,10 @@ axios.interceptors.request.use(
       config.headers["Content-Type"] = config.headers.contentType;
     }
 
-    if (config.url) {
-      config.url = Config.env.BaseUrl + config.url;
+    if (config.url && !config.url.startsWith("http")) {
+      config.url = `${Config.env.BaseUrl}${config.url}`;
     }
-
+    console.log("url", config.url);
     if (config.url) {
       config.headers["Cache-Control"] =
         "no-cache, no-store, must-revalidate, post-check=0, pre-check=0";
@@ -34,40 +31,10 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
-    return response.data;
+    return response;
   },
   (error: AxiosError) => {
-    switch (error.response?.status) {
-      case HttpStatusCodes.Unauthorized:
-        toast.error(UNAUTHORIZED);
-        window.location.reload();
-        break;
-      case HttpStatusCodes.BadRequest:
-        toast.error(
-          error.response?.data
-            ? error.response?.data?.toString()
-            : error.message
-        );
-        break;
-      case HttpStatusCodes.InternalServerError:
-        toast.error(INTERNAL_SERVER_ERROR);
-        break;
-      case HttpStatusCodes.NotFound:
-        toast.error(
-          error.response?.data
-            ? error.response?.data?.toString()
-            : error.message
-        );
-        break;
-      default:
-        toast.error(
-          error.response?.data
-            ? error.response?.data?.toString()
-            : error.message
-        );
-        break;
-    }
-
+    console.log(error.message);
     return Promise.reject(error);
   }
 );
