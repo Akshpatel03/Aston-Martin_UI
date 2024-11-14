@@ -12,7 +12,7 @@ public class ContentfulPageHeading
 
     public string Description { get; set; }
 
-    public Asset BackgroundImage {get;set;}
+    public Asset BackgroundImage { get; set; }
 
     public Contentful.Core.Models.File ImageFile { get; set; }
 

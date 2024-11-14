@@ -5,9 +5,9 @@ namespace AstonMartin.Domain.Entities;
 
 public class ContentfulCarCard
 {
-    public string ModelName {get;set;}
+    public string ModelName { get; set; }
 
-    public Asset ModelImage {get;set;}
+    public Asset ModelImage { get; set; }
 
     public Contentful.Core.Models.File ImageFile { get; set; }
 
