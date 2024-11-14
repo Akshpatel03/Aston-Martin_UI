@@ -15,10 +15,59 @@ public class ContentfulController : ControllerBase
         _contentfulService = contentfulService;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetArticles()
+    [HttpGet("PageContentHeading")]
+    public async Task<IActionResult> GetPageHeading()
     {
-        var articles = await _contentfulService.GetArticlesAsync();
+        var articles = await _contentfulService.GetPageHeadingAsync();
+        return Ok(articles);
+    }
+
+    [HttpGet("PageContentSubHeading")]
+    public async Task<IActionResult> GetPageSubHeading()
+    {
+        var articles = await _contentfulService.GetPageSubHeadingAsync();
+        return Ok(articles);
+    }
+
+    [HttpGet("CarCards")]
+    public async Task<IActionResult> GetCarCards()
+    {
+        var articles = await _contentfulService.GetCarCardsAsync();
+        return Ok(articles);
+    }
+    
+    [HttpGet("CarViewCards")]
+    public async Task<IActionResult> GetCarViewCards()
+    {
+        var articles = await _contentfulService.GetCarViewCardsAsync();
+        return Ok(articles);
+    }
+
+    [HttpGet("Services")]
+    public async Task<IActionResult> GetServices()
+    {
+        var articles = await _contentfulService.GetServicesAsync();
+        return Ok(articles);
+    }
+
+    [HttpGet("BuyingWithUs")]
+    public async Task<IActionResult> GetBuyingWithUsData()
+    {
+        var articles = await _contentfulService.GetBuyingWithUsDataAsync();
+        return Ok(articles);
+    }
+
+    [HttpGet("CustomerReviews")]
+    public async Task<IActionResult> GetCustomerReview()
+    {
+        var articles = await _contentfulService.GetCustomerReviewAsync();
+        return Ok(articles);
+    }
+
+    [HttpGet("Locations")]
+    public async Task<IActionResult> GetLocation()
+    {
+        var articles = await _contentfulService.GetLocationAsync();
         return Ok(articles);
     }
 }
