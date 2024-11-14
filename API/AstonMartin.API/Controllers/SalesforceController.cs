@@ -5,7 +5,7 @@ namespace AstonMartin.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class SalesforceController : ControllerBase
+public class SalesforceController : BaseController
 {
     private readonly ISalesforceService _salesforceService;
 
@@ -17,7 +17,7 @@ public class SalesforceController : ControllerBase
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAll()
     {
-        var records = await _salesforceService.QuerySalesforceDataAsync("SELECT Id, Name FROM TestObject__c");
-        return Ok(records);
+        string records = await _salesforceService.QuerySalesforceDataAsync("SELECT Id, Name FROM TestObject__c");
+        return GetResult(records);
     }
 }

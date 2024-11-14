@@ -11,7 +11,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<ContentfulConfigs>(builder.Configuration.GetSection("ContentfulSettings"));
 builder.Services.Configure<SalesforceConfig>(builder.Configuration.GetSection("SalesforceSettings"));
 builder.Services.AddSingleton<ContentfulClientFactory>();
-builder.Services.AddScoped<IContentfulService, ContentfulService>();
+builder.Services.AddScoped<IContentfulNewCarsService, ContentfulNewCarsService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<ISalesforceClientFactory, SalesforceClientFactory>();

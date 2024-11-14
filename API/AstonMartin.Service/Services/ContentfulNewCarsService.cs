@@ -1,32 +1,28 @@
-using AstonMartin.Domain.DTOs;
-using AstonMartin.Domain.Entities;
+using AstonMartin.Domain.DTOs.NewCarsDTOs;
+using AstonMartin.Domain.Entities.NewCarsEntities;
 using AstonMartin.Service.Clients.Implementation;
 using AstonMartin.Service.Interfaces;
 using Contentful.Core;
+using Contentful.Core.Models;
 using Contentful.Core.Search;
 
 namespace AstonMartin.Application.Services;
 
-public class ContentfulService : IContentfulService
+public class ContentfulNewCarsService : IContentfulNewCarsService
 {
     private readonly ContentfulClient _client;
 
-    public ContentfulService(ContentfulClientFactory clientFactory)
+    public ContentfulNewCarsService(ContentfulClientFactory clientFactory)
     {
         _client = clientFactory.GetClient();
     }
 
     public async Task<IEnumerable<ContentfulPageHeadingDTO>> GetPageHeadingAsync()
     {
-        var query = new QueryBuilder<ContentfulPageHeading>()
+        QueryBuilder<ContentfulPageHeading> query = new QueryBuilder<ContentfulPageHeading>()
                         .ContentTypeIs("pageHeading");
 
-        var entries = await _client.GetEntries(query);
-
-        foreach (var pageHeading in entries)
-        {
-            pageHeading.SetImageFile();
-        }
+        ContentfulCollection<ContentfulPageHeading>? entries = await _client.GetEntries(query);
 
         return entries.Select(article => new ContentfulPageHeadingDTO(
             article.PageTitle,
@@ -36,30 +32,22 @@ public class ContentfulService : IContentfulService
             ));
     }
 
-    public async Task<IEnumerable<ContentfulPageSubHeadingDTO>> GetPageSubHeadingAsync()
+    public async Task<IEnumerable<ContentfulPageSubHeading>> GetPageSubHeadingAsync()
     {
-        var query = new QueryBuilder<ContentfulPageSubHeading>()
+        QueryBuilder<ContentfulPageSubHeading> query = new QueryBuilder<ContentfulPageSubHeading>()
                         .ContentTypeIs("pageSubHeading");
 
-        var entries = await _client.GetEntries(query);
+        ContentfulCollection<ContentfulPageSubHeading>? entries = await _client.GetEntries(query);
 
-        return entries.Select(article => new ContentfulPageSubHeadingDTO(
-            article.Title,
-            article.Description
-            ));
+        return entries;
     }
 
     public async Task<IEnumerable<ContentfulCarCardDTO>> GetCarCardsAsync()
     {
-        var query = new QueryBuilder<ContentfulCarCard>()
+        QueryBuilder<ContentfulCarCard> query = new QueryBuilder<ContentfulCarCard>()
                         .ContentTypeIs("carCard");
 
-        var entries = await _client.GetEntries(query);
-
-        foreach (var carCard in entries)
-        {
-            carCard.SetImageFile();
-        }
+        ContentfulCollection<ContentfulCarCard>? entries = await _client.GetEntries(query);
 
         return entries.Select(article => new ContentfulCarCardDTO(
             article.ModelName,
@@ -69,15 +57,10 @@ public class ContentfulService : IContentfulService
 
     public async Task<IEnumerable<ContentfulCarViewCardDTO>> GetCarViewCardsAsync()
     {
-        var query = new QueryBuilder<ContentfulCarViewCard>()
+        QueryBuilder<ContentfulCarViewCard> query = new QueryBuilder<ContentfulCarViewCard>()
                         .ContentTypeIs("carViewCard");
 
-        var entries = await _client.GetEntries(query);
-
-        foreach (var carViewCard in entries)
-        {
-            carViewCard.SetImageFile();
-        }
+        ContentfulCollection<ContentfulCarViewCard>? entries = await _client.GetEntries(query);
 
         return entries.Select(article => new ContentfulCarViewCardDTO(
             article.Tag,
@@ -89,15 +72,10 @@ public class ContentfulService : IContentfulService
 
     public async Task<IEnumerable<ContentfulServicesDTO>> GetServicesAsync()
     {
-        var query = new QueryBuilder<ContentfulServices>()
+        QueryBuilder<ContentfulProvidedServices> query = new QueryBuilder<ContentfulProvidedServices>()
                         .ContentTypeIs("services");
 
-        var entries = await _client.GetEntries(query);
-
-        foreach (var services in entries)
-        {
-            services.SetImageFile();
-        }
+        ContentfulCollection<ContentfulProvidedServices>? entries = await _client.GetEntries(query);
 
         return entries.Select(article => new ContentfulServicesDTO(
             article.Name,
@@ -109,15 +87,10 @@ public class ContentfulService : IContentfulService
 
     public async Task<IEnumerable<ContentfulBuyingWithUsDTO>> GetBuyingWithUsDataAsync()
     {
-        var query = new QueryBuilder<ContentfulBuyingWithUs>()
+        QueryBuilder<ContentfulBuyingWithUs> query = new QueryBuilder<ContentfulBuyingWithUs>()
                         .ContentTypeIs("buyingWithUs");
 
-        var entries = await _client.GetEntries(query);
-
-        foreach (var buyingWithUs in entries)
-        {
-            buyingWithUs.SetImageFile();
-        }
+        ContentfulCollection<ContentfulBuyingWithUs>? entries = await _client.GetEntries(query);
 
         return entries.Select(article => new ContentfulBuyingWithUsDTO(
             article.Title,
@@ -126,31 +99,22 @@ public class ContentfulService : IContentfulService
             ));
     }
 
-    public async Task<IEnumerable<ContentfulCustomerReviewDTO>> GetCustomerReviewAsync()
+    public async Task<IEnumerable<ContentfulCustomerReview>> GetCustomerReviewAsync()
     {
-        var query = new QueryBuilder<ContentfulCustomerReview>()
+        QueryBuilder<ContentfulCustomerReview> query = new QueryBuilder<ContentfulCustomerReview>()
                         .ContentTypeIs("customerReview");
 
-        var entries = await _client.GetEntries(query);
+        ContentfulCollection<ContentfulCustomerReview>? entries = await _client.GetEntries(query);
 
-        return entries.Select(article => new ContentfulCustomerReviewDTO(
-            article.Message,
-            article.Name,
-            article.ReviewDate
-            ));
+        return entries;
     }
 
     public async Task<IEnumerable<ContentfulLocationDTO>> GetLocationAsync()
     {
-        var query = new QueryBuilder<ContentfulLocation>()
+        QueryBuilder<ContentfulLocation> query = new QueryBuilder<ContentfulLocation>()
                         .ContentTypeIs("location");
 
-        var entries = await _client.GetEntries(query);
-
-        foreach (var location in entries)
-        {
-            location.SetImageFile();
-        }
+        ContentfulCollection<ContentfulLocation>? entries = await _client.GetEntries(query);
 
         return entries.Select(article => new ContentfulLocationDTO(
             article.LogoImageFile,
