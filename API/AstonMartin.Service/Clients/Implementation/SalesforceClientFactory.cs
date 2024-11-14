@@ -30,46 +30,33 @@ public class SalesforceClientFactory : ISalesforceClientFactory
     {
         if (_memoryCache.TryGetValue(TokenCacheKey, out string accessToken))
         {
-            Console.WriteLine("Using cached Salesforce access token.");
             return accessToken;
         }
 
-        try
+        StringContent content = new StringContent(
+            $"grant_type=client_credentials&client_id={_settings.ClientId}&client_secret={_settings.ClientSecret}",
+            Encoding.UTF8,
+            "application/x-www-form-urlencoded");
+
+        HttpResponseMessage response = await _httpClient.PostAsync($"{_settings.ApiBaseUrl}/services/oauth2/token", content);
+
+        if (!response.IsSuccessStatusCode)
         {
-            var content = new StringContent(
-                $"grant_type=client_credentials&client_id={_settings.ClientId}&client_secret={_settings.ClientSecret}",
-                Encoding.UTF8,
-                "application/x-www-form-urlencoded");
-
-            var response = await _httpClient.PostAsync($"{_settings.ApiBaseUrl}/services/oauth2/token", content);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                var errorResponse = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Failed to retrieve Salesforce access token. Status: {StatusCode}, Response: {Response}", response.StatusCode, errorResponse);
-                throw new HttpRequestException($"Token request failed with status code {response.StatusCode}.");
-            }
-
-            var responseString = await response.Content.ReadAsStringAsync();
-            var tokenResponse = JsonSerializer.Deserialize<SalesforceTokenResponse>(responseString);
-
-            accessToken = tokenResponse?.access_token;
-            if (string.IsNullOrEmpty(accessToken))
-            {
-                Console.WriteLine("Access token is null or empty in the Salesforce response.");
-                throw new Exception("Failed to retrieve a valid access token from Salesforce.");
-            }
-
-            _memoryCache.Set(TokenCacheKey, accessToken, DateTimeOffset.UtcNow.AddSeconds(3600));
-            Console.WriteLine("Salesforce access token retrieved and cached successfully.");
-
-            return accessToken;
+            throw new HttpRequestException($"Token request failed with status code {response.StatusCode}.");
         }
-        catch (Exception ex)
+
+        string responseString = await response.Content.ReadAsStringAsync();
+        SalesforceTokenResponse tokenResponse = JsonSerializer.Deserialize<SalesforceTokenResponse>(responseString);
+
+        accessToken = tokenResponse?.access_token;
+        if (string.IsNullOrEmpty(accessToken))
         {
-            Console.WriteLine("An error occurred while retrieving the Salesforce access token.");
-            throw;
+            throw new Exception("Failed to retrieve a valid access token from Salesforce.");
         }
+
+        _memoryCache.Set(TokenCacheKey, accessToken, DateTimeOffset.UtcNow.AddSeconds(3600));
+        return accessToken;
     }
-
 }
+
+

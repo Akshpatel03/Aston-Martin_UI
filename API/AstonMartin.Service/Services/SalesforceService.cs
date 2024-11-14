@@ -23,27 +23,17 @@ public class SalesforceService : ISalesforceService
 
     public async Task<string> QuerySalesforceDataAsync(string query)
     {
-        try
+
+        string accessToken = await _salesforceClientFactory.GetAccessTokenAsync();
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        HttpResponseMessage response = await _httpClient.GetAsync($"{_settings.ApiBaseUrl}/services/data/{_settings.APIVersion}/query/?q={query}");
+
+        if (!response.IsSuccessStatusCode)
         {
-            var accessToken = await _salesforceClientFactory.GetAccessTokenAsync();
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-            var response = await _httpClient.GetAsync($"{_settings.ApiBaseUrl}/services/data/{_settings.APIVersion}/query/?q={query}");
-
-            if (!response.IsSuccessStatusCode)
-            {
-                var errorResponse = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Salesforce query failed. Status: {StatusCode}, Response: {Response}", response.StatusCode, errorResponse);
-                throw new HttpRequestException($"Query request failed with status code {response.StatusCode}.");
-            }
-
-            Console.WriteLine("Salesforce query executed successfully.");
-            return await response.Content.ReadAsStringAsync();
+            throw new HttpRequestException($"Query request failed with status code {response.StatusCode}.");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("An error occurred while querying Salesforce data.");
-            throw;
-        }
+
+        return await response.Content.ReadAsStringAsync();
     }
 }

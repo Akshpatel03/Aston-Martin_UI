@@ -1,3 +1,4 @@
+using AstonMartin.API.Middlewares;
 using AstonMartin.Application.Services;
 using AstonMartin.Service.Clients.Implementation;
 using AstonMartin.Service.Clients.Interface;
@@ -5,7 +6,7 @@ using AstonMartin.Service.Interfaces;
 using AstonMartin.Service.Models;
 using AstonMartin.Service.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<ContentfulConfigs>(builder.Configuration.GetSection("ContentfulSettings"));
 builder.Services.Configure<SalesforceConfig>(builder.Configuration.GetSection("SalesforceSettings"));
@@ -25,7 +26,7 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
            .AllowAnyHeader();
 }));
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -33,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseCors("MyPolicy");
 
