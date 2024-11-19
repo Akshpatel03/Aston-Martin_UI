@@ -1,0 +1,531 @@
+@import './variable';
+
+// Typography
+h1 {
+    font-size: 54px;
+    line-height: 70px;
+}
+
+h2 {
+    font-size: 48px;
+    line-height: 60px;
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 42px;
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 30px;
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+h6 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.subtitle1 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.subtitle2 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.body1 {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.body2 {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.caption {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.mb-4p {
+    margin-bottom: 4px;
+}
+
+.mb-12p {
+    margin-bottom: 12px;
+}
+
+.mb-24p {
+    margin-bottom: 24px;
+}
+
+.mb-32p {
+    margin-bottom: 32px;
+}
+
+.btn {
+    transition: all 200ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &.rounded {
+        --bs-btn-border-radius: 50%;
+    }
+
+    &.btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 48px;
+        height: 48px;
+        padding: 6px;
+        --bs-btn-padding-x: 6px;
+        --bs-btn-padding-y: 6px;
+        @extend .rounded;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        &.btn-text {
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                bottom: 50%;
+                left: 50%;
+                right: 50%;
+                border-radius: 50%;
+                background: rgba($color: $White, $alpha: 0.15);
+                transform-origin: center;
+                transition: all 200ms ease-in-out;
+            }
+
+            &:hover,
+            &:focus {
+                &::before {
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+
+        &.size-lg {
+            width: 56px;
+            height: 56px;
+            --bs-btn-padding-x: 8px;
+            --bs-btn-padding-y: 8px;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        &.size-sm {
+            width: 40px;
+            height: 40px;
+
+            img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    &.btn-text {
+        color: $Neutral50;
+    }
+
+    &.size-lg {
+        min-height: 56px;
+        font-size: 16px;
+        line-height: 20px;
+        border-radius: 2px;
+        padding: 16px 50px;
+    }
+
+    &.btn-light {
+        --bs-btn-color: #00665E;
+        --bs-btn-bg: #FFFFFF;
+        --bs-btn-border-color: #FFFFFF;
+        --bs-btn-hover-color: #FFFFFF;
+        --bs-btn-hover-bg: #00665e;
+        --bs-btn-hover-border-color: #00665e;
+        --bs-btn-focus-shadow-rgb: 211, 212, 213;
+        --bs-btn-active-color: #FFFFFF;
+        --bs-btn-active-bg: #00665e;
+        --bs-btn-active-border-color: #00665e;
+        --bs-btn-active-shadow: 0px 1px 4px 0px #00403A1A, 0px -1px 0px 0px #00403A1A inset;
+        --bs-btn-disabled-color: #000000;
+        --bs-btn-disabled-bg: #f8f9fa;
+        --bs-btn-disabled-border-color: #f8f9fa;
+    }
+
+    &.btn-primary {
+        --bs-btn-color: #FFFFFF;
+        --bs-btn-bg: #00665E;
+        --bs-btn-border-color: #00665E;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #015750;
+        --bs-btn-hover-border-color: #00665e;
+        --bs-btn-focus-shadow-rgb: 49, 132, 253;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #00665e;
+        --bs-btn-active-border-color: #00665e;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #00665eab;
+        --bs-btn-disabled-border-color: #00665eab;
+    }
+}
+
+.dropdown {
+    .dropdown-toggle {
+        &::after {
+            margin-left: 8px;
+            vertical-align: -3px;
+            width: 12px;
+            height: 12px;
+            background: url('./../public/images/icons/ic-chevron-up-lg-grey.svg') no-repeat center center;
+            background-size: 12px;
+            border: 0;
+        }
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-min-width: 100px;
+        --bs-dropdown-padding-x: 12px;
+        --bs-dropdown-padding-y: 12px;
+        --bs-dropdown-spacer: 4px;
+        --bs-dropdown-font-size: 14px;
+        --bs-dropdown-color: #1a1c1e;
+        --bs-dropdown-bg: #ffffff;
+        --bs-dropdown-border-color: #e4e9ee;
+        --bs-dropdown-border-radius: 8px;
+        --bs-dropdown-border-width: 1px;
+        --bs-dropdown-divider-bg: #dce4e8;
+        --bs-dropdown-divider-margin-y: 4px;
+        --bs-dropdown-box-shadow: 0px 4px 70px 0px #818b9c33;
+        --bs-dropdown-item-padding-x: 8px;
+        --bs-dropdown-item-padding-y: 8px;
+
+        .dropdown-item {
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-inline: calc(-1 * var(--bs-dropdown-item-padding-x));
+            width: calc(100% + 2 * var(--bs-dropdown-item-padding-x));
+            --bs-dropdown-link-color: #1a1c1e;
+            --bs-dropdown-link-hover-color: #1a1c1e;
+            --bs-dropdown-link-hover-bg: rgba(5, 192, 192, 0.09);
+            --bs-dropdown-link-active-color: #1a1c1e;
+            --bs-dropdown-link-active-bg: rgba(5, 192, 192, 0.2);
+
+            &:focus,
+            &:hover {
+                background: rgba($color: $Primary50, $alpha: 0.1);
+            }
+        }
+    }
+
+    &.country-dropdown {
+        .dropdown-toggle {
+            border: 0 !important;
+
+            &:hover,
+            &.show {
+                color: rgba($color: $White, $alpha: 0.72);
+            }
+        }
+    }
+}
+
+
+.inline-level {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+// Radio + Checkbox
+.form-check {
+    min-height: 24px;
+    padding-left: 24px;
+    margin-bottom: 0;
+
+    .form-check-input {
+        margin-top: 0;
+        margin-left: -24px;
+        cursor: pointer;
+
+        transition: all 200ms ease-in-out;
+
+        &[type="checkbox"] {
+            border: 1.5px solid $Neutral20;
+            border-radius: 6px;
+            width: 24px;
+            height: 24px;
+
+            &:checked {
+                border: 0;
+                background-color: $White;
+                // --bs-form-check-bg-image: url("./../images/checkbox-checked.svg");
+            }
+        }
+
+        &[type="radio"] {
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            border: 1.5px solid $Neutral20;
+            // box-shadow: 0px -1px 1px 0px rgba(18, 18, 18, 0.3) inset, 0px 1px 3px 0px rgba(18, 18, 18, 0.1);
+
+            &:checked {
+                border: 0;
+                background-color: var(--black-15, #00000026);
+                background: url('./../public/images/icons/ic-radio-checked-primary.svg') no-repeat center;
+                background-size: 24px;
+                // --bs-form-check-bg-image: url("./../public/images/icons/ic-radio-checked-white.svg");
+            }
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.25rem rgba(0, 98, 98, 0.16);
+        }
+
+        &:hover,
+        &:focus {
+            border-color: $Primary50;
+        }
+
+        &:active {
+            filter: none;
+        }
+    }
+
+    .form-check-label {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        padding-left: 10px;
+        // color: $input-placeholder;
+        cursor: pointer;
+    }
+
+    &.dark {
+        .form-check-input {
+            &[type="radio"] {
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                background: rgba($color: $Black, $alpha: 0.15);
+                border: 1.5px solid rgba($color: $White, $alpha: 0.5);
+
+                &:checked {
+                    border: 0;
+                    background-color: #00000026;
+                    background: url('./../public/images/icons/ic-radio-checked-white.svg') no-repeat center;
+                    background-size: 24px;
+                }
+            }
+
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(5, 192, 192, 0.16);
+            }
+
+            &:hover,
+            &:focus {
+                border-color: $Primary50;
+            }
+
+            &:active {
+                filter: none;
+            }
+        }
+    }
+
+
+
+    // &.form-switch {
+    //     .form-check-input {
+    //         background-image: url("../images/switch-unchecked-icon.svg");
+    //         background-size: 22px;
+    //         background-position: left 3px center;
+
+    //         &:focus {
+    //             background-image: url("../images/switch-unchecked-focus-icon.svg");
+    //         }
+
+    //         &[type="checkbox"] {
+    //             height: 28px;
+    //             width: 45px;
+    //             border-radius: 50px;
+    //             border-color: $border-color;
+
+    //             &:checked {
+    //                 background-color: $primary;
+    //                 background-position: right 3px center;
+    //                 background-image: url("../images/switch-checked-white-icon.svg");
+    //             }
+    //         }
+    //     }
+    // }
+}
+
+// React Custom Select
+.react-custom-select {
+    min-height: 56px;
+
+    >div {
+        &:not([class*="-menu"]) {
+            border: 1.5px solid #E2E4E4;
+            background: #EEF0F080;
+            border-radius: 2px;
+            height: 100%;
+            min-height: inherit;
+            box-shadow: none;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                border-color: $Primary50;
+            }
+
+            >div {
+                &:first-child {
+                    >div {
+                        &:first-child {
+                            margin: 0 8px;
+                            color: $Neutral100;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    >span {
+                        display: none;
+                    }
+
+                    >div {
+                        position: relative;
+                        right: 12px;
+                        padding: 0;
+
+                        svg {
+                            height: 24px;
+                            width: 24px;
+                            background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+                            background-size: 24px;
+
+                            path {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    [class*="-menu"] {
+        box-shadow: 0px 4px 6px -2px rgba($color: $Black, $alpha: 0.03),
+            0px 12px 16px -4px rgba($color: $Black, $alpha: 0.08);
+        border-radius: 2px;
+        border: 1px solid #F2F4F7;
+        margin: 0;
+        z-index: 3;
+
+        [class*="-option"] {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: none;
+            color: $Neutral100;
+
+            &[aria-selected="true"] {
+                background-color: $Primary50;
+            }
+
+            &:hover {
+                background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
+                color: $Primary50 !important;
+            }
+
+            &[aria-selected="true"] {
+                background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
+                color: $Primary50 !important;
+            }
+
+            @media (hover: none) {
+                &:hover {
+                    // background-color: rgba($color: $primary, $alpha: 0.12);
+                    background-color: $Primary50 !important;
+                    color: $White !important;
+                }
+
+            }
+
+            &:focus,
+            &:active {
+                background-color: $Primary50 !important;
+                color: $White !important;
+            }
+        }
+    }
+
+    &.dark {
+        >div {
+            &:not([class*="-menu"]) {
+                border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
+                background: var(--black-15, rgba(0, 0, 0, 0.15));
+
+                &:hover,
+                &:focus {
+                    border-color: $Primary50;
+                }
+
+                >div {
+                    &:first-child {
+                        >div {
+                            &:first-child {
+                                color: $White;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        >div {
+                            svg {
+                                background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
+                                background-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+/* Responsive Media Query
+--------------------------------------------------------------------------------------------------------------------*/
+@media(max-width: 1199px) {}
+
+@media(max-width: 991px) {}
