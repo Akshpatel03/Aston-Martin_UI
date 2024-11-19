@@ -127,6 +127,7 @@ body.page-scrolled {
     }
 }
 
+// Main Content
 .main-content {
     padding-top: 80px;
     min-height: calc(100vh - 80px);
@@ -214,6 +215,7 @@ body.open-sidebar {
     }
 }
 
+// Overlayer
 .overlayer {
     position: fixed;
     top: 0;
@@ -325,6 +327,7 @@ footer {
     }
 }
 
+// Hero Banner Slider
 .hero-banner-slider {
     position: relative;
     min-height: 860px;
@@ -375,6 +378,7 @@ footer {
 
 }
 
+// All Swiper
 .swiper {
 
     // Hero Banner Slider
@@ -562,6 +566,7 @@ footer {
     }
 }
 
+// Block Spacing-80
 .block-spacing-80 {
     padding: 80px;
 
@@ -570,6 +575,7 @@ footer {
     }
 }
 
+// Quick Links
 .quick-link {
     display: inline-flex;
     align-items: center;
@@ -605,6 +611,7 @@ footer {
     }
 }
 
+// Quick link Cards
 .quick-link-card {
     position: relative;
     padding: 30px 24px;
@@ -638,6 +645,7 @@ footer {
     }
 }
 
+// Info Section
 .info-section {
     padding: 100px 0;
     overflow: hidden;
@@ -669,6 +677,7 @@ footer {
     }
 }
 
+// Info Point
 .info-points-wrapper {
     margin-inline: -50px;
 
@@ -681,6 +690,7 @@ footer {
     }
 }
 
+// Product Explore
 .product-explore-wrapper {
     color: $White;
 
@@ -696,6 +706,7 @@ footer {
     }
 }
 
+// Info Block
 .info-block {
     padding: 48px 0;
     overflow: hidden;
@@ -731,10 +742,10 @@ footer {
     }
 }
 
+// Location
 .location-wrapper {
     background: #F4F4F2;
     position: relative;
-    // min-height: 736px;
     overflow: hidden;
 
     .info {
@@ -794,6 +805,7 @@ footer {
     }
 }
 
+// Common Links
 .link {
     display: inline-block;
     vertical-align: top;
@@ -809,6 +821,7 @@ footer {
     }
 }
 
+// Testimonials
 .testimonials {
     background: $Neutral90;
     color: $White;

@@ -38,20 +38,6 @@ const Home = () => {
     }
   };
 
-  // const TestimonialSlider = useRef<SwiperCore | null>(null);
-  // const [activeTestimonialIndex, setActiveTestimonialIndex] = React.useState(0);
-  // const handleTestimonialPrev = () => {
-  //   if (TestimonialSlider.current) {
-  //     TestimonialSlider.current.slidePrev();
-  //   }
-  // };
-
-  // const handleTestimonialNext = () => {
-  //   if (TestimonialSlider.current) {
-  //     TestimonialSlider.current.slideNext();
-  //   }
-  // };
-
   return (
     <>
 
