@@ -1,0 +1,117 @@
+@import './break-points';
+
+// Font Faces
+.am {
+    font-family: "AstonMartinFlare";
+}
+
+.am-medium {
+    font-family: "AstonMartinFlareMedium";
+}
+
+.am-bold {
+    font-family: "AstonMartinFlareBold";
+}
+
+.am-sans {
+    font-family: "AstonMartinSans";
+}
+
+.am-sans-medium {
+    font-family: "AstonMartinSansMedium";
+}
+
+.am-sans-bold {
+    font-family: "AstonMartinSansBold";
+}
+
+// Typography
+h1 {
+    font-size: 54px;
+    line-height: 70px;
+
+    @include bp(xl-max) {
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    @include bp(md-max) {
+        font-size: 36px;
+        line-height: 50px;
+    }
+}
+
+h2 {
+    font-size: 48px;
+    line-height: 60px;
+
+    @include bp(xl-max) {
+        font-size: 40px;
+        line-height: 52px;
+    }
+
+    @include bp(md-max) {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 42px;
+
+    @include bp(lg-max) {
+        font-size: 28px;
+        line-height: 40px;
+    }
+
+    @include bp(md-max) {
+        font-size: 24px;
+        line-height: 40px;
+    }
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 30px;
+
+    @include bp(md-max) {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+h6 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.subtitle1 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.subtitle2 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.body1 {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.body2 {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.caption {
+    font-size: 12px;
+    line-height: 16px;
+}

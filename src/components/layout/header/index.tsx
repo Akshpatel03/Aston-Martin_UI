@@ -52,7 +52,7 @@ const Header = () => {
             <ul className="main-navigation d-lg-flex d-none">
               <li className="nav-link">
                 {/* ${router.pathname === ROUTES.Home ? 'active' : ''}` */}
-                <NextLink className={`nav-item`} href={ROUTES.Home} title="Cars">
+                <NextLink className={`nav-item`} href={ROUTES.NewCar} title="Cars">
                   New Cars
                 </NextLink>
               </li>
