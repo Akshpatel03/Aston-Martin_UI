@@ -41,13 +41,13 @@ const Home = () => {
 
   return (
     <>
-
       {/* Hero Banner Start */}
       <Swiper
         modules={[Navigation, Pagination, Parallax]}
         speed={1200}
         parallax
         loop
+        effect={'fade'}
         pagination={{
           clickable: true,
         }}
@@ -185,7 +185,7 @@ const Home = () => {
         <Container fluid="xxl">
           <div className="row align-items-center">
             <div className="col-xl-6 ps-xxxl-0">
-              <Image className="l-80p" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
+              <Image className="left-image" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
             </div>
             <div className="col-xl-6">
               <div className="info">
@@ -229,7 +229,7 @@ const Home = () => {
             ExploreSlider.current = swiper;
           }}
           modules={[Navigation, Parallax]}
-          speed={1200}
+          speed={800}
           parallax
           loop
           className="product-explore-slider"
