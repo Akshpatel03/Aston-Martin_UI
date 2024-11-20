@@ -1,14 +1,4 @@
-// import images from "@/public/images";
-// import React, { useRef } from "react";
 import React from "react";
-// import { Button, Form } from "react-bootstrap";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Pagination, Parallax } from "swiper/modules";
-// import SwiperCore from "swiper";
-// import Image from "next/image";
-// import Select from "react-select";
-// import Link from "next/link";
-// import { ROUTES } from "@/src/shared/routes";
 import AvailableLocation from "@/src/components/AvailableLocation";
 import Testimonials from "@/src/components/Testimonials";
 
@@ -18,7 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import images from "@/public/images";
 import Image from "next/image";
-// import ScrollSpy from "react-scrollspy-navigation";
 
 // Import Swiper styles
 import "swiper/css";
@@ -27,7 +16,7 @@ import "swiper/css/navigation";
 import CarModelSlider from "@/src/components/CarModelSlider";
 import Link from "next/link";
 import { ROUTES } from "@/src/shared/routes";
-import ScrollspyNav from "react-scrollspy-nav";
+// import ScrollspyNav from "react-scrollspy-nav";
 import Herobanner from '@/public/images/new-car/hero-img.jpg';
 
 const DBXCarModel = {
@@ -141,12 +130,12 @@ const ValkyrieCarModel = {
 
 const NewCar = () => {
   console.log(Herobanner);
-  
+
   return (
     <>
       {/* Hero Banner Start */}
-      <div className="hero-banner" 
-      style={{ backgroundImage: `url(${Herobanner.src})` }}
+      <div className="hero-banner"
+        style={{ backgroundImage: `url(${Herobanner.src})` }}
       >
         {/* <Image
           className="banner-img"
@@ -191,12 +180,12 @@ const NewCar = () => {
       {/*car model tab Start */}
       <div className="car-models-wrapper">
         <div className="car-models-links px-md-4 px-3">
-        <ScrollspyNav
-                    scrollTargetIds={["DBX", "Vantage", "DB12","DBS","ValHalla","Valkyrie"]}
-                    offset={-100}
-                    activeNavClass="is-active"
-                     scrollDuration="100"
-                >
+          {/* <ScrollspyNav
+            scrollTargetIds={["DBX", "Vantage", "DB12", "DBS", "ValHalla", "Valkyrie"]}
+            offset={-100}
+            activeNavClass="is-active"
+            scrollDuration="100"
+          >
             <ul className="links container-xxl px-0">
               <li>
                 <a href="#DBX">DBX</a>
@@ -217,7 +206,7 @@ const NewCar = () => {
                 <a href="#Valkyrie">Valkyrie</a>
               </li>
             </ul>
-          </ScrollspyNav>
+          </ScrollspyNav> */}
         </div>
         <div className="car-models-content">
           <div id="DBX">
@@ -296,8 +285,8 @@ const NewCar = () => {
       </div>
       {/*  */}
 
-  {/* Info Section Start */}
-  <div className="info-section black">
+      {/* Info Section Start */}
+      <div className="info-section black">
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-lg-6">
@@ -315,7 +304,7 @@ const NewCar = () => {
         </div>
       </div>
       {/* Info Section End */}
-    
+
       {/* Aston Martin Address Start */}
       <AvailableLocation />
       {/* Aston Martin Address End */}

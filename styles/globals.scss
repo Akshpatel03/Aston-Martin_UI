@@ -544,14 +544,14 @@ footer {
                 }
 
                 @include bp(md-max) {
-                    width: 100%;
+                    height: 600px;
+                    width: auto;
                 }
 
                 @include bp(sm-max) {
-                    width: auto;
                     left: -50%;
                     right: 50%;
-                    transform: translate(-590px, 0);
+                    // transform: translate(-590px, 0);
                 }
             }
         }
@@ -883,7 +883,7 @@ footer {
                         .btn {
                             padding: 12px 28px;
 
-                            @include bp(xs-max) {
+                            @include bp(sm-max) {
                                 min-width: calc(50% - 8px);
                                 max-width: none;
                             }
