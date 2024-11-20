@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header>
-      <Container fluid>
+      <Container fluid="xxl">
         <Navbar>
           <div className="menu-link">
             <Button className="btn-icon d-lg-none me-lg-0 me-2" variant="text" onClick={handleSidebar}>

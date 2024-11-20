@@ -6,8 +6,7 @@ export default {
   DealerLogo: require("./icons/dealer-logo.svg").default,
   DealerLogoGrey: require("./icons/dealer-logo-grey.svg").default,
   DealerLogoBlack: require("./icons/dealer-logo-black.svg").default,
-  LogoPrimary: require("./icons/logo-primary.svg").default,
-  LogoWhite: require("./icons/logo-white.svg").default,
+  DealerLogoPrimary: require("./icons/dealer-logo-primary.svg").default,
   SearchWhite: require("./icons/ic-search-white.svg").default,
   MenuWhite: require("./icons/ic-hamburg-white.svg").default,
   InstagramWhite: require("./icons/ic-instagram-white.svg").default,
@@ -18,6 +17,9 @@ export default {
   ArrowNarrowLeftWhite: require("./icons/ic-arrow-narrow-left-white.svg")
     .default,
   ArrowNarrowRightWhite: require("./icons/ic-arrow-narrow-right-white.svg")
+    .default,
+  ArrowNarrowLeftDark: require("./icons/ic-arrow-narrow-left-dark.svg").default,
+  ArrowNarrowRightDark: require("./icons/ic-arrow-narrow-right-dark.svg")
     .default,
   ArrowNarrowLeftLongTailWhite:
     require("./icons/ic-arrow-narrow-left-long-tail-white.svg").default,
@@ -43,4 +45,7 @@ export default {
   TimelessMartinCars: require("./home/timeless-martin-cars.jpg"),
   PartsAccessories: require("./home/parts-accessories.jpg"),
   ValueMyMartin: require("./home/value-my-martin.jpg"),
+  News1: require("./home/news1.jpg"),
+  News2: require("./home/news2.jpg"),
+  News3: require("./home/news3.jpg"),
 };

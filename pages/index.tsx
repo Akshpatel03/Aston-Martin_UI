@@ -1,6 +1,6 @@
 import images from "@/public/images";
 import React, { useRef } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import SwiperCore from "swiper";
@@ -15,6 +15,7 @@ import Testimonials from "@/src/components/Testimonials";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import News from "@/src/components/News";
 
 
 const Home = () => {
@@ -42,56 +43,64 @@ const Home = () => {
     <>
 
       {/* Hero Banner Start */}
-      <div className="hero-banner">
-        <Swiper
-          modules={[Navigation, Pagination, Parallax]}
-          speed={1200}
-          parallax
-          loop
-          pagination={{
-            clickable: true,
-          }}
-          navigation
-          className="hero-banner-slider default-slider"
-        >
-          <SwiperSlide>
-            <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
-            <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
-            <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
-            <div data-swiper-parallax="-600">
-              <Button className="size-lg" variant="light" >
-                Explore
-              </Button>
-            </div>
-            <Image className="banner-img" src={images.Hero1} alt="Hero1" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
-            <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
-            <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
-            <div data-swiper-parallax="-600">
-              <Button className="size-lg" variant="light" >
-                Explore
-              </Button>
-            </div>
-            <Image className="banner-img" src={images.Hero1} alt="Hero1" />
-          </SwiperSlide>
-
-        </Swiper>
-      </div>
+      <Swiper
+        modules={[Navigation, Pagination, Parallax]}
+        speed={1200}
+        parallax
+        loop
+        pagination={{
+          clickable: true,
+        }}
+        navigation
+        className="hero-banner-slider default-slider"
+      >
+        <SwiperSlide>
+          <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
+          <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
+          <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
+          <div className="w-sm-auto w-100" data-swiper-parallax="-600">
+            <Button className="size-lg w-sm-auto w-100" variant="light" >
+              Explore
+            </Button>
+          </div>
+          <Image className="banner-img" src={images.Hero1} alt="Hero1" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
+          <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
+          <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
+          <div className="w-sm-auto w-100" data-swiper-parallax="-600">
+            <Button className="size-lg w-sm-auto w-100" variant="light" >
+              Explore
+            </Button>
+          </div>
+          <Image className="banner-img" src={images.Hero1} alt="Hero1" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
+          <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
+          <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
+          <div className="w-sm-auto w-100" data-swiper-parallax="-600">
+            <Button className="size-lg w-sm-auto w-100" variant="light" >
+              Explore
+            </Button>
+          </div>
+          <Image className="banner-img" src={images.Hero1} alt="Hero1" />
+        </SwiperSlide>
+      </Swiper>
       {/* Hero Banner End */}
 
       {/* Search Filter Start */}
-      <div className="search-block block-spacing-80">
-        <div className="container-xxl">
+      <div className="search-block block-spacing-y-80">
+        <Container fluid="xxl">
           <div className="row align-items-center">
             <div className="col-lg-5">
               <h3>Search Aston Martin cars</h3>
             </div>
             <div className="col-lg">
               <div className="row align-items-center">
-                <div className="col-auto">
-                  <Form className="inline-level gap-5">
+                <div className="col-md-auto">
+                  <Form className="inline-level gap-5 ms-xl-4">
                     <Form.Check
                       className="dark"
                       type="radio"
@@ -107,26 +116,26 @@ const Home = () => {
                     />
                   </Form>
                 </div>
-                <div className="col">
+                <div className="col-sm">
                   <Select className="react-custom-select dark" options={options} isSearchable={false} />
                 </div>
-                <div className="col-auto">
-                  <Button className="size-lg" variant="light">
+                <div className="col-sm-auto">
+                  <Button className="size-lg w-100" variant="light">
                     Search
                   </Button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
       {/* Search Filter End */}
 
       {/* Quick Redirects Start */}
-      <div className="quick-redirects block-spacing-80">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-lg-3">
+      <div className="quick-redirects block-spacing-y-80 tablet-spacing-y-16">
+        <Container fluid="xxl">
+          <div className="row row-gap-3">
+            <div className="col-xxl-3 col-md-6">
               <div className="quick-link-card">
                 <h4 className="am">New cars</h4>
                 <Image src={images.NewCar} alt="New Car" />
@@ -136,7 +145,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-xxl-3 col-md-6">
               <div className="quick-link-card">
                 <h4 className="am">Pre-owned Aston Martin</h4>
                 <Image src={images.PreOwnedAstonMartin} alt="Pre-owned Aston Martin" />
@@ -146,7 +155,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-xxl-3 col-md-6">
               <div className="quick-link-card">
                 <h4 className="am">Book a service</h4>
                 <Image src={images.BookService} alt="Book a service" />
@@ -156,7 +165,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="col-lg-3">
+            <div className="col-xxl-3 col-md-6">
               <div className="quick-link-card">
                 <h4 className="am">Value my Aston Martin</h4>
                 <Image src={images.ValueMyAstonMartin} alt="Value my Aston Martin" />
@@ -167,18 +176,18 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </div >
       {/* Quick Redirects End */}
 
       {/* Info Section Start */}
-      <div className="info-section black">
-        <div className="container-xxl">
+      <div className="info-section black block-spacing-y-80">
+        <Container fluid="xxl">
           <div className="row align-items-center">
-            <div className="col-lg-6 ps-0">
-              <Image className="l-72p" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
+            <div className="col-xl-6 ps-xxxl-0">
+              <Image className="l-80p" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
             </div>
-            <div className="col-lg-6">
+            <div className="col-xl-6">
               <div className="info">
                 <h3 className="title am">Welcome to Dealer X Aston Martin</h3>
                 <p className="description">As one of the UK&rsquo;s leading luxury car dealerships, we take pride in our outstanding levels of customer service and unrivalled automotive expertise.</p>
@@ -186,28 +195,30 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </div >
       {/* Info Section End */}
 
       {/* Info Points Start */}
-      <div className="block-spacing-80 block-64">
-        <h2 className="mb-32p am">Why Dealer X?</h2>
-        <div className="row info-points-wrapper">
-          <div className="col-xxl-3 col-lg-6 info-points">
-            <h4>65 years of proud motoring heritage</h4>
+      <div className="block-spacing-y-64 block-spacing-y-64">
+        <Container fluid="xxl">
+          <h2 className="mb-32p am">Why Dealer X?</h2>
+          <div className="row info-points-wrapper">
+            <div className="col-xxl-3 col-md-6 info-points">
+              <h4>65 years of proud motoring heritage</h4>
+            </div>
+            <div className="col-xxl-3 col-md-6 info-points">
+              <h4>94% on all customer reviews collected by Reputation</h4>
+            </div>
+            <div className="col-xxl-3 col-md-6 info-points">
+              <h4>Fully certified technicians and engineers</h4>
+            </div>
+            <div className="col-xxl-3 col-md-6 info-points">
+              <h4>First class personalised customer care</h4>
+            </div>
           </div>
-          <div className="col-xxl-3 col-lg-6 info-points">
-            <h4>94% on all customer reviews collected by Reputation</h4>
-          </div>
-          <div className="col-xxl-3 col-lg-6 info-points">
-            <h4>Fully certified technicians and engineers</h4>
-          </div>
-          <div className="col-xxl-3 col-lg-6 info-points">
-            <h4>First class personalised customer care</h4>
-          </div>
-        </div>
-      </div>
+        </Container>
+      </div >
       {/* Info Points End */}
 
       {/* Product Explore Slider Start */}
@@ -224,26 +235,22 @@ const Home = () => {
           className="product-explore-slider"
         >
           <SwiperSlide>
-            <Image src={images.DBX707Green} alt="model" />
+            <Image className="model-crop" src={images.DBX707Green} alt="model" />
             <div className="slider-handler">
               <div className="header">
-                <div data-swiper-parallax="-800">
-                  <Button className="btn-icon swiper-button-prev" variant="text" onClick={handleExplorePrev}>
-                    <Image src={images.ArrowNarrowLeftLongTailWhite} alt="Previous" />
-                  </Button>
-                </div>
+                <Button className="btn-icon swiper-button-prev" variant="text" onClick={handleExplorePrev}>
+                  <Image src={images.ArrowNarrowLeftLongTailWhite} alt="Previous" />
+                </Button>
                 <div className="header-info">
-                  <p className="label" data-swiper-parallax="-300">POWER. DRIVEN.</p>
-                  <h1 className="title" data-swiper-parallax="-400">DBX707</h1>
+                  <p className="label" data-swiper-parallax="-200">POWER. DRIVEN.</p>
+                  <h1 className="title" data-swiper-parallax="-300">DBX707</h1>
                 </div>
-                <div data-swiper-parallax="800">
-                  <Button className="btn-icon swiper-button-next" variant="text" onClick={handleExploreNext}>
-                    <Image src={images.ArrowNarrowRightLongTailWhite} alt="Next" />
-                  </Button>
-                </div>
+                <Button className="btn-icon swiper-button-next" variant="text" onClick={handleExploreNext}>
+                  <Image src={images.ArrowNarrowRightLongTailWhite} alt="Next" />
+                </Button>
               </div>
-              <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
-              <div className="action" data-swiper-parallax="-600">
+              <p className="description" data-swiper-parallax="-400">The most powerful luxury SUV</p>
+              <div className="action" data-swiper-parallax="-500">
                 <Button className="size-lg" variant="light">
                   New
                 </Button>
@@ -256,26 +263,22 @@ const Home = () => {
             <Image className="banner-img" src={images.ExploreBGPettern} alt="Hero1" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={images.DBX707Green} alt="model" />
+            <Image className="model-crop" src={images.DBX707Green} alt="model" />
             <div className="slider-handler">
               <div className="header">
-                <div data-swiper-parallax="-800">
-                  <Button className="btn-icon swiper-button-prev" variant="text" onClick={handleExplorePrev}>
-                    <Image src={images.ArrowNarrowLeftLongTailWhite} alt="Previous" />
-                  </Button>
-                </div>
+                <Button className="btn-icon swiper-button-prev" variant="text" onClick={handleExplorePrev}>
+                  <Image src={images.ArrowNarrowLeftLongTailWhite} alt="Previous" />
+                </Button>
                 <div className="header-info">
-                  <p className="label" data-swiper-parallax="-300">POWER. DRIVEN.</p>
-                  <h1 className="title" data-swiper-parallax="-400">DBX707</h1>
+                  <p className="label" data-swiper-parallax="-200">POWER. DRIVEN.</p>
+                  <h1 className="title" data-swiper-parallax="-300">DBX707</h1>
                 </div>
-                <div data-swiper-parallax="800">
-                  <Button className="btn-icon swiper-button-next" variant="text" onClick={handleExploreNext}>
-                    <Image src={images.ArrowNarrowRightLongTailWhite} alt="Next" />
-                  </Button>
-                </div>
+                <Button className="btn-icon swiper-button-next" variant="text" onClick={handleExploreNext}>
+                  <Image src={images.ArrowNarrowRightLongTailWhite} alt="Next" />
+                </Button>
               </div>
-              <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
-              <div className="action" data-swiper-parallax="-600">
+              <p className="description" data-swiper-parallax="-400">The most powerful luxury SUV</p>
+              <div className="action" data-swiper-parallax="-500">
                 <Button className="size-lg" variant="light" >
                   New
                 </Button>
@@ -292,81 +295,77 @@ const Home = () => {
       {/* Product Explore Slider Start */}
 
       {/* Info Blocks Start */}
-      <div className="info-block">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-lg-5">
-              <div className="info">
-                <h3 className="title am">New Aston Martin models</h3>
-                <p className="description">Our stunning state-of-the-art dealership stocks a complete range of Aston Martin models to view, test drive and buy.</p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  Discover the new Aston Martin range
-                  <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                </Link>
+      <div className="multi-info-block">
+        <Container fluid="xxl">
+          <div className="info-block">
+            <div className="row align-items-center">
+              <div className="col-lg-5 col-md-6">
+                <div className="info">
+                  <h3 className="title am">New Aston Martin models</h3>
+                  <p className="description">Our stunning state-of-the-art dealership stocks a complete range of Aston Martin models to view, test drive and buy.</p>
+                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                    Discover the new Aston Martin range
+                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
+                  </Link>
+                </div>
+              </div>
+              <div className="col-lg-7 col-md-6">
+                <Image className="banner" src={images.NewMartinModel} alt="New Model" />
               </div>
             </div>
-            <div className="col-lg-7">
-              <Image src={images.NewMartinModel} alt="Aston Martin Dealer" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="info-block">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <Image src={images.TimelessMartinCars} alt="Aston Martin Dealer" />
-            </div>
-            <div className="col-lg-5">
-              <div className="info">
-                <h3 className="title am">Timeless Aston Martin cars</h3>
-                <p className="description">Find a timeless certified pre-owned Aston Martin which meets your needs and budget with our team of experts.</p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  Browse Timeless
-                  <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                </Link>
+          </div >
+          <div className="info-block">
+            <div className="row align-items-center">
+              <div className="col-lg-7 col-md-6">
+                <Image className="banner" src={images.TimelessMartinCars} alt="Timeless Martin" />
+              </div>
+              <div className="col-lg-5 col-md-6">
+                <div className="info">
+                  <h3 className="title am">Timeless Aston Martin cars</h3>
+                  <p className="description">Find a timeless certified pre-owned Aston Martin which meets your needs and budget with our team of experts.</p>
+                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                    Browse Timeless
+                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="info-block">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-lg-5">
-              <div className="info">
-                <h3 className="title am">Parts & accessories</h3>
-                <p className="description">We are an authorised dealer of Aston Martin parts and have an abundant supply of components and accessories ready to be fitted by accredited technicians.</p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  Explore
-                  <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                </Link>
+          </div >
+          <div className="info-block">
+            <div className="row align-items-center">
+              <div className="col-lg-5 col-md-6">
+                <div className="info">
+                  <h3 className="title am">Parts & accessories</h3>
+                  <p className="description">We are an authorised dealer of Aston Martin parts and have an abundant supply of components and accessories ready to be fitted by accredited technicians.</p>
+                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                    Explore
+                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
+                  </Link>
+                </div>
+              </div>
+              <div className="col-lg-7 col-md-6">
+                <Image className="banner" src={images.PartsAccessories} alt="Parts and Accessories" />
               </div>
             </div>
-            <div className="col-lg-7">
-              <Image src={images.PartsAccessories} alt="Aston Martin Dealer" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="info-block">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <Image src={images.ValueMyMartin} alt="Aston Martin Dealer" />
-            </div>
-            <div className="col-lg-5">
-              <div className="info">
-                <h3 className="title am">Value my Aston Martin</h3>
-                <p className="description">If you&rsquo;re looking for an instant valuation or to part exchange, find out how we can help sell your vehicle and get the very best value possible.</p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  Let it go and start over
-                  <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                </Link>
+          </div >
+          <div className="info-block">
+            <div className="row align-items-center">
+              <div className="col-lg-7 col-md-6">
+                <Image className="banner" src={images.ValueMyMartin} alt="Aston Martin Dealer" />
+              </div>
+              <div className="col-lg-5 col-md-6">
+                <div className="info">
+                  <h3 className="title am">Value my Aston Martin</h3>
+                  <p className="description">If you&rsquo;re looking for an instant valuation or to part exchange, find out how we can help sell your vehicle and get the very best value possible.</p>
+                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                    Let it go and start over
+                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div >
+        </Container>
       </div>
       {/* Info Blocks End */}
 
@@ -378,6 +377,9 @@ const Home = () => {
       <Testimonials />
       {/* Testimonial End */}
 
+      {/* News Start */}
+      <News />
+      {/* News End */}
     </>
   );
 };

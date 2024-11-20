@@ -4,7 +4,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 // import { useRouter } from "next/router";
 import React from "react";
-import { Container, Navbar } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 const Sidebar = () => {
 

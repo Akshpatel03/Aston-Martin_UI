@@ -114,7 +114,7 @@ body {
   font-family: "AstonMartinSans", sans-serif !important;
   font-size: 16px;
   line-height: 22px;
-  min-width: 360px;
+  min-width: 375px;
   color: #121212;
   // --bs-heading-color: #121212;
   -ms-overflow-style: scrollbar;
@@ -233,19 +233,3 @@ hr {
   font-display: swap;
 }
 
-// Container
-.row {
-  --bs-gutter-x: 32px;
-}
-
-@media (min-width: 1400px) {
-
-  .container,
-  .container-lg,
-  .container-md,
-  .container-sm,
-  .container-xl,
-  .container-xxl {
-    max-width: 1760px;
-  }
-}

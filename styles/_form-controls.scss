@@ -1,60 +1,5 @@
 @import './variable';
-
-// Typography
-h1 {
-    font-size: 54px;
-    line-height: 70px;
-}
-
-h2 {
-    font-size: 48px;
-    line-height: 60px;
-}
-
-h3 {
-    font-size: 32px;
-    line-height: 42px;
-}
-
-h4 {
-    font-size: 24px;
-    line-height: 30px;
-}
-
-h5 {
-    font-size: 20px;
-    line-height: 28px;
-}
-
-h6 {
-    font-size: 18px;
-    line-height: 24px;
-}
-
-.subtitle1 {
-    font-size: 18px;
-    line-height: 24px;
-}
-
-.subtitle2 {
-    font-size: 16px;
-    line-height: 24px;
-}
-
-.body1 {
-    font-size: 16px;
-    line-height: 20px;
-}
-
-.body2 {
-    font-size: 14px;
-    line-height: 20px;
-}
-
-.caption {
-    font-size: 12px;
-    line-height: 16px;
-}
+@import './break-points';
 
 .mb-4p {
     margin-bottom: 4px;
@@ -64,15 +9,26 @@ h6 {
     margin-bottom: 12px;
 }
 
+.m-16p {
+    margin: 16px;
+}
+
 .mb-24p {
     margin-bottom: 24px;
 }
 
 .mb-32p {
     margin-bottom: 32px;
+
+    @include bp(lg-max) {
+        margin-bottom: 24px;
+    }
 }
 
 .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 200ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &.rounded {
@@ -153,7 +109,7 @@ h6 {
         font-size: 16px;
         line-height: 20px;
         border-radius: 2px;
-        padding: 16px 50px;
+        padding: 16px 24px;
     }
 
     &.btn-light {
