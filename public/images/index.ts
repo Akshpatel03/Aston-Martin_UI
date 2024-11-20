@@ -48,4 +48,26 @@ export default {
   News1: require("./home/news1.jpg"),
   News2: require("./home/news2.jpg"),
   News3: require("./home/news3.jpg"),
+
+  // NewCarPageImages
+  Herobanner: require("./new-car/hero-img.jpg"),
+  DBXModel: require("./new-car/DBX/dbx-model.png"),
+  DBXvariant: require("./new-car/DBX/dbx.png"),
+  DBX707variant: require("./new-car/DBX/DBX707.png"),
+  VantageModel: require("./new-car/Vantage/vantage-model.png"),
+  VantageVariant: require("./new-car/Vantage/vantage.png"),
+  DB12Model: require("./new-car/DB12/DB12-model.png"),
+  DB12Variant: require("./new-car/DB12/DB12.png"),
+  DB12VolanteVariant: require("./new-car/DB12/DB12-volante.png"),
+  DBSModel: require("./new-car/DBS/DBS-model.png"),
+  DBS770Variant: require("./new-car/DBS/DBS-770-ultimate.png"),
+  DBS770VolanteVariant: require("./new-car/DBS/DBS-770-ultimate-volante.png"),
+  ValhallaModel: require("./new-car/Valhalla/valhalla-model.png"),
+  ValhallaVariant: require("./new-car/Valhalla/valhalla.png"),
+  ValkyrieModel: require("./new-car/Valkyrie/valkyrie-model.png"),
+  ValkyrieVariant: require("./new-car/Valkyrie/valkyrie-coupe.png"),
+  DealerMartinImg: require("./new-car/dealer-martin-img.jpg"),
+  CustomiseMartinImg: require("./new-car/customise-martin-img.jpg"),
+  BuyWithusImg: require("./new-car/buy-withus-img.jpg"),
+
 };
