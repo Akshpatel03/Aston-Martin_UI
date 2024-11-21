@@ -5,12 +5,12 @@ namespace AstonMartin.Service.Interfaces;
 
 public interface IContentfulNewCarsService
 {
-    Task<IEnumerable<ContentfulPageHeadingDTO>> GetPageHeadingAsync();
-    Task<IEnumerable<ContentfulPageSubHeading>> GetPageSubHeadingAsync();
+    Task<ContentfulPageHeadingDTO> GetPageHeadingAsync();
+    Task<ContentfulPageSubHeading> GetPageSubHeadingAsync();
     Task<IEnumerable<ContentfulCarCardDTO>> GetCarCardsAsync();
     Task<IEnumerable<ContentfulCarViewCardDTO>> GetCarViewCardsAsync();
     Task<IEnumerable<ContentfulServicesDTO>> GetServicesAsync();
-    Task<IEnumerable<ContentfulBuyingWithUsDTO>> GetBuyingWithUsDataAsync();
+    Task<ContentfulBuyingWithUsDTO> GetBuyingWithUsDataAsync();
     Task<IEnumerable<ContentfulCustomerReview>> GetCustomerReviewAsync();
     Task<IEnumerable<ContentfulLocationDTO>> GetLocationAsync();
 }

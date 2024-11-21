@@ -17,29 +17,33 @@ public class ContentfulNewCarsService : IContentfulNewCarsService
         _client = clientFactory.GetClient();
     }
 
-    public async Task<IEnumerable<ContentfulPageHeadingDTO>> GetPageHeadingAsync()
+    public async Task<ContentfulPageHeadingDTO> GetPageHeadingAsync()
     {
         QueryBuilder<ContentfulPageHeading> query = new QueryBuilder<ContentfulPageHeading>()
                         .ContentTypeIs("pageHeading");
 
         ContentfulCollection<ContentfulPageHeading>? entries = await _client.GetEntries(query);
-
-        return entries.Select(article => new ContentfulPageHeadingDTO(
+        var article = entries.Items.FirstOrDefault();
+        if (article == null)
+        {
+            throw new InvalidOperationException("No data entry found.");
+        }
+        return new ContentfulPageHeadingDTO(
             article.PageTitle,
             article.Heading,
             article.Description,
             article.ImageFile
-            ));
+        );
     }
 
-    public async Task<IEnumerable<ContentfulPageSubHeading>> GetPageSubHeadingAsync()
+    public async Task<ContentfulPageSubHeading> GetPageSubHeadingAsync()
     {
         QueryBuilder<ContentfulPageSubHeading> query = new QueryBuilder<ContentfulPageSubHeading>()
                         .ContentTypeIs("pageSubHeading");
 
         ContentfulCollection<ContentfulPageSubHeading>? entries = await _client.GetEntries(query);
 
-        return entries;
+        return entries.Items.FirstOrDefault();
     }
 
     public async Task<IEnumerable<ContentfulCarCardDTO>> GetCarCardsAsync()
@@ -58,16 +62,21 @@ public class ContentfulNewCarsService : IContentfulNewCarsService
     public async Task<IEnumerable<ContentfulCarViewCardDTO>> GetCarViewCardsAsync()
     {
         QueryBuilder<ContentfulCarViewCard> query = new QueryBuilder<ContentfulCarViewCard>()
-                        .ContentTypeIs("carViewCard");
+                        .ContentTypeIs("carViewCard")
+                        .Include(2).OrderBy("sys.createdAt");
 
         ContentfulCollection<ContentfulCarViewCard>? entries = await _client.GetEntries(query);
 
-        return entries.Select(article => new ContentfulCarViewCardDTO(
-            article.Tag,
-            article.Model,
-            article.Description,
-            article.ImageFile
-            ));
+        return entries.Items.Select(article => new ContentfulCarViewCardDTO(
+        article.Tag,
+        article.Model,
+        article.Description,
+        article.ImageFile,
+        article.Models?.Select(model => new ContentfulCarCardDTO(
+           model.ModelName,
+           model.ModelImage.File
+        )).ToList() ?? new List<ContentfulCarCardDTO>()
+        ));
     }
 
     public async Task<IEnumerable<ContentfulServicesDTO>> GetServicesAsync()
@@ -85,25 +94,29 @@ public class ContentfulNewCarsService : IContentfulNewCarsService
             ));
     }
 
-    public async Task<IEnumerable<ContentfulBuyingWithUsDTO>> GetBuyingWithUsDataAsync()
+    public async Task<ContentfulBuyingWithUsDTO> GetBuyingWithUsDataAsync()
     {
         QueryBuilder<ContentfulBuyingWithUs> query = new QueryBuilder<ContentfulBuyingWithUs>()
                         .ContentTypeIs("buyingWithUs");
 
         ContentfulCollection<ContentfulBuyingWithUs>? entries = await _client.GetEntries(query);
 
-        return entries.Select(article => new ContentfulBuyingWithUsDTO(
+        var article = entries.Items.FirstOrDefault();
+        if (article == null)
+        {
+            throw new InvalidOperationException("No data entry found.");
+        }
+        return new ContentfulBuyingWithUsDTO(
             article.Title,
             article.Description,
             article.ImageFile
-            ));
+        );
     }
 
     public async Task<IEnumerable<ContentfulCustomerReview>> GetCustomerReviewAsync()
     {
         QueryBuilder<ContentfulCustomerReview> query = new QueryBuilder<ContentfulCustomerReview>()
-                        .ContentTypeIs("customerReview");
-
+                        .ContentTypeIs("customerReview").OrderBy("sys.createdAt");
         ContentfulCollection<ContentfulCustomerReview>? entries = await _client.GetEntries(query);
 
         return entries;

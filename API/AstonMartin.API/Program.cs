@@ -12,6 +12,7 @@ builder.Services.Configure<ContentfulConfigs>(builder.Configuration.GetSection("
 builder.Services.Configure<SalesforceConfig>(builder.Configuration.GetSection("SalesforceSettings"));
 builder.Services.AddSingleton<ContentfulClientFactory>();
 builder.Services.AddScoped<IContentfulNewCarsService, ContentfulNewCarsService>();
+builder.Services.AddScoped<IContentfulLandingPageService, ContentfulLandingPageService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<ISalesforceClientFactory, SalesforceClientFactory>();

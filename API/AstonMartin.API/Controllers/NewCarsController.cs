@@ -19,14 +19,14 @@ public class NewCarsController : BaseController
     [HttpGet("PageContentHeading")]
     public async Task<IActionResult> PageHeading()
     {
-        var articles = await _contentfulService.GetPageHeadingAsync();
+        ContentfulPageHeadingDTO articles = await _contentfulService.GetPageHeadingAsync();
         return GetResult(articles);
     }
 
     [HttpGet("PageContentSubHeading")]
     public async Task<IActionResult> PageSubHeading()
     {
-        var articles = await _contentfulService.GetPageSubHeadingAsync();
+        ContentfulPageSubHeading articles = await _contentfulService.GetPageSubHeadingAsync();
         return GetResult(articles);
     }
 
@@ -54,7 +54,7 @@ public class NewCarsController : BaseController
     [HttpGet("BuyingWithUs")]
     public async Task<IActionResult> BuyingWithUsData()
     {
-        IEnumerable<ContentfulBuyingWithUsDTO>? articles = await _contentfulService.GetBuyingWithUsDataAsync();
+        ContentfulBuyingWithUsDTO? articles = await _contentfulService.GetBuyingWithUsDataAsync();
         return GetResult(articles);
     }
 
