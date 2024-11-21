@@ -150,7 +150,7 @@ body.page-scrolled {
 .main-content {
     padding-top: 80px;
     min-height: calc(100vh - 80px);
-    overflow-x: hidden;
+    // overflow-x: hidden;
 
     @include bp(xl-max) {
         padding-top: 72px;
@@ -563,7 +563,7 @@ footer {
         align-items: center;
         justify-content: center;
         height: 40px;
-        bottom: var(--swiper-pagination-bottom, 32px)!important;
+        bottom: var(--swiper-pagination-bottom, 32px) !important;
         z-index: 1;
 
         @include bp(lg-max) {
@@ -627,7 +627,7 @@ footer {
     color: $White;
     @extend .am;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: left 17% center;
     background-size: cover;
     z-index: 1;
 
@@ -641,13 +641,13 @@ footer {
         z-index: -1;
     }
 
-    @include bp (md-max) {
+    @include bp(lg-max) {
         padding: 60px 30px;
     }
 
     @include bp (sm-max) {
         padding: 60px 16px;
-        min-height: 603px;
+        min-height: 600px;
     }
 
 
@@ -1196,19 +1196,21 @@ footer {
         }
     }
 
-    .left-image {
-        margin-left: -92px;
+    .left-side-image {
+        position: relative;
+        left: -96px;
 
         @include bp(xxxl-max) {
-            margin-left: 0;
+            left: 0;
         }
     }
 
-    .r-80p {
-        margin-right: -80px;
+    .right-side-image {
+        position: relative;
+        right: -18px;
 
         @include bp(xxxl-max) {
-            margin-right: 0;
+            right: -0;
         }
     }
 
@@ -1243,6 +1245,12 @@ footer {
             &:not(:last-of-type) {
                 margin-bottom: 32px;
             }
+        }
+    }
+
+    .right-img-block {
+        @include bp (lg-max) {
+            order: -1;
         }
     }
 }
@@ -1693,7 +1701,7 @@ footer {
             padding: 20px;
         }
 
-        @include bp(sm-max) {
+        @include bp(md-max) {
             padding: 0;
         }
 
@@ -1710,12 +1718,16 @@ footer {
         white-space: nowrap;
         @extend .am;
         opacity: 0.03;
+
+        @include bp(xl-max) {
+            font-size: 200px;
+            line-height: 1;
+        }
     }
 }
 
 .car-models-wrapper {
     background-color: $Bg10;
-
 
     .car-models-links {
         background-color: $Bg10;
@@ -1724,6 +1736,7 @@ footer {
         z-index: 2;
         height: 64px;
         overflow: hidden;
+        border-bottom: 1px solid $Neutral10;
 
         @include bp(xl-max) {
             top: 71px;
@@ -1736,7 +1749,7 @@ footer {
         .links {
             display: flex;
             align-items: center;
-            border-bottom: 1px solid $Neutral10;
+            padding-bottom: 2px;
             gap: 48px;
             overflow-x: auto;
             overflow-y: hidden;
@@ -1766,14 +1779,21 @@ footer {
         }
     }
 
+    .car-models-content {
+        padding: 48px 0;
+
+        @include bp(md-max) {
+            padding: 0;
+        }
+    }
 }
 
 .car-models-block {
-    padding: 48px 0;
+    padding: 48px 0 78px;
     position: relative;
 
-    @include bp(md-max) {
-        padding: 30px 0;
+    @include bp(lg-max) {
+        padding: 32px 0;
     }
 
     >* {
@@ -1795,6 +1815,11 @@ footer {
             max-width: 480px;
         }
 
+        @include bp(lg-max) {
+            max-width: 100%;
+            min-height: auto;
+        }
+
         .model-img {
             position: absolute;
             bottom: -56px;
@@ -1813,6 +1838,7 @@ footer {
 
             @include bp(lg-max) {
                 position: static;
+                margin: -43px 0 -18px;
             }
         }
 
@@ -1821,6 +1847,11 @@ footer {
             line-height: 24px;
             text-transform: uppercase;
             @extend .am;
+
+            @include bp(md-max) {
+                font-size: 14px;
+                line-height: 20px;
+            }
         }
 
         .title {
@@ -1835,13 +1866,17 @@ footer {
             }
 
             @include bp (md-max) {
-                font-size: 42px;
-                line-height: 64px;
+                font-size: 36px;
+                line-height: 45px;
             }
         }
 
         .description {
             max-width: 267px;
+
+            @include bp (lg-max) {
+                max-width: 100%;
+            }
         }
     }
 
@@ -1850,23 +1885,36 @@ footer {
         position: absolute;
         right: 0;
 
-        @include bp (xxl-max) {
+        @include bp (xxxl-max) {
             width: calc(50vw + 156px);
+        }
+
+        @include bp (xxl-max) {
+            width: calc(50vw + 266px);
+        }
+
+        @include bp (xl-max) {
+            width: calc(50vw + 155px);
         }
 
         @include bp(lg-max) {
             width: 100%;
             position: static;
-            margin-top: 15px;
+            margin-top: 16px;
         }
 
     }
 
-
     .swiper.default-slider {
         .swiper-slide {
             width: auto !important;
-            padding: 0;
+            padding: 3px;
+
+            @include bp (sm-max) {
+                &.one {
+                    width: 100% !important;
+                }
+            }
         }
 
         .custom-pagination-controller {
@@ -1877,8 +1925,22 @@ footer {
                 padding-right: 0;
             }
 
+            &:has(.btn-icon.swiper-button-lock) {
+                display: none;
+            }
+
             .btn-icon {
                 border: none;
+
+                @include bp(xl-max) {
+                    width: 50px;
+                    height: 50px;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
 
                 @include bp(md-max) {
                     width: 35px;
@@ -1923,6 +1985,23 @@ footer {
             min-width: 253px;
             min-height: auto;
             padding: 16px;
+
+            &.one {
+                max-width: 100%;
+                width: 100%;
+            }
+
+        }
+
+        h3 {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            @include bp (sm-max) {
+                font-size: 20px;
+                line-height: 26px;
+            }
         }
 
         .thumb {
@@ -1957,11 +2036,6 @@ footer {
             }
         }
     }
-}
-
-.box {
-    min-height: 400px;
-    border: 1px solid;
 }
 
 // new-car page End

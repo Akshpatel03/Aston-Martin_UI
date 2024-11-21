@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AvailableLocation from "@/components/AvailableLocation";
 import Testimonials from "@/components/Testimonials";
 
@@ -18,6 +18,7 @@ import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
 import Herobanner from '@/public/images/new-car/hero-img.jpg';
+import { Container } from "react-bootstrap";
 
 const DBXCarModel = {
   modelname: "DBX",
@@ -129,7 +130,69 @@ const ValkyrieCarModel = {
 };
 
 const NewCar = () => {
-  console.log(Herobanner);
+  //JS srollspy Start---------------------------------------------------
+  function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    e.preventDefault();
+    const target = e.currentTarget.getAttribute("href");
+    // Ensure target is not null
+    if (target) {
+      const sLink = document.querySelector(target);
+
+      if (sLink instanceof HTMLElement) {
+        // Now TypeScript knows `sLink` is an HTMLElement
+        const sLinkOffset = sLink.offsetTop;
+        window.scrollTo({ top: sLinkOffset - 100, behavior: "smooth" });
+      } else {
+        console.warn(
+          `Element with selector ${target} is not an HTMLElement or not found.`
+        );
+      }
+    }
+  }
+  useEffect(() => {
+    // Add the scroll event listener
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", onScrollActiveLink);
+    }
+    // Cleanup the event listener on component unmount
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", onScrollActiveLink);
+      }
+    };
+  }, []);
+  function onScrollActiveLink() {
+    const winScrollTop = window.scrollY;
+    const scrollspyContent = document.querySelectorAll(
+      ".scrollspy-content .s-content"
+    );
+    for (let i = 0; i < scrollspyContent.length; i++) {
+      const sectionId = scrollspyContent[i].getAttribute("id");
+      const sectionOffset =
+        (scrollspyContent[i] as HTMLElement).offsetTop - 100;
+      const sectionHeight = (scrollspyContent[i] as HTMLElement).offsetHeight;
+      // const link = document.querySelector('.scrollspy > li > a');
+      if (
+        winScrollTop >= sectionOffset &&
+        winScrollTop < sectionOffset + sectionHeight
+      ) {
+        console.log(sectionId);
+        setTimeout(function () {
+          document
+            .querySelectorAll(".car-models-links .scrollspy > li > a")
+            .forEach((e) => {
+              e.classList.remove("is-active");
+            });
+          document
+            .querySelector(
+              '.car-models-links .scrollspy > li > a[href="#' + sectionId + '"]'
+            )
+            ?.classList.add("is-active");
+        }, 100);
+      }
+    }
+  }
+  // JS srollspy End--------------------------------------------------
 
   return (
     <>
@@ -180,129 +243,161 @@ const NewCar = () => {
       {/*car model tab Start */}
       <div className="car-models-wrapper">
         <div className="car-models-links px-md-4 px-3">
-          {/* <ScrollspyNav
-            scrollTargetIds={["DBX", "Vantage", "DB12", "DBS", "ValHalla", "Valkyrie"]}
-            offset={-100}
-            activeNavClass="is-active"
-            scrollDuration="100"
-          >
-            <ul className="links container-xxl px-0">
-              <li>
-                <a href="#DBX">DBX</a>
-              </li>
-              <li>
-                <a href="#Vantage">Vantage</a>
-              </li>
-              <li>
-                <a href="#DB12">DB12</a>
-              </li>
-              <li>
-                <a href="#DBS">DBS</a>
-              </li>
-              <li>
-                <a href="#ValHalla">ValHalla</a>
-              </li>
-              <li>
-                <a href="#Valkyrie">Valkyrie</a>
-              </li>
-            </ul>
-          </ScrollspyNav> */}
+          <ul className="links container-xxl px-0 scrollspy">
+            <li>
+              <a href="#DBX" onClick={(e) => ScrollspyClick(e)}>
+                DBX
+              </a>
+            </li>
+            <li>
+              <a href="#Vantage" onClick={(e) => ScrollspyClick(e)}>
+                Vantage
+              </a>
+            </li>
+            <li>
+              <a href="#DB12" onClick={(e) => ScrollspyClick(e)}>
+                DB12
+              </a>
+            </li>
+            <li>
+              <a href="#DBS" onClick={(e) => ScrollspyClick(e)}>
+                DBS
+              </a>
+            </li>
+            <li>
+              <a href="#ValHalla" onClick={(e) => ScrollspyClick(e)}>
+                ValHalla
+              </a>
+            </li>
+            <li>
+              <a href="#Valkyrie" onClick={(e) => ScrollspyClick(e)}>
+                Valkyrie
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="car-models-content">
-          <div id="DBX">
+        <div className="scrollspy-content car-models-content">
+          <div className="s-content" id="DBX">
             <CarModelSlider {...DBXCarModel} />
           </div>
-          <div id="Vantage">
+          <div className="s-content" id="Vantage">
             <CarModelSlider {...VantageCarModel} />
           </div>
-          <div id="DB12">
+          <div className="s-content" id="DB12">
             <CarModelSlider {...DB12CarModel} />
           </div>
-          <div id="DBS">
+          <div className="s-content" id="DBS">
             <CarModelSlider {...DBSCarModel} />
           </div>
-          <div id="ValHalla">
+          <div className="s-content" id="ValHalla">
             <CarModelSlider {...ValhallaCarModel} />
           </div>
-          <div id="Valkyrie">
+          <div className="s-content" id="Valkyrie">
             <CarModelSlider {...ValkyrieCarModel} />
           </div>
         </div>
       </div>
       {/*car model tab  End */}
 
-      {/*  */}
-      <div className="info-block">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-lg-5">
-              <div className="info">
-                <h3 className="title am">After-sales with Dealer X</h3>
-                <p className="description">
-                  Choosing to buy an Aston Martin with us means choosing the
-                  expertise of Aston Martin approved technicians. Our
-                  after-sales team offer everything from skilled servicing,
-                  extensive accident repairs or bespoke modifications.
-                </p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  Explore after-sales
-                  <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                </Link>
+      {/* Info Blocks Start */}
+      <div className="multi-info-block">
+        <Container fluid="xxl">
+          <div className="info-block">
+            <div className="row align-items-center">
+              <div className="col-lg-5 col-md-6">
+                <div className="info">
+                  <h3 className="title am">After-sales with Dealer X</h3>
+                  <p className="description">
+                    Choosing to buy an Aston Martin with us means choosing the
+                    expertise of Aston Martin approved technicians. Our
+                    after-sales team offer everything from skilled servicing,
+                    extensive accident repairs or bespoke modifications.
+                  </p>
+                  <Link
+                    className="quick-link color-primary"
+                    href={ROUTES.NewCar}
+                  >
+                    Explore after-sales
+                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-7">
-              <Image src={images.DealerMartinImg} alt="Aston Martin Dealer" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="info-block">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <Image
-                src={images.CustomiseMartinImg}
-                alt="Aston Martin Dealer"
-              />
-            </div>
-            <div className="col-lg-5">
-              <div className="info">
-                <h3 className="title am">Customise an Aston Martin</h3>
-                <p className="description">
-                  Use the Aston Martin configurator to design the car of your
-                  dreams. From specific grille finishes to the colour of your
-                  hand stitched leather interior, take your new Aston Martin to
-                  new levels of luxury and customise a car like no other.
-                </p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  Start configuration
-                  <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                </Link>
+              <div className="col-lg-7 col-md-6">
+                <Image
+                  className="banner"
+                  src={images.DealerMartinImg}
+                  alt="DealerMartinImg"
+                />
               </div>
             </div>
           </div>
-        </div>
+          <div className="info-block">
+            <div className="row align-items-center">
+              <div className="col-lg-7 col-md-6">
+                <Image
+                  className="banner"
+                  src={images.CustomiseMartinImg}
+                  alt="CustomiseMartinImg"
+                />
+              </div>
+              <div className="col-lg-5 col-md-6">
+                <div className="info">
+                  <h3 className="title am">Customise an Aston Martin</h3>
+                  <p className="description">
+                    Use the Aston Martin configurator to design the car of your
+                    dreams. From specific grille finishes to the colour of your
+                    hand stitched leather interior, take your new Aston Martin
+                    to new levels of luxury and customise a car like no other.
+                  </p>
+                  <Link
+                    className="quick-link color-primary"
+                    href={ROUTES.NewCar}
+                  >
+                    Start configuration
+                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
       </div>
       {/*  */}
 
       {/* Info Section Start */}
-      <div className="info-section black">
+      <div className="info-section black block-spacing-y-80">
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
                 <h3 className="title am">Buying with us</h3>
-                <p className="description">Having represented Aston Martin for over 65 years, we know that buying a new model is an experience to be enjoyed and savoured.</p>
-                <p className="description">Our state-of-the-art dealerships stock the complete range of new Aston Martin models to view, test drive and buy.</p>
-                <p className="description">Whether it’s deciding between V8 or V12 or a coupé or convertible, our experts have exhaustive knowledge of each vehicle’s capabilities and can advise on servicing, financing and bespoke personalisation too.</p>
+                <p className="description">
+                  Having represented Aston Martin for over 65 years, we know
+                  that buying a new model is an experience to be enjoyed and
+                  savoured.
+                </p>
+                <p className="description">
+                  Our state-of-the-art dealerships stock the complete range of
+                  new Aston Martin models to view, test drive and buy.
+                </p>
+                <p className="description">
+                  Whether it&rsquo;s deciding between V8 or V12 or a coupé or
+                  convertible, our experts have exhaustive knowledge of each
+                  vehicle&rsquo;s capabilities and can advise on servicing, financing
+                  and bespoke personalisation too.
+                </p>
               </div>
+            </div >
+            <div className="col-lg-6 right-img-block">
+              <Image
+                className="right-side-image"
+                src={images.BuyWithusImg}
+                alt="Aston Martin Dealer"
+              />
             </div>
-            <div className="col-lg-6 ps-0">
-              <Image className="l-12p" src={images.BuyWithusImg} alt="Aston Martin Dealer" />
-            </div>
-          </div>
-        </div>
-      </div>
+          </div >
+        </div >
+      </div >
       {/* Info Section End */}
 
       {/* Aston Martin Address Start */}
