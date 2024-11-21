@@ -1,6 +1,7 @@
 using AstonMartin.Domain.DTOs.NewCarsDTOs;
 using AstonMartin.Domain.Entities.NewCarsEntities;
 using AstonMartin.Service.Clients.Implementation;
+using AstonMartin.Service.Clients.Interface;
 using AstonMartin.Service.Interfaces;
 using Contentful.Core;
 using Contentful.Core.Models;
@@ -12,7 +13,7 @@ public class ContentfulNewCarsService : IContentfulNewCarsService
 {
     private readonly ContentfulClient _client;
 
-    public ContentfulNewCarsService(ContentfulClientFactory clientFactory)
+    public ContentfulNewCarsService(IContentfulClientFactory clientFactory)
     {
         _client = clientFactory.GetClient();
     }

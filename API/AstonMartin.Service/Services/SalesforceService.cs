@@ -1,4 +1,6 @@
 using System.Net.Http.Headers;
+using System.Text.Json;
+using AstonMartin.Domain.Entities.Salesforce;
 using AstonMartin.Service.Clients.Interface;
 using AstonMartin.Service.Interfaces;
 using AstonMartin.Service.Models;
@@ -35,5 +37,22 @@ public class SalesforceService : ISalesforceService
         }
 
         return await response.Content.ReadAsStringAsync();
+    }
+
+    public async Task<DealerBaseResponse> AllBranches()
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"{_settings.SalesforceBaseUrl}/branches/feed?key=77330df2-ec55-11ee-ba91-bafa4b3c0082");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Query request failed with status code {response.StatusCode}.");
+        }
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        };
+
+        var content = await response.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<DealerBaseResponse>(content, options) ?? new();
     }
 }

@@ -6,4 +6,5 @@ public class SalesforceConfig
     public string ClientSecret { get; set; } = null!;
     public string APIVersion { get; set; } = null!;
     public string ApiBaseUrl { get; set; } = null!;
+    public string SalesforceBaseUrl { get; set; } = null!;
 }

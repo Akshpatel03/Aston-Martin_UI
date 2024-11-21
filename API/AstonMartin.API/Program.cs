@@ -10,7 +10,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<ContentfulConfigs>(builder.Configuration.GetSection("ContentfulSettings"));
 builder.Services.Configure<SalesforceConfig>(builder.Configuration.GetSection("SalesforceSettings"));
-builder.Services.AddSingleton<ContentfulClientFactory>();
+builder.Services.AddSingleton<IContentfulClientFactory, ContentfulClientFactory>();
 builder.Services.AddScoped<IContentfulNewCarsService, ContentfulNewCarsService>();
 builder.Services.AddScoped<IContentfulLandingPageService, ContentfulLandingPageService>();
 builder.Services.AddMemoryCache();
