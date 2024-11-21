@@ -41,6 +41,7 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
         <div className="right-car-models-block">
           <Swiper
             modules={[Navigation, Pagination, Parallax]}
+            loop={true}
             speed={800}
             parallax
             freeMode={true}

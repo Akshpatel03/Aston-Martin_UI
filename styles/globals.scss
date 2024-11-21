@@ -563,7 +563,7 @@ footer {
         align-items: center;
         justify-content: center;
         height: 40px;
-        bottom: var(--swiper-pagination-bottom, 32px)!important;
+        bottom: var(--swiper-pagination-bottom, 32px) !important;
         z-index: 1;
 
         @include bp(lg-max) {
@@ -647,7 +647,7 @@ footer {
 
     @include bp (sm-max) {
         padding: 60px 16px;
-        min-height: 603px;
+        min-height: 600px;
     }
 
 
@@ -1209,7 +1209,6 @@ footer {
         position: relative;
         right: -18px;
 
-
         @include bp(xxxl-max) {
             right: -0;
         }
@@ -1719,6 +1718,11 @@ footer {
         white-space: nowrap;
         @extend .am;
         opacity: 0.03;
+
+        @include bp(xl-max) {
+            font-size: 200px;
+            line-height: 1;
+        }
     }
 }
 
@@ -1730,8 +1734,9 @@ footer {
         position: sticky;
         top: 78px;
         z-index: 2;
-        height: 63px;
+        height: 64px;
         overflow: hidden;
+        border-bottom: 1px solid $Neutral10;
 
         @include bp(xl-max) {
             top: 71px;
@@ -1744,7 +1749,7 @@ footer {
         .links {
             display: flex;
             align-items: center;
-            border-bottom: 1px solid $Neutral10;
+            padding-bottom: 2px;
             gap: 48px;
             overflow-x: auto;
             overflow-y: hidden;
@@ -1774,13 +1779,20 @@ footer {
         }
     }
 
+    .car-models-content {
+        padding: 48px 0;
+
+        @include bp(md-max) {
+            padding: 0;
+        }
+    }
 }
 
 .car-models-block {
-    padding: 48px 0;
+    padding: 48px 0 78px;
     position: relative;
 
-    @include bp(md-max) {
+    @include bp(lg-max) {
         padding: 32px 0;
     }
 
@@ -1862,7 +1874,7 @@ footer {
         .description {
             max-width: 267px;
 
-            @include bp (md-max) {
+            @include bp (lg-max) {
                 max-width: 100%;
             }
         }
@@ -1896,7 +1908,7 @@ footer {
     .swiper.default-slider {
         .swiper-slide {
             width: auto !important;
-            padding: 0;
+            padding: 3px;
 
             @include bp (sm-max) {
                 &.one {
@@ -1911,6 +1923,10 @@ footer {
 
             @include bp(lg-max) {
                 padding-right: 0;
+            }
+
+            &:has(.btn-icon.swiper-button-lock) {
+                display: none;
             }
 
             .btn-icon {

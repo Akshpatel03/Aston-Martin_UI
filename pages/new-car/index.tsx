@@ -275,7 +275,7 @@ const NewCar = () => {
             </li>
           </ul>
         </div>
-        <div className="scrollspy-content">
+        <div className="scrollspy-content car-models-content">
           <div className="s-content" id="DBX">
             <CarModelSlider {...DBXCarModel} />
           </div>
