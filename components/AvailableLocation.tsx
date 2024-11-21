@@ -25,7 +25,7 @@ const AvailableLocation = () => {
                                             0333 240 3659
                                         </Link>
                                         <br />
-                                        <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                                        <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
                                             More
                                             <Image src={images.ChevronDownPrimary} alt="More" />
                                         </Link>
@@ -45,7 +45,7 @@ const AvailableLocation = () => {
                                             0333 014 4445
                                         </Link>
                                         <br />
-                                        <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                                        <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
                                             More
                                             <Image src={images.ChevronDownPrimary} alt="More" />
                                         </Link>

@@ -139,7 +139,7 @@ const Home = () => {
               <div className="quick-link-card">
                 <h4 className="am">New cars</h4>
                 <Image src={images.NewCar} alt="New Car" />
-                <Link className="quick-link" href={ROUTES.NewCar}>
+                <Link className="quick-link" href={ROUTES.DesignerNewCar}>
                   Discover the new Aston Martin range
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -149,7 +149,7 @@ const Home = () => {
               <div className="quick-link-card">
                 <h4 className="am">Pre-owned Aston Martin</h4>
                 <Image src={images.PreOwnedAstonMartin} alt="Pre-owned Aston Martin" />
-                <Link className="quick-link" href={ROUTES.PreOwned}>
+                <Link className="quick-link" href={ROUTES.DesignerPreOwned}>
                   Browse pre-owned Aston Martin cars
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -159,7 +159,7 @@ const Home = () => {
               <div className="quick-link-card">
                 <h4 className="am">Book a service</h4>
                 <Image src={images.BookService} alt="Book a service" />
-                <Link className="quick-link" href={ROUTES.BookService}>
+                <Link className="quick-link" href={ROUTES.DesignerBookService}>
                   Book your next service online
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -169,7 +169,7 @@ const Home = () => {
               <div className="quick-link-card">
                 <h4 className="am">Value my Aston Martin</h4>
                 <Image src={images.ValueMyAstonMartin} alt="Value my Aston Martin" />
-                <Link className="quick-link" href={ROUTES.ValueMyAstonMartin}>
+                <Link className="quick-link" href={ROUTES.DesignerValueMyAstonMartin}>
                   Arrange a valuation with us
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -303,7 +303,7 @@ const Home = () => {
                 <div className="info">
                   <h3 className="title am">New Aston Martin models</h3>
                   <p className="description">Our stunning state-of-the-art dealership stocks a complete range of Aston Martin models to view, test drive and buy.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
                     Discover the new Aston Martin range
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
@@ -323,7 +323,7 @@ const Home = () => {
                 <div className="info">
                   <h3 className="title am">Timeless Aston Martin cars</h3>
                   <p className="description">Find a timeless certified pre-owned Aston Martin which meets your needs and budget with our team of experts.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
                     Browse Timeless
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
@@ -337,7 +337,7 @@ const Home = () => {
                 <div className="info">
                   <h3 className="title am">Parts & accessories</h3>
                   <p className="description">We are an authorised dealer of Aston Martin parts and have an abundant supply of components and accessories ready to be fitted by accredited technicians.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
                     Explore
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
@@ -357,7 +357,7 @@ const Home = () => {
                 <div className="info">
                   <h3 className="title am">Value my Aston Martin</h3>
                   <p className="description">If you&rsquo;re looking for an instant valuation or to part exchange, find out how we can help sell your vehicle and get the very best value possible.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.NewCar}>
+                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
                     Let it go and start over
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>

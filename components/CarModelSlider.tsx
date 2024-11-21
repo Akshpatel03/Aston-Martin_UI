@@ -43,9 +43,10 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
             modules={[Navigation, Pagination, Parallax]}
             speed={800}
             parallax
+            loop
             freeMode={true}
             slidesPerView="auto"
-            spaceBetween={32}
+            breakpoints={{ 0: { spaceBetween: 16 }, 768: { spaceBetween: 32 } }}
             navigation={{
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",

@@ -315,7 +315,7 @@ const NewCar = () => {
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.NewCar}
+                    href={ROUTES.DesignerNewCar}
                   >
                     Explore after-sales
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
@@ -351,7 +351,7 @@ const NewCar = () => {
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.NewCar}
+                    href={ROUTES.DesignerNewCar}
                   >
                     Start configuration
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />

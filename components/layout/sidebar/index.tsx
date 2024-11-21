@@ -17,32 +17,32 @@ const Sidebar = () => {
             </div>
             <ul className="main-navigation">
                 <li className="nav-link">
-                    <NextLink className={`nav-item`} href={ROUTES.Home} title="Cars">
+                    <NextLink className={`nav-item`} href={ROUTES.DesignerHome} title="Cars">
                         New Cars
                     </NextLink>
                 </li>
                 <li className="nav-link">
-                    <NextLink className="nav-item" href={ROUTES.Home} title="Cars">
+                    <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Cars">
                         Pre-owned Cars
                     </NextLink>
                 </li>
                 <li className="nav-link">
-                    <NextLink className="nav-item" href={ROUTES.Home} title="Repairs">
+                    <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Repairs">
                         Servicing & Repairs
                     </NextLink>
                 </li>
                 <li className="nav-link">
-                    <NextLink className="nav-item" href={ROUTES.Home} title="Car">
+                    <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Car">
                         Value My Car
                     </NextLink>
                 </li>
                 <li className="nav-link">
-                    <NextLink className="nav-item" href={ROUTES.Home} title="News">
+                    <NextLink className="nav-item" href={ROUTES.DesignerHome} title="News">
                         News
                     </NextLink>
                 </li>
                 <li className="nav-link">
-                    <NextLink className="nav-item" href={ROUTES.Home} title="Contact">
+                    <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Contact">
                         Contact
                     </NextLink>
                 </li>

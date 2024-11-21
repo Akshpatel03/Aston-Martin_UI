@@ -2,12 +2,12 @@ import images from "@/public/images";
 import { ROUTES } from "@/shared/routes";
 import Image from "next/image";
 import NextLink from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 
 const Header = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleSidebar = () => {
     if (document.body.classList.contains("open-sidebar")) {
@@ -52,32 +52,32 @@ const Header = () => {
             <ul className="main-navigation d-lg-flex d-none">
               <li className="nav-link">
                 {/* ${router.pathname === ROUTES.Home ? 'active' : ''}` */}
-                <NextLink className={`nav-item`} href={ROUTES.NewCar} title="Cars">
+                <NextLink className={`nav-item ${router.pathname === ROUTES.DesignerNewCar ? 'active' : ''}`} href={ROUTES.DesignerNewCar} title="Cars">
                   New Cars
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.Home} title="Cars">
+                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Cars">
                   Pre-owned Cars
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.Home} title="Repairs">
+                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Repairs">
                   Servicing & Repairs
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.Home} title="Car">
+                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Car">
                   Value My Car
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.Home} title="News">
+                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="News">
                   News
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.Home} title="Contact">
+                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Contact">
                   Contact
                 </NextLink>
               </li>

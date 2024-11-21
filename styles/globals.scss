@@ -40,11 +40,6 @@ header {
     .navbar {
         padding: 6px 0;
         justify-content: space-between;
-        margin: 0 -16px;
-
-        @include bp(xxl-max) {
-            margin: 0;
-        }
 
         .menu-link {
             display: flex;
