@@ -41,13 +41,13 @@ const Home = () => {
 
   return (
     <>
-
       {/* Hero Banner Start */}
       <Swiper
         modules={[Navigation, Pagination, Parallax]}
         speed={1200}
         parallax
         loop
+        effect={'fade'}
         pagination={{
           clickable: true,
         }}
@@ -229,7 +229,7 @@ const Home = () => {
             ExploreSlider.current = swiper;
           }}
           modules={[Navigation, Parallax]}
-          speed={1200}
+          speed={800}
           parallax
           loop
           className="product-explore-slider"

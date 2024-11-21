@@ -1,14 +1,4 @@
-// import images from "@/public/images";
-// import React, { useRef } from "react";
 import React, { useEffect } from "react";
-// import { Button, Form } from "react-bootstrap";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Pagination, Parallax } from "swiper/modules";
-// import SwiperCore from "swiper";
-// import Image from "next/image";
-// import Select from "react-select";
-// import Link from "next/link";
-// import { ROUTES } from "@/src/shared/routes";
 import AvailableLocation from "@/src/components/AvailableLocation";
 import Testimonials from "@/src/components/Testimonials";
 
@@ -18,7 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import images from "@/public/images";
 import Image from "next/image";
-// import ScrollSpy from "react-scrollspy-navigation";
 
 // Import Swiper styles
 import "swiper/css";
@@ -207,8 +196,7 @@ const NewCar = () => {
   return (
     <>
       {/* Hero Banner Start */}
-      <div
-        className="hero-banner"
+      <div className="hero-banner"
         style={{ backgroundImage: `url(${Herobanner.src})` }}
       >
         {/* <Image
