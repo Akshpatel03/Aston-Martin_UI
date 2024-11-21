@@ -1,0 +1,235 @@
+/*------------------------------------------------------------
+Project Name: Aston Martin Dealer;
+------------------------------------------------------------*/
+
+/* Reset
+--------------------------------------------------------------------------------------------------------*/
+/*http://meyerweb.com/eric/tools/css/reset/v2.0 | 20110126License:none (public domain)*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+html,
+body {
+  font-family: "AstonMartinSans", sans-serif !important;
+  font-size: 16px;
+  line-height: 22px;
+  min-width: 375px;
+  color: #121212;
+  // --bs-heading-color: #121212;
+  -ms-overflow-style: scrollbar;
+  -webkit-font-smoothing: subpixel-antialiased;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 0 !important;
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 12px !important;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+hr {
+  border: 0 !important;
+  border-bottom: 1px solid #d3d3d3 !important;
+}
+
+* {
+  outline: none !important;
+  box-sizing: border-box;
+}
+
+
+// Custom Fonts
+@font-face {
+  font-family: "AstonMartinFlare";
+  src: url("./../public/fonts/flare/aston-martin-flare.woff")format("woff"),
+    url("./../public/fonts/flare/aston-martin-flare.woff2")format("woff2"),
+    url("./../public/fonts/flare/aston-martin-flare.ttf")format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AstonMartinFlareMedium";
+  src: url("./../public/fonts/flare/aston-martin-flare-medium.woff")format("woff"),
+    url("./../public/fonts/flare/aston-martin-flare-medium.woff2")format("woff2"),
+    url("./../public/fonts/flare/aston-martin-flare-medium.ttf")format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AstonMartinFlareBold";
+  src: url("./../public/fonts/flare/aston-martin-flare-bold.woff")format("woff"),
+    url("./../public/fonts/flare/aston-martin-flare-bold.woff2")format("woff2"),
+    url("./../public/fonts/flare/aston-martin-flare-bold.ttf")format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AstonMartinSans";
+  src: url("./../public/fonts/sans/aston-martin-sans.woff")format("woff"),
+    url("./../public/fonts/sans/aston-martin-sans.woff2")format("woff2"),
+    url("./../public/fonts/sans/aston-martin-sans.ttf")format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AstonMartinSansMedium";
+  src: url("./../public/fonts/sans/aston-martin-sans-medium.woff")format("woff"),
+    url("./../public/fonts/sans/aston-martin-sans-medium.woff2")format("woff2"),
+    url("./../public/fonts/sans/aston-martin-sans-medium.ttf")format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AstonMartinSansBold";
+  src: url("./../public/fonts/sans/aston-martin-sans-bold.woff")format("woff"),
+    url("./../public/fonts/sans/aston-martin-sans-bold.woff2")format("woff2"),
+    url("./../public/fonts/sans/aston-martin-sans-bold.ttf")format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
