@@ -1,4 +1,5 @@
 import images from "@/public/images";
+import { ROUTES } from "@/src/shared/routes";
 import Image from "next/image";
 import Link from "next/link";
 // import { useRouter } from "next/router";
@@ -21,7 +22,7 @@ const Footer = () => {
     <footer>
       <Container fluid>
         <div className="top-footer">
-          <Navbar.Brand href="#">
+          <Navbar.Brand href={ROUTES.Home}>
             <Image src={images.DealerLogoGrey} alt="Dealer" />
           </Navbar.Brand>
         </div>

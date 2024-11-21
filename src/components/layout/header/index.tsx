@@ -1,13 +1,14 @@
 import images from "@/public/images";
 import { ROUTES } from "@/src/shared/routes";
 import Image from "next/image";
+import Link from "next/link";
 import NextLink from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 
 const Header = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleSidebar = () => {
     if (document.body.classList.contains("open-sidebar")) {
@@ -46,13 +47,13 @@ const Header = () => {
             <Button className="btn-icon d-lg-none me-lg-0 me-2" variant="text" onClick={handleSidebar}>
               <Image src={images.MenuWhite} alt="Menu" height="24" width="24" />
             </Button>
-            <Navbar.Brand href="#" className="d-lg-none d-flex">
+            <Link href={ROUTES.Home} className="navbar-brand d-lg-none d-flex">
               <Image src={images.DealerLogo} alt="Dealer" />
-            </Navbar.Brand>
+            </Link>
             <ul className="main-navigation d-lg-flex d-none">
               <li className="nav-link">
                 {/* ${router.pathname === ROUTES.Home ? 'active' : ''}` */}
-                <NextLink className={`nav-item`} href={ROUTES.NewCar} title="Cars">
+                <NextLink className={`nav-item ${router.pathname === ROUTES.NewCar ? 'active' : ''}`} href={ROUTES.NewCar} title="Cars">
                   New Cars
                 </NextLink>
               </li>
@@ -86,9 +87,9 @@ const Header = () => {
               <Image src={images.SearchWhite} alt="Search" height="24" width="24" />
             </Button>
           </div>
-          <Navbar.Brand href="#" className="d-lg-flex d-none">
+          <Link href={ROUTES.Home} className="navbar-brand d-lg-flex d-none">
             <Image src={images.DealerLogo} alt="Dealer" />
-          </Navbar.Brand>
+          </Link>
         </Navbar>
       </Container>
     </header>

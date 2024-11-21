@@ -1,19 +1,19 @@
 import images from "@/public/images";
 import { ROUTES } from "@/src/shared/routes";
 import Image from "next/image";
+import Link from "next/link";
 import NextLink from "next/link";
 // import { useRouter } from "next/router";
 import React from "react";
-import { Navbar } from "react-bootstrap";
 
 const Sidebar = () => {
 
     return (
         <aside className="sidebar">
             <div className="head">
-                <Navbar.Brand href="#">
+                <Link href={ROUTES.Home}>
                     <Image src={images.DealerLogo} alt="Dealer" />
-                </Navbar.Brand>
+                </Link>
             </div>
             <ul className="main-navigation">
                 <li className="nav-link">
