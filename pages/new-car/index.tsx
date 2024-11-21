@@ -389,19 +389,19 @@ const NewCar = () => {
                 </p>
                 <p className="description">
                   Our state-of-the-art dealerships stock the complete range of
-                  new Aston Martin models to view, test drive and buy.
+                  new Aston Martin models to view, test drive and buy.
                 </p>
                 <p className="description">
-                  Whether it’s deciding between V8 or V12 or a coupé or
+                  Whether it&rsquo;s deciding between V8 or V12 or a coupé or
                   convertible, our experts have exhaustive knowledge of each
-                  vehicle’s capabilities and can advise on servicing, financing
+                  vehicle&rsquo;s capabilities and can advise on servicing, financing
                   and bespoke personalisation too.
                 </p>
               </div>
             </div>
-            <div className="col-lg-6 img-block">
+            <div className="col-lg-6 right-img-block">
               <Image
-                className="r-18p"
+                className="right-side-image"
                 src={images.BuyWithusImg}
                 alt="Aston Martin Dealer"
               />

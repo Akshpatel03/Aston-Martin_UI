@@ -185,7 +185,7 @@ const Home = () => {
         <Container fluid="xxl">
           <div className="row align-items-center">
             <div className="col-xl-6 ps-xxxl-0">
-              <Image className="l-80p" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
+              <Image className="left-side-image" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
             </div>
             <div className="col-xl-6">
               <div className="info">
