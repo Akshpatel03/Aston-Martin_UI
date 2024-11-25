@@ -9,11 +9,15 @@ import CarHandlingImg from "@/public/images/new-car-model/car-handling-img.jpg";
 import BreakImg from "@/public/images/new-car-model/break-img.jpg";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SlotCounter from 'react-slot-counter';
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+
+// Odometer styles
+import "odometer/themes/odometer-theme-car.css";
 
 const DesignerExploreModel = () => {
   // collapse
@@ -44,13 +48,14 @@ const DesignerExploreModel = () => {
       }
     };
   }, []);
+
   return (
     <>
       {/* Hero Banner Start */}
       <div className="hero-banner">
-        {/* <video autoPlay muted loop id="myVideo">
-          <source src={myVideo} type="video/mp4" />
-          Your browser does not support HTML5 video.
+        {/* <video controls width="600">
+          <source src="/videos/DBX707.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video> */}
         <p className="label">Power. driven.</p>
         <h1 className="title">Aston Martin DBX707</h1>
@@ -67,6 +72,7 @@ const DesignerExploreModel = () => {
         </div>
       </div>
       {/* Hero Banner End */}
+
 
       {/* Info Section Start */}
       <div className="info-section block-spacing-y-80">
@@ -101,14 +107,39 @@ const DesignerExploreModel = () => {
       {/* count Section Start */}
       <div className="count-section-wrapper">
         <div className="container-xxl">
-          <ul>
-            <li>
-              <h6>
-                POWER<span>PS</span>
-              </h6>
-              707
+          <ul className="count-lisitng">
+            <li className="count-item">
+              <p className="title">POWER <span>PS</span></p>
+              <div className="count">
+                <SlotCounter value={707} />
+              </div>
+            </li>
+            <li className="count-item">
+              <p className="title">TOP SPEED <span>MPH</span></p>
+              <div className="count">
+                <SlotCounter value={193} />
+              </div>
+            </li>
+            <li className="count-item">
+              <p className="title">0-62 MPH <span>S</span></p>
+              <div className="count">
+                <SlotCounter value={3.3} />
+              </div>
+            </li>
+            <li className="count-item">
+              <p className="title">TORQUE <span>NM</span></p>
+              <div className="count">
+                <SlotCounter value={900} />
+              </div>
             </li>
           </ul>
+
+          <Button className="size-lg" variant="mid-transparent">
+            See full specifications
+            <em className="ic right">
+              <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
+            </em>
+          </Button>
         </div>
       </div>
       {/* count Section End */}
