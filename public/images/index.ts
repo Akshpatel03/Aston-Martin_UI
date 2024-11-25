@@ -72,10 +72,10 @@ export default {
   BuyWithusImg: require("./new-car/buy-withus-img.jpg"),
 
   // NewCarModelPageImages
-  CarImg: require("./new-car-model/car-img.jpg"),
-  // EngineImg: require("./new-car-model/engine-img.jpg"),
-  // CarHandlingImg: require("./new-car-model/car-handling-img.jpg"),
-  // BreakImg: require("./new-car-model/break-img.jpg"),
+  CarImg: require("./explore-model/car-img.jpg"),
+  CarExteriorImg: require("./explore-model/car-img-exterior.jpg"),
+  // CarHandlingImg: require("./explore-model/car-handling-img.jpg"),
+  // BreakImg: require("./explore-model/break-img.jpg"),
 
 
 };
