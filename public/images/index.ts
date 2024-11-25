@@ -30,6 +30,7 @@ export default {
   ArrowNarrowRightSMPrimary:
     require("./icons/ic-arrow-narrow-right-sm-primary.svg").default,
   ChevronDownPrimary: require("./icons/ic-chevron-down-primary.svg").default,
+  ChevronDownDark: require("./icons/ic-chevron-down-dark.svg").default,
 
   // HomePageImages
   Hero1: require("./home/hero1.jpg"),
@@ -69,5 +70,12 @@ export default {
   DealerMartinImg: require("./new-car/dealer-martin-img.jpg"),
   CustomiseMartinImg: require("./new-car/customise-martin-img.jpg"),
   BuyWithusImg: require("./new-car/buy-withus-img.jpg"),
+
+  // NewCarModelPageImages
+  CarImg: require("./new-car-model/car-img.jpg"),
+  // EngineImg: require("./new-car-model/engine-img.jpg"),
+  // CarHandlingImg: require("./new-car-model/car-handling-img.jpg"),
+  // BreakImg: require("./new-car-model/break-img.jpg"),
+
 
 };

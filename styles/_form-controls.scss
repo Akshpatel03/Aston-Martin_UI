@@ -25,7 +25,17 @@
     }
 }
 
-.overflow-hidden{}
+.mb-56p {
+    margin-bottom: 56px;
+
+    @include bp(lg-max) {
+        margin-bottom: 24px;
+    }
+
+    @include bp(xs-max) {
+        margin-bottom: 16px;
+    }
+}
 
 .btn {
     display: flex;
@@ -175,6 +185,19 @@
         --bs-btn-disabled-color: #00665E;
         --bs-btn-disabled-bg: #EEF0F0;
         --bs-btn-disabled-border-color: #EEF0F0;
+    }
+
+    &.btn-mid-transparent {
+        box-shadow: 0px 1px 3px 0px rgba(18, 18, 18, 0.2), 0px -1px 0px 0px rgba(18, 18, 18, 0.08) inset, 0px 1px 0.5px 0px rgba(255, 255, 255, 0.12) inset;
+        backdrop-filter: blur(70px);
+        background-color: rgba(255, 255, 255, 0.15);
+        color: $White;
+        border: none;
+
+        &:hover,
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
     }
 
     .ic {
