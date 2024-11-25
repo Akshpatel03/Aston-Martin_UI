@@ -305,7 +305,7 @@ const NewCarModel = () => {
       {/* Hero Banner End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={[]} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}

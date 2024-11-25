@@ -17,7 +17,7 @@ import CarModelSlider from "@/components/CarModelSlider";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
-import Herobanner from '@/public/images/new-car/hero-img.jpg';
+import Herobanner from "@/public/images/new-car/hero-img.jpg";
 import { Container } from "react-bootstrap";
 
 const DBXCarModel = {
@@ -197,7 +197,8 @@ const DesignerNewCar = () => {
   return (
     <>
       {/* Hero Banner Start */}
-      <div className="hero-banner"
+      <div
+        className="hero-banner"
         style={{ backgroundImage: `url(${Herobanner.src})` }}
       >
         {/* <Image
@@ -383,11 +384,11 @@ const DesignerNewCar = () => {
                 <p className="description">
                   Whether it&rsquo;s deciding between V8 or V12 or a coupé or
                   convertible, our experts have exhaustive knowledge of each
-                  vehicle&rsquo;s capabilities and can advise on servicing, financing
-                  and bespoke personalisation too.
+                  vehicle&rsquo;s capabilities and can advise on servicing,
+                  financing and bespoke personalisation too.
                 </p>
               </div>
-            </div >
+            </div>
             <div className="col-lg-6 right-img-block">
               <Image
                 className="right-side-image"
@@ -395,13 +396,13 @@ const DesignerNewCar = () => {
                 alt="Aston Martin Dealer"
               />
             </div>
-          </div >
-        </div >
-      </div >
+          </div>
+        </div>
+      </div>
       {/* Info Section End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={[]} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
