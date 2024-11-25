@@ -11,7 +11,7 @@ import CarInteriorFinishing from "@/public/images/explore-model/car-interior-fin
 import CarInteriorSeat from "@/public/images/explore-model/car-interior-seat-img.svg";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SlotCounter from 'react-slot-counter';
+import SlotCounter from "react-slot-counter";
 
 // Import Swiper styles
 import "swiper/css";
@@ -36,7 +36,7 @@ const DesignerExploreModel = () => {
         setENGINEOpen(false);
         setCarHandlingOpen(false);
         setCarBreakOpen(false);
-      }else {
+      } else {
         setENGINEOpen(true);
         setCarHandlingOpen(true);
         setCarBreakOpen(true);
@@ -81,7 +81,6 @@ const DesignerExploreModel = () => {
       </div>
       {/* Hero Banner End */}
 
-
       {/* Info Section Start */}
       <div className="info-section block-spacing-y-80">
         <div className="container-xxl">
@@ -117,25 +116,33 @@ const DesignerExploreModel = () => {
         <div className="container-xxl">
           <ul className="count-lisitng">
             <li className="count-item">
-              <p className="title">POWER <span>PS</span></p>
+              <p className="title">
+                POWER <span>PS</span>
+              </p>
               <div className="count">
                 <SlotCounter value={707} />
               </div>
             </li>
             <li className="count-item">
-              <p className="title">TOP SPEED <span>MPH</span></p>
+              <p className="title">
+                TOP SPEED <span>MPH</span>
+              </p>
               <div className="count">
                 <SlotCounter value={193} />
               </div>
             </li>
             <li className="count-item">
-              <p className="title">0-62 MPH <span>S</span></p>
+              <p className="title">
+                0-62 MPH <span>S</span>
+              </p>
               <div className="count">
                 <SlotCounter value={3.3} />
               </div>
             </li>
             <li className="count-item">
-              <p className="title">TORQUE <span>NM</span></p>
+              <p className="title">
+                TORQUE <span>NM</span>
+              </p>
               <div className="count">
                 <SlotCounter value={900} />
               </div>
@@ -295,7 +302,11 @@ const DesignerExploreModel = () => {
             carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
             silhouette.
           </p>
-          <Image className="banner-img" src={images.CarExteriorImg} alt="CarExteriorImg" />
+          <Image
+            className="banner-img"
+            src={images.CarExteriorImg}
+            alt="CarExteriorImg"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <p className="label" data-swiper-parallax="-300">
@@ -314,7 +325,11 @@ const DesignerExploreModel = () => {
             carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
             silhouette.
           </p>
-          <Image className="banner-img" src={images.CarExteriorImg} alt="CarExteriorImg" />
+          <Image
+            className="banner-img"
+            src={images.CarExteriorImg}
+            alt="CarExteriorImg"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <p className="label" data-swiper-parallax="-300">
@@ -333,13 +348,17 @@ const DesignerExploreModel = () => {
             carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
             silhouette.
           </p>
-          <Image className="banner-img" src={images.CarExteriorImg} alt="CarExteriorImg" />
+          <Image
+            className="banner-img"
+            src={images.CarExteriorImg}
+            alt="CarExteriorImg"
+          />
         </SwiperSlide>
       </Swiper>
       {/* Hero Banner End */}
 
-       {/* info-thumb Section Start */}
-       <div className="info-thumb-section">
+      {/* info-thumb Section Start */}
+      <div className="info-thumb-section">
         <div className="container-xxl">
           <h1 className="title am mb-56p">Interior</h1>
           <div className="row">
@@ -358,18 +377,27 @@ const DesignerExploreModel = () => {
                           <Image src={images.ChevronDownDark} alt="Previous" />
                         </button>
                       </label>
-                      <h3 className="title am">Instant access, ultimate control</h3>
+                      <h3 className="title am">
+                        Instant access, ultimate control
+                      </h3>
                       <Collapse in={openCarHandling}>
                         <div>
                           <p className="des">
-                          An all-new centre console puts the driver in full control. With instant commands at your fingertips, altering the car’s dynamics is now effortless. Choose from several driving modes, ESP, and suspension control and embrace the full force of a supercar.
+                            An all-new centre console puts the driver in full
+                            control. With instant commands at your fingertips,
+                            altering the car’s dynamics is now effortless.
+                            Choose from several driving modes, ESP, and
+                            suspension control and embrace the full force of a
+                            supercar.
                           </p>
                         </div>
                       </Collapse>
                     </div>
                     <div
                       className="img-thumb"
-                      style={{ backgroundImage: `url(${CarInteriorControl.src})` }}
+                      style={{
+                        backgroundImage: `url(${CarInteriorControl.src})`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -386,18 +414,27 @@ const DesignerExploreModel = () => {
                           <Image src={images.ChevronDownDark} alt="Previous" />
                         </button>
                       </label>
-                      <h3 className="title am">Opulence and refined finishes</h3>
+                      <h3 className="title am">
+                        Opulence and refined finishes
+                      </h3>
                       <Collapse in={openCarBreak}>
                         <div>
                           <p className="des">
-                          From styling dark chrome to bright chrome or carbon fibre, take your pick of interior switchgear finishes. The veneer also comes with various luxurious finishes with elegant Piano Black set as standard and carbon fibre or bronze metal mesh as other available options.
+                            From styling dark chrome to bright chrome or carbon
+                            fibre, take your pick of interior switchgear
+                            finishes. The veneer also comes with various
+                            luxurious finishes with elegant Piano Black set as
+                            standard and carbon fibre or bronze metal mesh as
+                            other available options.
                           </p>
                         </div>
                       </Collapse>
                     </div>
                     <div
                       className="img-thumb"
-                      style={{ backgroundImage: `url(${CarInteriorFinishing.src})` }}
+                      style={{
+                        backgroundImage: `url(${CarInteriorFinishing.src})`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -420,7 +457,11 @@ const DesignerExploreModel = () => {
                   <Collapse in={openENGINE}>
                     <div>
                       <p className="des">
-                      Fitted with an exclusive &rsquo;Inspire Sport&lsquo; interior, the DBX707 elegantly aligns sport and luxury. An Alcantara headlining, heated and ventilated seats and semi-aniline leather upholstery completes an ultra luxurious look and feel.
+                        Fitted with an exclusive &rsquo;Inspire Sport&lsquo;
+                        interior, the DBX707 elegantly aligns sport and luxury.
+                        An Alcantara headlining, heated and ventilated seats and
+                        semi-aniline leather upholstery completes an ultra
+                        luxurious look and feel.
                       </p>
                     </div>
                   </Collapse>
@@ -436,8 +477,8 @@ const DesignerExploreModel = () => {
       </div>
       {/* info-thumb Section End */}
 
-       {/* Info Blocks Start */}
-       <div className="multi-info-block">
+      {/* Info Blocks Start */}
+      <div className="multi-info-block">
         <Container fluid="xxl">
           <div className="info-block">
             <div className="row align-items-center">
@@ -502,7 +543,7 @@ const DesignerExploreModel = () => {
       {/*  */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={[]} />
       {/* Aston Martin Address End */}
     </>
   );
