@@ -4,7 +4,6 @@
 @import './typography';
 @import './break-points';
 @import './form-controls';
-// @import "../node_modules/odometer/themes/odometer-theme-default.css";
 
 .flex-center {
     display: flex;
@@ -2197,6 +2196,120 @@ footer {
     }
 }
 
+// Text Animations Block
+.text-animation-block {
+    background: $Primary50;
+    padding: 136px 0 98px;
+
+    @include bp(xl-max) {
+        padding: 120px 0 98px;
+    }
+
+    @include bp(lg-max) {
+        padding: 80px 0;
+    }
+
+    @include bp(sm-max) {
+        padding: 48px 0;
+    }
+
+    &.black-bg {
+        background: $Neutral90;
+    }
+
+    .custom-container {
+        max-width: 1458px;
+        margin: 0 auto;
+    }
+
+    .animated-text {
+        flex-wrap: wrap;
+        font-size: 44px;
+        line-height: 58px;
+        font-weight: 300;
+        color: $White;
+
+        @include bp(lg-max) {
+            font-size: 36px;
+            line-height: 50px;
+        }
+
+        @include bp(md-max) {
+            font-size: 28px;
+            line-height: 38px;
+        }
+
+        // .word {
+        //     position: relative;
+        //     margin-right: 12px;
+        //     margin-top: 12px;
+
+        //     .default {
+        //         position: absolute;
+        //         opacity: 50%;
+        //     }
+        // }
+
+        .word {
+            display: inline-block;
+            color: rgba($color: $White, $alpha: 0.5);
+        }
+
+    }
+
+    .text-wrapper {
+        .white {
+            font-size: 42px;
+            line-height: 1.5;
+
+            >div {
+                display: inline-block;
+            }
+        }
+    }
+
+    .owner-info {
+        position: relative;
+        padding-left: 64px;
+        margin-top: 74px;
+
+        @include bp(lg-max) {
+            margin-top: 50px;
+        }
+
+        @include bp(sm-max) {
+            margin-top: 32px;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 49px;
+            height: 2px;
+            background: $White;
+        }
+
+        .name {
+            color: $White;
+
+            @include bp(md-max) {
+                font-size: 20px;
+                line-height: 24px;
+            }
+        }
+
+        .designation {
+            color: rgba($color: $White, $alpha: 0.7);
+
+            @include bp(md-max) {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+}
 
 .info-thumb-section {
     background-color: $Bg10;

@@ -10,14 +10,12 @@ import BreakImg from "@/public/images/new-car-model/break-img.jpg";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from 'react-slot-counter';
+import dynamic from "next/dynamic";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// Odometer styles
-import "odometer/themes/odometer-theme-car.css";
 
 const DesignerExploreModel = () => {
   // collapse
@@ -48,6 +46,8 @@ const DesignerExploreModel = () => {
       }
     };
   }, []);
+
+  const TextAnimation = dynamic(() => import("@/components/TextAnimation"), { ssr: false });
 
   return (
     <>
@@ -111,25 +111,25 @@ const DesignerExploreModel = () => {
             <li className="count-item">
               <p className="title">POWER <span>PS</span></p>
               <div className="count">
-                <SlotCounter value={707} />
+                <SlotCounter value={707} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
               </div>
             </li>
             <li className="count-item">
               <p className="title">TOP SPEED <span>MPH</span></p>
               <div className="count">
-                <SlotCounter value={193} />
+                <SlotCounter value={193} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
               </div>
             </li>
             <li className="count-item">
               <p className="title">0-62 MPH <span>S</span></p>
               <div className="count">
-                <SlotCounter value={3.3} />
+                <SlotCounter value={3.3} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
               </div>
             </li>
             <li className="count-item">
               <p className="title">TORQUE <span>NM</span></p>
               <div className="count">
-                <SlotCounter value={900} />
+                <SlotCounter value={900} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
               </div>
             </li>
           </ul>
@@ -257,6 +257,10 @@ const DesignerExploreModel = () => {
       </div>
       {/* info-thumb Section End */}
 
+      {/* Text Animation Start */}
+      <TextAnimation paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model." owner="Drummond Jacoy" ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin" />
+      {/* Text Animation End */}
+
       {/* Hero Banner Start */}
       <Swiper
         modules={[Navigation, Pagination, Parallax]}
@@ -321,6 +325,10 @@ const DesignerExploreModel = () => {
       </Swiper>
       {/* Hero Banner End */}
 
+      {/* Text Animation Start */}
+      <TextAnimation classname="black-bg" paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin." owner="Sam Field" ownerDesignation="Technician, Dealer X" />
+      {/* Text Animation End */}
+
       {/* Aston Martin Address Start */}
       <AvailableLocation />
       {/* Aston Martin Address End */}
@@ -331,4 +339,5 @@ const DesignerExploreModel = () => {
     </>
   );
 };
+
 export default DesignerExploreModel;

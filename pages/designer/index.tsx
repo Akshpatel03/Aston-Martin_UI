@@ -10,14 +10,16 @@ import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 import AvailableLocation from "@/components/AvailableLocation";
 import Testimonials from "@/components/Testimonials";
+import News from "@/components/News";
+import { useRouter } from "next/router";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import News from "@/components/News";
 
 const DesignerHome = () => {
+  const navigate = useRouter();
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
@@ -58,7 +60,7 @@ const DesignerHome = () => {
           <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
           <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light" >
+            <Button className="size-lg w-sm-auto w-100" variant="light" onClick={() => navigate.push(ROUTES.DesignerExploreModel)}>
               Explore
             </Button>
           </div>
@@ -69,7 +71,7 @@ const DesignerHome = () => {
           <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
           <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light" >
+            <Button className="size-lg w-sm-auto w-100" variant="light" onClick={() => navigate.push(ROUTES.DesignerExploreModel)}>
               Explore
             </Button>
           </div>
@@ -80,7 +82,7 @@ const DesignerHome = () => {
           <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
           <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light" >
+            <Button className="size-lg w-sm-auto w-100" variant="light" onClick={() => navigate.push(ROUTES.DesignerExploreModel)}>
               Explore
             </Button>
           </div>
