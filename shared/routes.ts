@@ -1,7 +1,7 @@
 export const ROUTES = {
   DesignerHome: "/designer",
   DesignerNewCar: "/designer/new-car",
-  DesignerNewCarModel: "/designer/new-car-model",
+  DesignerExploreModel: "/designer/explore-model",
   DesignerPreOwned: "/pre-owned",
   DesignerBookService: "/book-service",
   DesignerValueMyAstonMartin: "/value",

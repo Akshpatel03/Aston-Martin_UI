@@ -17,8 +17,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import News from "@/components/News";
 
-
-const Home = () => {
+const DesignerHome = () => {
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
@@ -200,7 +199,7 @@ const Home = () => {
       {/* Info Section End */}
 
       {/* Info Points Start */}
-      <div className="block-spacing-y-64 block-spacing-y-64">
+      <div className="block-spacing-y-64 block-spacing-y-64 overflow-hidden">
         <Container fluid="xxl">
           <h2 className="mb-32p am">Why Dealer X?</h2>
           <div className="row info-points-wrapper">
@@ -364,7 +363,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div >
+          </div>
         </Container>
       </div>
       {/* Info Blocks End */}
@@ -383,4 +382,4 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+export default DesignerHome;

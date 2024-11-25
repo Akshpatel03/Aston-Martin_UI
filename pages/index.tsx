@@ -200,7 +200,7 @@ const Home = () => {
       {/* Info Section End */}
 
       {/* Info Points Start */}
-      <div className="block-spacing-y-64 block-spacing-y-64">
+      <div className="block-spacing-y-64 block-spacing-y-64 overflow-hidden">
         <Container fluid="xxl">
           <h2 className="mb-32p am">Why Dealer X?</h2>
           <div className="row info-points-wrapper">
