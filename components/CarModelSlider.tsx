@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
+import { useRouter } from "next/router";
+import { ROUTES } from "@/shared/routes";
 
 // Import Swiper styles
 import "swiper/css";
@@ -29,6 +31,8 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
   variant,
   mode,
 }) => {
+  const navigate = useRouter();
+
   return (
     <div className="car-models-block">
       <div className="container-xxl">
@@ -69,18 +73,18 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
                     />
                   </em>
                   <div className="action">
-                    <button className="btn size-lg btn-primary ">
+                    <Button className="size-lg" variant="primary" onClick={() => navigate.push(ROUTES.DesignerExploreModel)}>
                       Explore
-                    </button>
-                    <button className="btn size-lg btn-secondary ">
+                    </Button>
+                    <Button className="size-lg" variant="secondary">
                       Enquire
-                    </button>
-                    <button className="size-lg btn btn-light">
+                    </Button>
+                    <Button className="size-lg" variant="light">
                       Configure
                       <em className="ic right">
                         <Image src={images.ArrowNarrowRightSMPrimary} alt="" />
                       </em>
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </SwiperSlide>

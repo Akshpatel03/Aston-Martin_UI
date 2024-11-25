@@ -129,7 +129,7 @@ const ValkyrieCarModel = {
   ],
 };
 
-const NewCar = () => {
+const DesignerNewCar = () => {
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
@@ -410,4 +410,4 @@ const NewCar = () => {
     </>
   );
 };
-export default NewCar;
+export default DesignerNewCar;
