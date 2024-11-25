@@ -87,7 +87,7 @@ const DesignerExploreModel = () => {
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div className="info">
+              <div className="info  pb-4 pb-lg-0 pt-0">
                 <h3 className="title am">An SUV like no other</h3>
                 <p className="description">
                   The DBX 707 is a genuine supercar. An SUV that drives like a
@@ -100,7 +100,7 @@ const DesignerExploreModel = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6 right-img-block">
+            <div className="col-lg-6">
               <Image
                 className="right-side-image"
                 src={images.CarImg}
@@ -119,25 +119,25 @@ const DesignerExploreModel = () => {
             <li className="count-item">
               <p className="title">POWER <span>PS</span></p>
               <div className="count">
-                <SlotCounter value={707} />
+                <SlotCounter value={707}  animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }}/>
               </div>
             </li>
             <li className="count-item">
               <p className="title">TOP SPEED <span>MPH</span></p>
               <div className="count">
-                <SlotCounter value={193} />
+                <SlotCounter value={193}  animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }}/>
               </div>
             </li>
             <li className="count-item">
               <p className="title">0-62 MPH <span>S</span></p>
               <div className="count">
-                <SlotCounter value={3.3} />
+                <SlotCounter value={3.3}  animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }}/>
               </div>
             </li>
             <li className="count-item">
               <p className="title">TORQUE <span>NM</span></p>
               <div className="count">
-                <SlotCounter value={900} />
+                <SlotCounter value={900}  animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }}/>
               </div>
             </li>
           </ul>
@@ -162,13 +162,13 @@ const DesignerExploreModel = () => {
                 <div className="info">
                   <label className="am head subtitle1">
                     ENGINE
-                    <button
-                      className="btn acc-btn"
+                    <Button
+                      className="acc-btn"
                       onClick={() => setENGINEOpen(!openENGINE)}
                       aria-expanded={openENGINE}
                     >
                       <Image src={images.ChevronDownDark} alt="Previous" />
-                    </button>
+                    </Button>
                   </label>
                   <h2 className="title am">Unparalleled power</h2>
                   <Collapse in={openENGINE}>
@@ -198,13 +198,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         HANDLING
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarHandlingOpen(!openCarHandling)}
                           aria-expanded={openCarHandling}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">Dynamism re-defined</h3>
                       <Collapse in={openCarHandling}>
@@ -230,13 +230,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         BRAKES
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarBreakOpen(!openCarBreak)}
                           aria-expanded={openCarBreak}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">Record braking</h3>
                       <Collapse in={openCarBreak}>
@@ -350,13 +350,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         CENTRE CONSOLE
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarHandlingOpen(!openCarHandling)}
                           aria-expanded={openCarHandling}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">Instant access, ultimate control</h3>
                       <Collapse in={openCarHandling}>
@@ -378,13 +378,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         INTERIOR JEWELLERY
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarBreakOpen(!openCarBreak)}
                           aria-expanded={openCarBreak}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">Opulence and refined finishes</h3>
                       <Collapse in={openCarBreak}>
@@ -408,13 +408,13 @@ const DesignerExploreModel = () => {
                 <div className="info">
                   <label className="am head subtitle1">
                     Cabin
-                    <button
-                      className="btn acc-btn"
+                    <Button
+                      className="acc-btn"
                       onClick={() => setENGINEOpen(!openENGINE)}
                       aria-expanded={openENGINE}
                     >
                       <Image src={images.ChevronDownDark} alt="Previous" />
-                    </button>
+                    </Button>
                   </label>
                   <h2 className="title am">A marriage of sport and luxury</h2>
                   <Collapse in={openENGINE}>
