@@ -16,11 +16,11 @@ import "swiper/css/navigation";
 // import ScrollspyNav from "react-scrollspy-nav";
 // import Herobanner from '@/public/images/new-car/hero-img.jpg';
 import { Button, Collapse } from "react-bootstrap";
-// import myVideo from '@/public/images/new-car-model/hero-banner-video.mp4'
+// import myVideo from '@/public/images/explore-model/hero-banner-video.mp4'
 
-import EngineImg from "@/public/images/new-car-model/engine-img.jpg";
-import CarHandlingImg from "@/public/images/new-car-model/car-handling-img.jpg";
-import BreakImg from "@/public/images/new-car-model/break-img.jpg";
+import EngineImg from "@/public/images/explore-model/engine-img.jpg";
+import CarHandlingImg from "@/public/images/explore-model/car-handling-img.jpg";
+import BreakImg from "@/public/images/explore-model/break-img.jpg";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
