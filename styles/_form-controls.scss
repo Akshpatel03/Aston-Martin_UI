@@ -813,6 +813,21 @@
     }
 }
 
+// stpper
+// .stepper {
+//     display: flex;
+//     align-items: center;
+//     li {
+//         &:only-child {
+//             padding-right: 56px;
+//             font-size: 16px;
+//             font-weight: 500;
+//             line-height: 24px;
+//             color: $Neutral70;
+//         }
+//     }
+// }
+
 /* Responsive Media Query
 --------------------------------------------------------------------------------------------------------------------*/
 @media(max-width: 1199px) {}
