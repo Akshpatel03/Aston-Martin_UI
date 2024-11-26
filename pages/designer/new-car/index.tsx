@@ -10,9 +10,6 @@ import images from "@/public/images";
 import Image from "next/image";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import CarModelSlider from "@/components/CarModelSlider";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
