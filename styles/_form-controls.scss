@@ -224,7 +224,12 @@
             height: 12px;
             background: url('./../public/images/icons/ic-chevron-up-lg-grey.svg') no-repeat center center;
             background-size: 12px;
+            transition: transform 200ms ease-in-out;
             border: 0;
+        }
+
+        &[aria-expanded="true"]::after {
+            transform: rotate(180deg);
         }
     }
 
@@ -491,7 +496,7 @@
             }
 
             &[aria-selected="true"] {
-                background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
+                background-color: rgba($color: $Primary50, $alpha: 0.2) !important;
                 color: $Primary50 !important;
             }
 
