@@ -17,7 +17,7 @@ const Sidebar = () => {
             </div>
             <ul className="main-navigation">
                 <li className="nav-link">
-                    <NextLink className={`nav-item`} href={ROUTES.DesignerHome} title="Cars">
+                    <NextLink className={`nav-item`} href={ROUTES.DesignerExploreModel} title="Cars">
                         New Cars
                     </NextLink>
                 </li>

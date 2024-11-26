@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import SwiperCore from "swiper";
 import Image from "next/image";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 import AvailableLocation from "@/components/AvailableLocation";
@@ -25,6 +25,15 @@ const DesignerHome = () => {
     { value: "option2", label: "Engine" },
     { value: "option3", label: "Wheel" },
   ];
+  // Include `null` in the state type
+  const [selectedOption, setSelectedOption] = React.useState<{ value: string; label: string } | null>(
+    options[0]
+  );
+
+  // Define the handler type explicitly
+  const handleChange = (option: SingleValue<{ value: string; label: string }>) => {
+    setSelectedOption(option); // `option` can be `null`
+  };
 
   // Explore Swiper Slider
   const ExploreSlider = useRef<SwiperCore | null>(null);
@@ -118,7 +127,7 @@ const DesignerHome = () => {
                   </Form>
                 </div>
                 <div className="col-sm">
-                  <Select className="react-custom-select dark" options={options} isSearchable={false} />
+                  <Select className="react-custom-select dark" options={options} value={selectedOption} onChange={handleChange} isSearchable={false} />
                 </div>
                 <div className="col-sm-auto">
                   <Button className="size-lg w-100" variant="light">
@@ -252,7 +261,7 @@ const DesignerHome = () => {
               </div>
               <p className="description" data-swiper-parallax="-400">The most powerful luxury SUV</p>
               <div className="action" data-swiper-parallax="-500">
-                <Button className="size-lg" variant="light">
+                <Button className="size-lg" variant="light" onClick={() => navigate.push(ROUTES.DesignerNewCar)}>
                   New
                 </Button>
                 <Button className="size-lg" variant="primary" >

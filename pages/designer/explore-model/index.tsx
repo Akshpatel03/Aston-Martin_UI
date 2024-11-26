@@ -13,6 +13,7 @@ import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from 'react-slot-counter';
 import dynamic from "next/dynamic";
+import ReactPlayer from 'react-player'
 
 // Import Swiper styles
 import "swiper/css";
@@ -77,14 +78,24 @@ const DesignerExploreModel = () => {
     };
   }, []);
 
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true); // Ensures this runs only on the client
+  }, []);
+
   return (
     <>
       {/* Hero Banner Start */}
       <div className="hero-banner size-lg">
-        <video autoPlay muted loop className="banner-video">
-          <source src={videos.ExploreDBX707} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {isClient && (
+          <ReactPlayer
+            url={videos.ExploreDBX707}
+            className="banner-video"
+            playing
+            loop
+            muted
+          />
+        )}
         <p className="label">Power. driven.</p>
         <h1 className="title">Aston Martin DBX707</h1>
         <p className="description mb-0">
