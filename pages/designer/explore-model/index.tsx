@@ -19,7 +19,7 @@ import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from "react-slot-counter";
 import dynamic from "next/dynamic";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 
 // Import Swiper styles
 import "swiper/css";
@@ -28,9 +28,9 @@ import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
+import Stepper from "./stepper";
 
 const DesignerExploreModel = () => {
-
   // collapse
   const [openENGINE, setENGINEOpen] = useState(true);
   const [openCarHandling, setCarHandlingOpen] = useState(true);
@@ -87,6 +87,35 @@ const DesignerExploreModel = () => {
     setIsClient(true); // Ensures this runs only on the client
   }, []);
 
+  // stepper -------------------------------------------
+  const stepperData = [
+    { id: 1, name: "Nature of enquiry" },
+    { id: 2, name: "Contact details" },
+    { id: 3, name: "Preferred dealership" },
+  ];
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const goToNextStep = () => {
+    setCurrentStep((next) => {
+      if (next === stepperData.length) {
+        setIsComplete(true);
+        return next;
+      } else {
+        return next + 1;
+      }
+    });
+  };
+  const goToPreviousStep = () => {
+    setCurrentStep((prev) => {
+      if (prev <= 0) {
+        return prev;
+      } else {
+        setIsComplete(false);
+        return prev - 1;
+      }
+    });
+  };
+
   return (
     <>
       {/* Hero Banner Start */}
@@ -106,7 +135,11 @@ const DesignerExploreModel = () => {
           The world&apos;s most powerful luxury SUV
         </p>
         <div className="action" data-swiper-parallax="-500">
-          <Button className="size-lg" variant="light"  onClick={() => setequireDrawer(true)}>
+          <Button
+            className="size-lg"
+            variant="light"
+            onClick={() => setequireDrawer(true)}
+          >
             Enquire
           </Button>
           <Button className="size-lg" variant="mid-transparent">
@@ -744,29 +777,18 @@ const DesignerExploreModel = () => {
           <Image src={images.CloseBlack} alt="Close Icon" />
         </Button>
         <Offcanvas.Body className="enquiry-wrapper-drawer">
-                      <div className="head">
-                        <h3>Make an Enquiry</h3>
-                        <div className="stepper-wrapper">
-                          <ul className="stepper">
-                            <li>
-                                <em className="i">1</em>
-                                Nature of enquiry
-                            </li>
-                            <li>
-                                <em className="i">2</em>
-                                Contact details
-                            </li>
-                            <li>
-                                <em className="i">3</em>
-                                Preferred dealership
-                            </li>
-                            <li>
-                                <em className="i">4</em>
-                                Schedule test drive
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+          <div className="stepper-head">
+            <h3>Make an Enquiry</h3>
+            <Stepper
+              stepsConfig={stepperData}
+              currentStep={currentStep}
+              isComplete={isComplete}
+            />
+          </div>
+          <div className="_body">
+            <Button onClick={() => goToPreviousStep()}>Back</Button>
+            <Button onClick={() => goToNextStep()}>Next</Button>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
       {/* Offcanvas enquire Start */}
