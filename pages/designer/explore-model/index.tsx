@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import AvailableLocation from "@/components/AvailableLocation";
 import images from "@/public/images";
 import Image from "next/image";
-import { Accordion, Button, Collapse, Container, Offcanvas } from "react-bootstrap";
+import {
+  Accordion,
+  Button,
+  Collapse,
+  Container,
+  Offcanvas,
+} from "react-bootstrap";
 import EngineImg from "@/public/images/explore-model/engine-img.jpg";
 import CarHandlingImg from "@/public/images/explore-model/car-handling-img.jpg";
 import BreakImg from "@/public/images/explore-model/break-img.jpg";
@@ -11,7 +17,7 @@ import CarInteriorFinishing from "@/public/images/explore-model/car-interior-fin
 import CarInteriorSeat from "@/public/images/explore-model/car-interior-seat-img.svg";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SlotCounter from 'react-slot-counter';
+import SlotCounter from "react-slot-counter";
 import dynamic from "next/dynamic";
 import ReactPlayer from 'react-player'
 
@@ -24,13 +30,18 @@ import Link from "next/link";
 import videos from "@/public/videos";
 
 const DesignerExploreModel = () => {
+
   // collapse
   const [openENGINE, setENGINEOpen] = useState(true);
   const [openCarHandling, setCarHandlingOpen] = useState(true);
   const [openCarBreak, setCarBreakOpen] = useState(true);
 
+  // off canvas state
   const [specificationDrawer, setSpecificationDrawer] = useState(false);
-  const [specificationPlacement, setSpecificationPlacement] = useState<"start" | "end" | "top" | "bottom">("end");
+  const [equireDrawer, setequireDrawer] = useState(false);
+  const [offcanavasPlacement, setoffcanavasPlacement] = useState<
+    "start" | "end" | "top" | "bottom"
+  >("end");
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,6 +54,13 @@ const DesignerExploreModel = () => {
         setENGINEOpen(true);
         setCarHandlingOpen(true);
         setCarBreakOpen(true);
+      }
+
+      // offcanvas placement
+      if (window.innerWidth < 1199) {
+        setoffcanavasPlacement("bottom");
+      } else {
+        setoffcanavasPlacement("end");
       }
     };
 
@@ -60,23 +78,9 @@ const DesignerExploreModel = () => {
     };
   }, []);
 
-  const TextAnimation = dynamic(() => import("@/components/TextAnimation"), { ssr: false });
-
-  const handleResize = () => {
-    if (window.innerWidth < 1199) {
-      setSpecificationPlacement("bottom");
-    } else {
-      setSpecificationPlacement("end");
-    }
-  };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const TextAnimation = dynamic(() => import("@/components/TextAnimation"), {
+    ssr: false,
+  });
 
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -102,7 +106,7 @@ const DesignerExploreModel = () => {
           The world&apos;s most powerful luxury SUV
         </p>
         <div className="action" data-swiper-parallax="-500">
-          <Button className="size-lg" variant="light">
+          <Button className="size-lg" variant="light"  onClick={() => setequireDrawer(true)}>
             Enquire
           </Button>
           <Button className="size-lg" variant="mid-transparent">
@@ -111,7 +115,6 @@ const DesignerExploreModel = () => {
         </div>
       </div>
       {/* Hero Banner End */}
-
 
       {/* Info Section Start */}
       <div className="info-section block-spacing-y-80">
@@ -148,32 +151,68 @@ const DesignerExploreModel = () => {
         <div className="container-xxl">
           <ul className="count-lisitng">
             <li className="count-item">
-              <p className="title">POWER <span>PS</span></p>
+              <p className="title">
+                POWER <span>PS</span>
+              </p>
               <div className="count">
-                <SlotCounter value={707} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
+                <SlotCounter
+                  value={707}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
             <li className="count-item">
-              <p className="title">TOP SPEED <span>MPH</span></p>
+              <p className="title">
+                TOP SPEED <span>MPH</span>
+              </p>
               <div className="count">
-                <SlotCounter value={193} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
+                <SlotCounter
+                  value={193}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
             <li className="count-item">
-              <p className="title">0-62 MPH <span>S</span></p>
+              <p className="title">
+                0-62 MPH <span>S</span>
+              </p>
               <div className="count">
-                <SlotCounter value={3.3} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
+                <SlotCounter
+                  value={3.3}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
             <li className="count-item">
-              <p className="title">TORQUE <span>NM</span></p>
+              <p className="title">
+                TORQUE <span>NM</span>
+              </p>
               <div className="count">
-                <SlotCounter value={900} animateOnVisible={{ triggerOnce: false, rootMargin: '0px 0px -100px 0px' }} />
+                <SlotCounter
+                  value={900}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
           </ul>
 
-          <Button className="size-lg" variant="mid-transparent" onClick={() => setSpecificationDrawer(true)}>
+          <Button
+            className="size-lg"
+            variant="mid-transparent"
+            onClick={() => setSpecificationDrawer(true)}
+          >
             See full specifications
             <em className="ic right">
               <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
@@ -182,67 +221,6 @@ const DesignerExploreModel = () => {
         </div>
       </div>
       {/* count Section End */}
-
-      {/* Offcanvas Right Start */}
-      <Offcanvas scroll={false} placement={specificationPlacement} show={specificationDrawer} onHide={() => setSpecificationDrawer(false)}>
-        <Button className="btn-icon canvas-close" variant="light" onClick={() => setSpecificationDrawer(false)}>
-          <Image src={images.CloseBlack} alt="Close Icon" />
-        </Button>
-        <Offcanvas.Body className="specs-wrapper">
-          <h2 className="specs-title">Specifications</h2>
-          <Accordion className="specs" defaultActiveKey={['0', '1', '2']} alwaysOpen>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Body</Accordion.Header>
-              <Accordion.Body>
-                <ul className="specs-lisitng">
-                  <li>Two-door body style with decklid and 2 GT seats</li>
-                  <li>Extruded bonded aluminium body structure with Cast Magnesium door structures</li>
-                  <li>LED headlamps with integrated daytime running, side lights and cornering lights</li>
-                  <li>LED light blade taillamps</li>
-                  <li>Curlicue aero feature in front fender</li>
-                  <li>Deployable spoiler with Aston Martin Aeroblade™ system ₁</li>
-                  <li>One-piece clamshell with soft-close latches</li>
-                </ul>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Engine</Accordion.Header>
-              <Accordion.Body>
-                <ul className="specs-lisitng">
-                  <li>All-alloy quad overhead cam, 48 valve, 5.2l bi-turbo, V12 with stop/start cylinder de-activation</li>
-                  <li>Water-to-Air Charge Cooling</li>
-                  <li>Front mid-mounted engine, rear-wheel drive</li>
-                  <li>Fully catalysed stainless steel exhaust system with cross pipes</li>
-                  <li>Compression ratio 9.3:1</li>
-                  <li>Dual Variable Camshaft Timing</li>
-                  <li>Knock-sensing</li>
-                  <li>Fully CNC machined combustion chambers</li>
-                  <li>Electrically controlled exhaust</li>
-                </ul>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Fuel economy & emissions</Accordion.Header>
-              <Accordion.Body>
-                <p className="specs-para">Official government fuel consumption figures in litres/100km (mpg) for the Aston Martin DB11 V12 Coupe: Urban FE 16.6 (17.0); Extra Urban FE 8.5 (33.2); Combined 11.4 (24.8); CO2 265 g/km</p>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
-              <Accordion.Header>Performance & weight</Accordion.Header>
-              <Accordion.Body>
-                <ul className="specs-lisitng">
-                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                </ul>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </Offcanvas.Body>
-      </Offcanvas>
-      {/* Offcanvas Right Start */}
 
       {/* info-thumb Section Start */}
       <div className="info-thumb-section">
@@ -358,7 +336,11 @@ const DesignerExploreModel = () => {
       {/* info-thumb Section End */}
 
       {/* Text Animation Start */}
-      <TextAnimation paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model." owner="Drummond Jacoy" ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin" />
+      <TextAnimation
+        paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model."
+        owner="Drummond Jacoy"
+        ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin"
+      />
       {/* Text Animation End */}
 
       {/* Hero Banner Start */}
@@ -391,7 +373,11 @@ const DesignerExploreModel = () => {
             carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
             silhouette.
           </p>
-          <Image className="banner-img" src={images.CarExteriorImg} alt="CarExteriorImg" />
+          <Image
+            className="banner-img"
+            src={images.CarExteriorImg}
+            alt="CarExteriorImg"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <p className="label" data-swiper-parallax="-300">
@@ -410,7 +396,11 @@ const DesignerExploreModel = () => {
             carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
             silhouette.
           </p>
-          <Image className="banner-img" src={images.CarExteriorImg} alt="CarExteriorImg" />
+          <Image
+            className="banner-img"
+            src={images.CarExteriorImg}
+            alt="CarExteriorImg"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <p className="label" data-swiper-parallax="-300">
@@ -429,7 +419,11 @@ const DesignerExploreModel = () => {
             carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
             silhouette.
           </p>
-          <Image className="banner-img" src={images.CarExteriorImg} alt="CarExteriorImg" />
+          <Image
+            className="banner-img"
+            src={images.CarExteriorImg}
+            alt="CarExteriorImg"
+          />
         </SwiperSlide>
       </Swiper>
       {/* Hero Banner End */}
@@ -454,18 +448,27 @@ const DesignerExploreModel = () => {
                           <Image src={images.ChevronDownDark} alt="Previous" />
                         </Button>
                       </label>
-                      <h3 className="title am">Instant access, ultimate control</h3>
+                      <h3 className="title am">
+                        Instant access, ultimate control
+                      </h3>
                       <Collapse in={openCarHandling}>
                         <div>
                           <p className="des">
-                            An all-new centre console puts the driver in full control. With instant commands at your fingertips, altering the car’s dynamics is now effortless. Choose from several driving modes, ESP, and suspension control and embrace the full force of a supercar.
+                            An all-new centre console puts the driver in full
+                            control. With instant commands at your fingertips,
+                            altering the car’s dynamics is now effortless.
+                            Choose from several driving modes, ESP, and
+                            suspension control and embrace the full force of a
+                            supercar.
                           </p>
                         </div>
                       </Collapse>
                     </div>
                     <div
                       className="img-thumb"
-                      style={{ backgroundImage: `url(${CarInteriorControl.src})` }}
+                      style={{
+                        backgroundImage: `url(${CarInteriorControl.src})`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -482,18 +485,27 @@ const DesignerExploreModel = () => {
                           <Image src={images.ChevronDownDark} alt="Previous" />
                         </Button>
                       </label>
-                      <h3 className="title am">Opulence and refined finishes</h3>
+                      <h3 className="title am">
+                        Opulence and refined finishes
+                      </h3>
                       <Collapse in={openCarBreak}>
                         <div>
                           <p className="des">
-                            From styling dark chrome to bright chrome or carbon fibre, take your pick of interior switchgear finishes. The veneer also comes with various luxurious finishes with elegant Piano Black set as standard and carbon fibre or bronze metal mesh as other available options.
+                            From styling dark chrome to bright chrome or carbon
+                            fibre, take your pick of interior switchgear
+                            finishes. The veneer also comes with various
+                            luxurious finishes with elegant Piano Black set as
+                            standard and carbon fibre or bronze metal mesh as
+                            other available options.
                           </p>
                         </div>
                       </Collapse>
                     </div>
                     <div
                       className="img-thumb"
-                      style={{ backgroundImage: `url(${CarInteriorFinishing.src})` }}
+                      style={{
+                        backgroundImage: `url(${CarInteriorFinishing.src})`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -516,7 +528,11 @@ const DesignerExploreModel = () => {
                   <Collapse in={openENGINE}>
                     <div>
                       <p className="des">
-                        Fitted with an exclusive &rsquo;Inspire Sport&lsquo; interior, the DBX707 elegantly aligns sport and luxury. An Alcantara headlining, heated and ventilated seats and semi-aniline leather upholstery completes an ultra luxurious look and feel.
+                        Fitted with an exclusive &rsquo;Inspire Sport&lsquo;
+                        interior, the DBX707 elegantly aligns sport and luxury.
+                        An Alcantara headlining, heated and ventilated seats and
+                        semi-aniline leather upholstery completes an ultra
+                        luxurious look and feel.
                       </p>
                     </div>
                   </Collapse>
@@ -533,7 +549,12 @@ const DesignerExploreModel = () => {
       {/* info-thumb Section End */}
 
       {/* Text Animation Start */}
-      <TextAnimation classname="black-bg" paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin." owner="Sam Field" ownerDesignation="Technician, Dealer X" />
+      <TextAnimation
+        classname="black-bg"
+        paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin."
+        owner="Sam Field"
+        ownerDesignation="Technician, Dealer X"
+      />
       {/* Text Animation End */}
 
       {/* Info Blocks Start */}
@@ -604,6 +625,146 @@ const DesignerExploreModel = () => {
       {/* Aston Martin Address Start */}
       <AvailableLocation />
       {/* Aston Martin Address End */}
+
+      {/* Offcanvas Right Start */}
+      <Offcanvas
+        scroll={false}
+        placement={offcanavasPlacement}
+        show={specificationDrawer}
+        onHide={() => setSpecificationDrawer(false)}
+      >
+        <Button
+          className="btn-icon canvas-close"
+          variant="light"
+          onClick={() => setSpecificationDrawer(false)}
+        >
+          <Image src={images.CloseBlack} alt="Close Icon" />
+        </Button>
+        <Offcanvas.Body className="specs-wrapper">
+          <h2 className="specs-title">Specifications</h2>
+          <Accordion
+            className="specs"
+            defaultActiveKey={["0", "1", "2"]}
+            alwaysOpen
+          >
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Body</Accordion.Header>
+              <Accordion.Body>
+                <ul className="specs-lisitng">
+                  <li>Two-door body style with decklid and 2 GT seats</li>
+                  <li>
+                    Extruded bonded aluminium body structure with Cast Magnesium
+                    door structures
+                  </li>
+                  <li>
+                    LED headlamps with integrated daytime running, side lights
+                    and cornering lights
+                  </li>
+                  <li>LED light blade taillamps</li>
+                  <li>Curlicue aero feature in front fender</li>
+                  <li>
+                    Deployable spoiler with Aston Martin Aeroblade™ system ₁
+                  </li>
+                  <li>One-piece clamshell with soft-close latches</li>
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>Engine</Accordion.Header>
+              <Accordion.Body>
+                <ul className="specs-lisitng">
+                  <li>
+                    All-alloy quad overhead cam, 48 valve, 5.2l bi-turbo, V12
+                    with stop/start cylinder de-activation
+                  </li>
+                  <li>Water-to-Air Charge Cooling</li>
+                  <li>Front mid-mounted engine, rear-wheel drive</li>
+                  <li>
+                    Fully catalysed stainless steel exhaust system with cross
+                    pipes
+                  </li>
+                  <li>Compression ratio 9.3:1</li>
+                  <li>Dual Variable Camshaft Timing</li>
+                  <li>Knock-sensing</li>
+                  <li>Fully CNC machined combustion chambers</li>
+                  <li>Electrically controlled exhaust</li>
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>Fuel economy & emissions</Accordion.Header>
+              <Accordion.Body>
+                <p className="specs-para">
+                  Official government fuel consumption figures in litres/100km
+                  (mpg) for the Aston Martin DB11 V12 Coupe: Urban FE 16.6
+                  (17.0); Extra Urban FE 8.5 (33.2); Combined 11.4 (24.8); CO2
+                  265 g/km
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>Performance & weight</Accordion.Header>
+              <Accordion.Body>
+                <ul className="specs-lisitng">
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Offcanvas.Body>
+      </Offcanvas>
+      {/* Offcanvas Right Start */}
+
+      {/* Offcanvas enquire Start */}
+      <Offcanvas
+        scroll={false}
+        placement={offcanavasPlacement}
+        show={equireDrawer}
+        onHide={() => setequireDrawer(false)}
+      >
+        <Button
+          className="btn-icon canvas-close"
+          variant="light"
+          onClick={() => setequireDrawer(false)}
+        >
+          <Image src={images.CloseBlack} alt="Close Icon" />
+        </Button>
+        <Offcanvas.Body className="enquiry-wrapper-drawer">
+                      <div className="head">
+                        <h3>Make an Enquiry</h3>
+                        <ul className="stepper">
+                          <li>
+                              <em className="i">1</em>
+                              {/* <em className="i done"></em> */}
+                              Nature of enquiry
+                          </li>
+                          <li>
+                              <em className="i">2</em>
+                              Contact details
+                          </li>
+                          <li>
+                              <em className="i">3</em>
+                              Preferred dealership
+                          </li>
+                        </ul>
+                      </div>
+        </Offcanvas.Body>
+      </Offcanvas>
+      {/* Offcanvas enquire Start */}
     </>
   );
 };
