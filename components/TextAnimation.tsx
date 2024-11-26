@@ -86,7 +86,7 @@ const TextAnimation: React.FC<TextAnimationProps> = ({ paragraph, owner, ownerDe
                         scrollTrigger: {
                             trigger: section,
                             start: "top 60%",
-                            end: "+=50%",
+                            end: "+=30%",
                             scrub: 0.75,
                         },
                     });

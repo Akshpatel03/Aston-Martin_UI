@@ -634,10 +634,10 @@
     }
 
     &.offcanvas-bottom {
-        --bs-offcanvas-height: calc(100vh - 80px);
+        --bs-offcanvas-height: calc(100dvh - 80px);
 
         @include bp(md-max) {
-            --bs-offcanvas-height: calc(100vh - 60px);
+            --bs-offcanvas-height: calc(100dvh - 60px);
         }
 
         .specs-wrapper {
