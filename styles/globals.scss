@@ -184,6 +184,8 @@ body.page-scrolled {
         overflow: auto;
 
         .nav-link {
+            margin-bottom: 4px;
+
             .nav-item {
                 display: block;
                 position: relative;
@@ -2301,6 +2303,14 @@ footer {
 
                 .index-module_slot_wrap__ZT-DX {
                     display: inline-flex;
+
+                    >span {
+                        >span {
+                            >span {
+                                width: 36px;
+                            }
+                        }
+                    }
                 }
             }
         }

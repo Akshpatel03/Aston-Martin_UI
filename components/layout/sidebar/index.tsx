@@ -2,11 +2,14 @@ import images from "@/public/images";
 import { ROUTES } from "@/shared/routes";
 import Image from "next/image";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 // import { useRouter } from "next/router";
 import React from "react";
 import { Navbar } from "react-bootstrap";
 
 const Sidebar = () => {
+
+    const router = useRouter();
 
     return (
         <aside className="sidebar">
@@ -17,7 +20,7 @@ const Sidebar = () => {
             </div>
             <ul className="main-navigation">
                 <li className="nav-link">
-                    <NextLink className={`nav-item`} href={ROUTES.DesignerExploreModel} title="Cars">
+                    <NextLink className={`nav-item ${router.pathname === ROUTES.DesignerNewCar ? 'active' : ''}`} href={ROUTES.DesignerNewCar} title="Cars">
                         New Cars
                     </NextLink>
                 </li>
