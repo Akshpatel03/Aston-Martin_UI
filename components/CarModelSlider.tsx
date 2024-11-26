@@ -47,7 +47,6 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
             modules={[Navigation, Pagination, Parallax]}
             speed={800}
             parallax
-            loop
             freeMode={true}
             slidesPerView="auto"
             breakpoints={{ 0: { spaceBetween: 16 }, 768: { spaceBetween: 32 } }}
@@ -62,8 +61,15 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
             className="default-slider testimonial"
           >
             {variant.map((row, index) => (
-              <SwiperSlide key={index}>
-                <div className="car-variant-card">
+              <SwiperSlide
+                key={index}
+                className={`${variant.length == 1 ? "one" : ""}`}
+              >
+                <div
+                  className={`car-variant-card ${
+                    variant.length == 1 ? "one" : ""
+                  }`}
+                >
                   <h3>{row.name}</h3>
                   <em className="thumb">
                     <Image
@@ -73,7 +79,11 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
                     />
                   </em>
                   <div className="action">
-                    <Button className="size-lg" variant="primary" onClick={() => navigate.push(ROUTES.DesignerExploreModel)}>
+                    <Button
+                      className="size-lg"
+                      variant="primary"
+                      onClick={() => navigate.push(ROUTES.DesignerExploreModel)}
+                    >
                       Explore
                     </Button>
                     <Button className="size-lg" variant="secondary">

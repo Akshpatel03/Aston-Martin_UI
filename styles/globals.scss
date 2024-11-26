@@ -2599,6 +2599,28 @@ footer {
 // explore-model page End
 // -----------------------------------------------------------------
 
+// offcanvas drawer Start
+// -----------------------------------------------------------------
+.enquiry-wrapper-drawer {
+    .head {
+        position: relative;
+        padding: 32px 80px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid;
+            border-image-source: linear-gradient(270deg, rgba(226, 228, 228, 0) 0%, #E2E4E4 4.19%, #E2E4E4 95.9%, rgba(226, 228, 228, 0) 100%);
+            width: 100%;
+            height: 2px;
+        }
+    }
+}
+// offcanvas drawer End
+// -----------------------------------------------------------------
+
 /* Responsive Media Query
 --------------------------------------------------------------------------------------------------------------------*/
 // Container

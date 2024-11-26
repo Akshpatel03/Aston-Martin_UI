@@ -814,19 +814,78 @@
 }
 
 // stpper
-// .stepper {
-//     display: flex;
-//     align-items: center;
-//     li {
-//         &:only-child {
-//             padding-right: 56px;
-//             font-size: 16px;
-//             font-weight: 500;
-//             line-height: 24px;
-//             color: $Neutral70;
-//         }
-//     }
-// }
+.stepper-wrapper {
+    height: 36px;
+    overflow: hidden;
+
+    .stepper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 10px;
+        white-space: nowrap;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            &:not(:last-child) {
+                padding-right: 56px;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 24px;
+                color: $Neutral70;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    width: 40px;
+                    height: 1px;
+                    background-color: $Neutral10;
+                    position: absolute;
+                    top: calc(50% - 0.5px);
+                    right: 0;
+                }
+            }
+
+            .i {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 24px;
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                border-radius: 50%;
+                background-color: $Neutral10;
+            }
+
+            &.active {
+                color: $Neutral100;
+
+                .i {
+                    background-color: $Neutral100;
+                    color: $White;
+                }
+            }
+
+            &.done {
+                color: $Primary50;
+
+                .i {
+                    background-color: $Primary50;
+                    color: $White;
+                }
+            }
+        }
+    }
+}
+
 
 /* Responsive Media Query
 --------------------------------------------------------------------------------------------------------------------*/
