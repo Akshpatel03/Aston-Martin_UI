@@ -746,21 +746,26 @@ const DesignerExploreModel = () => {
         <Offcanvas.Body className="enquiry-wrapper-drawer">
                       <div className="head">
                         <h3>Make an Enquiry</h3>
-                        <ul className="stepper">
-                          <li>
-                              <em className="i">1</em>
-                              {/* <em className="i done"></em> */}
-                              Nature of enquiry
-                          </li>
-                          <li>
-                              <em className="i">2</em>
-                              Contact details
-                          </li>
-                          <li>
-                              <em className="i">3</em>
-                              Preferred dealership
-                          </li>
-                        </ul>
+                        <div className="stepper-wrapper">
+                          <ul className="stepper">
+                            <li>
+                                <em className="i">1</em>
+                                Nature of enquiry
+                            </li>
+                            <li>
+                                <em className="i">2</em>
+                                Contact details
+                            </li>
+                            <li>
+                                <em className="i">3</em>
+                                Preferred dealership
+                            </li>
+                            <li>
+                                <em className="i">4</em>
+                                Schedule test drive
+                            </li>
+                          </ul>
+                        </div>
                       </div>
         </Offcanvas.Body>
       </Offcanvas>
