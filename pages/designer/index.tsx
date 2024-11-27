@@ -5,24 +5,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import SwiperCore from "swiper";
 import Image from "next/image";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 import AvailableLocation from "@/components/AvailableLocation";
 import Testimonials from "@/components/Testimonials";
+import News from "@/components/News";
+import { useRouter } from "next/router";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import News from "@/components/News";
 
 const DesignerHome = () => {
+  const navigate = useRouter();
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
     { value: "option3", label: "Wheel" },
   ];
+  // Include `null` in the state type
+  const [selectedOption, setSelectedOption] = React.useState<{
+    value: string;
+    label: string;
+  } | null>(options[0]);
+
+  // Define the handler type explicitly
+  const handleChange = (
+    option: SingleValue<{ value: string; label: string }>
+  ) => {
+    setSelectedOption(option); // `option` can be `null`
+  };
 
   // Explore Swiper Slider
   const ExploreSlider = useRef<SwiperCore | null>(null);
@@ -64,7 +78,11 @@ const DesignerHome = () => {
             The most powerful luxury SUV
           </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
+            <Button
+              className="size-lg w-sm-auto w-100"
+              variant="light"
+              onClick={() => navigate.push(ROUTES.DesignerExploreModel)}
+            >
               Explore
             </Button>
           </div>
@@ -81,7 +99,11 @@ const DesignerHome = () => {
             The most powerful luxury SUV
           </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
+            <Button
+              className="size-lg w-sm-auto w-100"
+              variant="light"
+              onClick={() => navigate.push(ROUTES.DesignerExploreModel)}
+            >
               Explore
             </Button>
           </div>
@@ -98,7 +120,11 @@ const DesignerHome = () => {
             The most powerful luxury SUV
           </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
+            <Button
+              className="size-lg w-sm-auto w-100"
+              variant="light"
+              onClick={() => navigate.push(ROUTES.DesignerExploreModel)}
+            >
               Explore
             </Button>
           </div>
@@ -137,6 +163,8 @@ const DesignerHome = () => {
                   <Select
                     className="react-custom-select dark"
                     options={options}
+                    value={selectedOption}
+                    onChange={handleChange}
                     isSearchable={false}
                   />
                 </div>
@@ -318,7 +346,11 @@ const DesignerHome = () => {
                 The most powerful luxury SUV
               </p>
               <div className="action" data-swiper-parallax="-500">
-                <Button className="size-lg" variant="light">
+                <Button
+                  className="size-lg"
+                  variant="light"
+                  onClick={() => navigate.push(ROUTES.DesignerNewCar)}
+                >
                   New
                 </Button>
                 <Button className="size-lg" variant="primary">

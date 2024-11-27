@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import AvailableLocation from "@/components/AvailableLocation";
 import images from "@/public/images";
 import Image from "next/image";
-import { Button, Collapse, Container } from "react-bootstrap";
+import {
+  Accordion,
+  Button,
+  Collapse,
+  Container,
+  Offcanvas,
+} from "react-bootstrap";
 import EngineImg from "@/public/images/explore-model/engine-img.jpg";
 import CarHandlingImg from "@/public/images/explore-model/car-handling-img.jpg";
 import BreakImg from "@/public/images/explore-model/break-img.jpg";
@@ -12,6 +18,8 @@ import CarInteriorSeat from "@/public/images/explore-model/car-interior-seat-img
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from "react-slot-counter";
+import dynamic from "next/dynamic";
+import ReactPlayer from "react-player";
 
 // Import Swiper styles
 import "swiper/css";
@@ -19,15 +27,21 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
-
-// Odometer styles
-import "odometer/themes/odometer-theme-car.css";
+import videos from "@/public/videos";
+import Stepper from "./stepper";
 
 const DesignerExploreModel = () => {
   // collapse
   const [openENGINE, setENGINEOpen] = useState(true);
   const [openCarHandling, setCarHandlingOpen] = useState(true);
   const [openCarBreak, setCarBreakOpen] = useState(true);
+
+  // off canvas state
+  const [specificationDrawer, setSpecificationDrawer] = useState(false);
+  const [equireDrawer, setequireDrawer] = useState(false);
+  const [offcanavasPlacement, setoffcanavasPlacement] = useState<
+    "start" | "end" | "top" | "bottom"
+  >("end");
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,6 +54,13 @@ const DesignerExploreModel = () => {
         setENGINEOpen(true);
         setCarHandlingOpen(true);
         setCarBreakOpen(true);
+      }
+
+      // offcanvas placement
+      if (window.innerWidth < 1199) {
+        setoffcanavasPlacement("bottom");
+      } else {
+        setoffcanavasPlacement("end");
       }
     };
 
@@ -57,21 +78,68 @@ const DesignerExploreModel = () => {
     };
   }, []);
 
+  const TextAnimation = dynamic(() => import("@/components/TextAnimation"), {
+    ssr: false,
+  });
+
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true); // Ensures this runs only on the client
+  }, []);
+
+  // stepper -------------------------------------------
+  const stepperData = [
+    { id: 1, name: "Nature of enquiry" },
+    { id: 2, name: "Contact details" },
+    { id: 3, name: "Preferred dealership" },
+  ];
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const goToNextStep = () => {
+    setCurrentStep((next) => {
+      if (next === stepperData.length) {
+        setIsComplete(true);
+        return next;
+      } else {
+        return next + 1;
+      }
+    });
+  };
+  const goToPreviousStep = () => {
+    setCurrentStep((prev) => {
+      if (prev <= 0) {
+        return prev;
+      } else {
+        setIsComplete(false);
+        return prev - 1;
+      }
+    });
+  };
+
   return (
     <>
       {/* Hero Banner Start */}
-      <div className="hero-banner">
-        {/* <video controls width="600">
-          <source src="/videos/DBX707.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> */}
+      <div className="hero-banner size-lg">
+        {isClient && (
+          <ReactPlayer
+            url={videos.ExploreDBX707}
+            className="banner-video"
+            playing
+            loop
+            muted
+          />
+        )}
         <p className="label">Power. driven.</p>
         <h1 className="title">Aston Martin DBX707</h1>
         <p className="description mb-0">
           The world&apos;s most powerful luxury SUV
         </p>
         <div className="action" data-swiper-parallax="-500">
-          <Button className="size-lg" variant="light">
+          <Button
+            className="size-lg"
+            variant="light"
+            onClick={() => setequireDrawer(true)}
+          >
             Enquire
           </Button>
           <Button className="size-lg" variant="mid-transparent">
@@ -86,7 +154,7 @@ const DesignerExploreModel = () => {
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div className="info">
+              <div className="info  pb-4 pb-lg-0 pt-0">
                 <h3 className="title am">An SUV like no other</h3>
                 <p className="description">
                   The DBX 707 is a genuine supercar. An SUV that drives like a
@@ -99,7 +167,7 @@ const DesignerExploreModel = () => {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6 right-img-block">
+            <div className="col-lg-6">
               <Image
                 className="right-side-image"
                 src={images.CarImg}
@@ -120,7 +188,13 @@ const DesignerExploreModel = () => {
                 POWER <span>PS</span>
               </p>
               <div className="count">
-                <SlotCounter value={707} />
+                <SlotCounter
+                  value={707}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
             <li className="count-item">
@@ -128,7 +202,13 @@ const DesignerExploreModel = () => {
                 TOP SPEED <span>MPH</span>
               </p>
               <div className="count">
-                <SlotCounter value={193} />
+                <SlotCounter
+                  value={193}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
             <li className="count-item">
@@ -136,7 +216,13 @@ const DesignerExploreModel = () => {
                 0-62 MPH <span>S</span>
               </p>
               <div className="count">
-                <SlotCounter value={3.3} />
+                <SlotCounter
+                  value={3.3}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
             <li className="count-item">
@@ -144,12 +230,22 @@ const DesignerExploreModel = () => {
                 TORQUE <span>NM</span>
               </p>
               <div className="count">
-                <SlotCounter value={900} />
+                <SlotCounter
+                  value={900}
+                  animateOnVisible={{
+                    triggerOnce: false,
+                    rootMargin: "0px 0px -100px 0px",
+                  }}
+                />
               </div>
             </li>
           </ul>
 
-          <Button className="size-lg" variant="mid-transparent">
+          <Button
+            className="size-lg"
+            variant="mid-transparent"
+            onClick={() => setSpecificationDrawer(true)}
+          >
             See full specifications
             <em className="ic right">
               <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
@@ -169,13 +265,13 @@ const DesignerExploreModel = () => {
                 <div className="info">
                   <label className="am head subtitle1">
                     ENGINE
-                    <button
-                      className="btn acc-btn"
+                    <Button
+                      className="acc-btn"
                       onClick={() => setENGINEOpen(!openENGINE)}
                       aria-expanded={openENGINE}
                     >
                       <Image src={images.ChevronDownDark} alt="Previous" />
-                    </button>
+                    </Button>
                   </label>
                   <h2 className="title am">Unparalleled power</h2>
                   <Collapse in={openENGINE}>
@@ -205,13 +301,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         HANDLING
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarHandlingOpen(!openCarHandling)}
                           aria-expanded={openCarHandling}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">Dynamism re-defined</h3>
                       <Collapse in={openCarHandling}>
@@ -237,13 +333,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         BRAKES
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarBreakOpen(!openCarBreak)}
                           aria-expanded={openCarBreak}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">Record braking</h3>
                       <Collapse in={openCarBreak}>
@@ -271,6 +367,14 @@ const DesignerExploreModel = () => {
         </div>
       </div>
       {/* info-thumb Section End */}
+
+      {/* Text Animation Start */}
+      <TextAnimation
+        paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model."
+        owner="Drummond Jacoy"
+        ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin"
+      />
+      {/* Text Animation End */}
 
       {/* Hero Banner Start */}
       <Swiper
@@ -369,13 +473,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         CENTRE CONSOLE
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarHandlingOpen(!openCarHandling)}
                           aria-expanded={openCarHandling}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">
                         Instant access, ultimate control
@@ -406,13 +510,13 @@ const DesignerExploreModel = () => {
                     <div className="info">
                       <label className="am head subtitle1">
                         INTERIOR JEWELLERY
-                        <button
-                          className="btn acc-btn"
+                        <Button
+                          className="acc-btn"
                           onClick={() => setCarBreakOpen(!openCarBreak)}
                           aria-expanded={openCarBreak}
                         >
                           <Image src={images.ChevronDownDark} alt="Previous" />
-                        </button>
+                        </Button>
                       </label>
                       <h3 className="title am">
                         Opulence and refined finishes
@@ -445,13 +549,13 @@ const DesignerExploreModel = () => {
                 <div className="info">
                   <label className="am head subtitle1">
                     Cabin
-                    <button
-                      className="btn acc-btn"
+                    <Button
+                      className="acc-btn"
                       onClick={() => setENGINEOpen(!openENGINE)}
                       aria-expanded={openENGINE}
                     >
                       <Image src={images.ChevronDownDark} alt="Previous" />
-                    </button>
+                    </Button>
                   </label>
                   <h2 className="title am">A marriage of sport and luxury</h2>
                   <Collapse in={openENGINE}>
@@ -476,6 +580,15 @@ const DesignerExploreModel = () => {
         </div>
       </div>
       {/* info-thumb Section End */}
+
+      {/* Text Animation Start */}
+      <TextAnimation
+        classname="black-bg"
+        paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin."
+        owner="Sam Field"
+        ownerDesignation="Technician, Dealer X"
+      />
+      {/* Text Animation End */}
 
       {/* Info Blocks Start */}
       <div className="multi-info-block">
@@ -545,7 +658,142 @@ const DesignerExploreModel = () => {
       {/* Aston Martin Address Start */}
       <AvailableLocation dealers={[]} />
       {/* Aston Martin Address End */}
+
+      {/* Offcanvas Right Start */}
+      <Offcanvas
+        scroll={false}
+        placement={offcanavasPlacement}
+        show={specificationDrawer}
+        onHide={() => setSpecificationDrawer(false)}
+      >
+        <Button
+          className="btn-icon canvas-close"
+          variant="light"
+          onClick={() => setSpecificationDrawer(false)}
+        >
+          <Image src={images.CloseBlack} alt="Close Icon" />
+        </Button>
+        <Offcanvas.Body className="specs-wrapper">
+          <h2 className="specs-title">Specifications</h2>
+          <Accordion
+            className="specs"
+            defaultActiveKey={["0", "1", "2"]}
+            alwaysOpen
+          >
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Body</Accordion.Header>
+              <Accordion.Body>
+                <ul className="specs-lisitng">
+                  <li>Two-door body style with decklid and 2 GT seats</li>
+                  <li>
+                    Extruded bonded aluminium body structure with Cast Magnesium
+                    door structures
+                  </li>
+                  <li>
+                    LED headlamps with integrated daytime running, side lights
+                    and cornering lights
+                  </li>
+                  <li>LED light blade taillamps</li>
+                  <li>Curlicue aero feature in front fender</li>
+                  <li>
+                    Deployable spoiler with Aston Martin Aeroblade™ system ₁
+                  </li>
+                  <li>One-piece clamshell with soft-close latches</li>
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>Engine</Accordion.Header>
+              <Accordion.Body>
+                <ul className="specs-lisitng">
+                  <li>
+                    All-alloy quad overhead cam, 48 valve, 5.2l bi-turbo, V12
+                    with stop/start cylinder de-activation
+                  </li>
+                  <li>Water-to-Air Charge Cooling</li>
+                  <li>Front mid-mounted engine, rear-wheel drive</li>
+                  <li>
+                    Fully catalysed stainless steel exhaust system with cross
+                    pipes
+                  </li>
+                  <li>Compression ratio 9.3:1</li>
+                  <li>Dual Variable Camshaft Timing</li>
+                  <li>Knock-sensing</li>
+                  <li>Fully CNC machined combustion chambers</li>
+                  <li>Electrically controlled exhaust</li>
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>Fuel economy & emissions</Accordion.Header>
+              <Accordion.Body>
+                <p className="specs-para">
+                  Official government fuel consumption figures in litres/100km
+                  (mpg) for the Aston Martin DB11 V12 Coupe: Urban FE 16.6
+                  (17.0); Extra Urban FE 8.5 (33.2); Combined 11.4 (24.8); CO2
+                  265 g/km
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>Performance & weight</Accordion.Header>
+              <Accordion.Body>
+                <ul className="specs-lisitng">
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </li>
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Offcanvas.Body>
+      </Offcanvas>
+      {/* Offcanvas Right Start */}
+
+      {/* Offcanvas enquire Start */}
+      <Offcanvas
+        scroll={false}
+        placement={offcanavasPlacement}
+        show={equireDrawer}
+        onHide={() => setequireDrawer(false)}
+      >
+        <Button
+          className="btn-icon canvas-close"
+          variant="light"
+          onClick={() => setequireDrawer(false)}
+        >
+          <Image src={images.CloseBlack} alt="Close Icon" />
+        </Button>
+        <Offcanvas.Body className="enquiry-wrapper-drawer">
+          <div className="stepper-head">
+            <h3>Make an Enquiry</h3>
+            <Stepper
+              stepsConfig={stepperData}
+              currentStep={currentStep}
+              isComplete={isComplete}
+            />
+          </div>
+          <div className="_body">
+            <Button onClick={() => goToPreviousStep()}>Back</Button>
+            <Button onClick={() => goToNextStep()}>Next</Button>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
+      {/* Offcanvas enquire Start */}
     </>
   );
 };
+
 export default DesignerExploreModel;
