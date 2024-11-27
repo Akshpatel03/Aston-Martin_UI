@@ -779,7 +779,7 @@ const DesignerExploreModel = () => {
 
       {/* Offcanvas enquire Start */}
       <Offcanvas
-        show={equireDrawer || true}
+        show={equireDrawer}
         placement={offcanavasPlacement}
         onHide={() => setequireDrawer(false)}
       >
