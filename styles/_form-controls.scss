@@ -241,6 +241,20 @@ textarea.form-control {
     resize: none;
 }
 
+.input-group.space {
+    gap: 16px;
+    flex-wrap: nowrap;
+
+    > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+        border-radius: 4px;
+    }
+
+    .btn {
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+}
+
 // Dropdown
 .dropdown {
     .dropdown-toggle {

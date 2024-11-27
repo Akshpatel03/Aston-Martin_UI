@@ -1254,6 +1254,10 @@ footer {
             right: 50%;
         }
     }
+
+    &.color-primary {
+        color: $Primary50;
+    }
 }
 
 // Quick link Cards
@@ -2637,6 +2641,8 @@ footer {
             padding: 56px 80px;
             max-width: 725px;
             width: 725px;
+            flex-direction: column;
+            display: flex;
 
             .form-title {
                 font-size: 20px;
@@ -2657,6 +2663,13 @@ footer {
 
             .mb-40p {
                 margin-bottom: 40px;
+            }
+
+            .action {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding-top: 40px;
             }
         }
 

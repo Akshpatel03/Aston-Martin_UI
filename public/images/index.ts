@@ -34,6 +34,7 @@ export default {
   CloseBlack: require("./icons/ic-close-black.svg").default,
   ChevronUpLGBlack: require("./icons/ic-chevron-up-lg-black.svg").default,
   IcCheck: require("./icons/ic-check.svg").default,
+  IcLocMark: require("./icons/ic-loc-mark.svg").default,
   
 
   // HomePageImages

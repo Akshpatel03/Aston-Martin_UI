@@ -8,6 +8,7 @@ import {
   Button,
   Collapse,
   Container,
+  Form,
   Offcanvas,
   ToggleButton,
   ToggleButtonGroup,
@@ -31,9 +32,10 @@ import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
-import DBX707Green from "@/public/images/home/DBX707-green.png"
+import DBX707Green from "@/public/images/home/DBX707-green.png";
 import Stepper from "./stepper";
 import DesignerFromControls from "./form-controls";
+import Select, { SingleValue } from "react-select";
 
 const DesignerExploreModel = () => {
   // collapse
@@ -97,6 +99,7 @@ const DesignerExploreModel = () => {
     { id: 1, name: "Nature of enquiry" },
     { id: 2, name: "Contact details" },
     { id: 3, name: "Preferred dealership" },
+    { id: 4, name: "Schedule test drive" },
   ];
   const [currentStep, setCurrentStep] = React.useState(0);
   const [isComplete, setIsComplete] = useState(false);
@@ -119,6 +122,21 @@ const DesignerExploreModel = () => {
         return prev - 1;
       }
     });
+  };
+
+  const options = [
+    { value: "option1", label: "12 Friar Street, Reading, RG1 1DB" },
+    { value: "option2", label: "14 Friar Street, Reading, RG1 1DB" },
+    { value: "option3", label: "15 Friar Street, Reading, RG1 1DB" },
+  ];
+  const [selectedOption, setSelectedOption] = React.useState<{
+    value: string;
+    label: string;
+  } | null>(options[0]);
+  const handleChange = (
+    option: SingleValue<{ value: string; label: string }>
+  ) => {
+    setSelectedOption(option); // `option` can be `null`
   };
 
   return (
@@ -782,7 +800,7 @@ const DesignerExploreModel = () => {
         </Button>
         <Offcanvas.Body className="enquiry-wrapper-drawer">
           <div className="stepper-head">
-            <h3>Make an Enquiry</h3>
+            <h3 className="mb-56p">Make an Enquiry</h3>
             <Stepper
               stepsConfig={stepperData}
               currentStep={currentStep}
@@ -791,32 +809,259 @@ const DesignerExploreModel = () => {
           </div>
           <div className="stepper-body">
             <div className="enquiry-form">
-              <h5 className="form-title mb-40p">
-                Tell us about the nature of your enquiry below
-              </h5>
+              {currentStep === 0 ? (
+                <>
+                  <h5 className="form-title mb-40p">
+                    Tell us about the nature of your enquiry below
+                  </h5>
 
-              <p className="secondary-form-title">Select</p>
-              <ToggleButtonGroup className="toggle-radio" type="radio" name="options">
-                <ToggleButton className="mirror-card" id="tbg-radio-1" value={1} variant="light" >
-                  Sale/purchase
-                  <span className="highlighted">Sale/purchase</span>
-                </ToggleButton>
-                <ToggleButton className="mirror-card" id="tbg-radio-2" value={2} variant="light" >
-                  Book a test drive
-                  <span className="highlighted">Book a test drive</span>
-                </ToggleButton>
-                <ToggleButton className="mirror-card" id="tbg-radio-3" value={3} variant="light" >
-                  General
-                  <span className="highlighted">General</span>
-                </ToggleButton>
-              </ToggleButtonGroup>
+                  <p className="secondary-form-title">Select</p>
+                  <ToggleButtonGroup
+                    className="toggle-radio"
+                    type="radio"
+                    name="options"
+                  >
+                    <ToggleButton
+                      className="mirror-card"
+                      id="tbg-radio-1"
+                      value={1}
+                      variant="light"
+                    >
+                      Sale/purchase
+                      <span className="highlighted">Sale/purchase</span>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="mirror-card"
+                      id="tbg-radio-2"
+                      value={2}
+                      variant="light"
+                    >
+                      Book a test drive
+                      <span className="highlighted">Book a test drive</span>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="mirror-card"
+                      id="tbg-radio-3"
+                      value={3}
+                      variant="light"
+                    >
+                      General
+                      <span className="highlighted">General</span>
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </>
+              ) : (
+                ""
+              )}
+
+              {currentStep === 1 ? (
+                <>
+                  <h5 className="form-title mb-40p">
+                    Please provide us with your personal details and contact
+                    information
+                  </h5>
+                  <Form.Label>Title</Form.Label>
+                  <Form className="inline-level gap-5 mb-24p">
+                    <Form.Check
+                      type="radio"
+                      label="Mr"
+                      name="gender"
+                      defaultChecked
+                      id="RadioMr"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Mrs"
+                      name="gender"
+                      id="RadioMrs"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Miss"
+                      name="gender"
+                      id="RadioMiss"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Ms"
+                      name="gender"
+                      id="RadioMs"
+                    />
+                  </Form>
+                  <div className="row">
+                    <div className="col-sm-6">
+                      <Form.Group className="mb-24p">
+                        <Form.Label>First name</Form.Label>
+                        <Form.Control type="text" />
+                      </Form.Group>
+                    </div>
+                    <div className="col-sm-6">
+                      <Form.Group className="mb-24p">
+                        <Form.Label>Last name</Form.Label>
+                        <Form.Control type="text" />
+                      </Form.Group>
+                    </div>
+                  </div>
+                  <Form.Group className="mb-24p">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+                  <Form.Group className="mb-24p">
+                    <Form.Label>Phone number</Form.Label>
+                    <Form.Label className="text-neutral50 d-block">
+                      Include the country code (e.g. +44)
+                    </Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+                  <Form.Group className="mb-24p">
+                    <Form.Label>Address</Form.Label>
+                    <Select
+                      className="react-custom-select with-text"
+                      classNamePrefix="select"
+                      options={options}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <div className="mb-24p">
+                    <Link
+                      className="quick-link color-primary align-items-start"
+                      href={ROUTES.DesignerNewCar}
+                    >
+                      Enter your address manually
+                      <Image src={images.ChevronDownPrimary} alt="More" />
+                    </Link>
+                  </div>
+                  <Form.Group className="mb-24p">
+                    <Form.Label>Your enquiry</Form.Label>
+                    <Form.Control as="textarea" rows={3} />
+                  </Form.Group>
+
+                  <Form.Label>
+                    How you would like us to contact with you
+                  </Form.Label>
+                  <Form className="inline-level gap-3 mb-24p">
+                    <Form.Check
+                      type="radio"
+                      label="No preference"
+                      name="contact"
+                      defaultChecked
+                      id="RadioNP"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Email"
+                      name="contact"
+                      id="RadioEmail"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Phone"
+                      name="contact"
+                      id="RadioPhone"
+                    />
+                  </Form>
+
+                  <Form.Label>
+                    Would you like to receive news and updates from Dealer X? If
+                    so, please select your contact preferences.
+                  </Form.Label>
+                  <Form className="inline-level gap-3 mb-24p">
+                    <Form.Check
+                      type="checkbox"
+                      label="Email"
+                      defaultChecked
+                      id="checkEmail"
+                    />
+                    <Form.Check type="checkbox" label="Phone" id="checkPhone" />
+                    <Form.Check type="checkbox" label="SMS" id="checkSms" />
+                  </Form>
+
+                  <p className="body2 text-neutral50">
+                    By submitting this form, you are giving consent for a member
+                    of the Dealer X team to contact you using the personal
+                    information provided for the purposes which are directly
+                    related to this enquiry.
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
+
+              {currentStep === 2 ? (
+                <>
+                  <h5 className="form-title mb-40p">
+                    Let us know your preferred dealership location
+                  </h5>
+                  <Form.Label>Search by country, city or address</Form.Label>
+                  <div className="input-group mb-24p space">
+                    <Form.Group className="w-100">
+                      <Select
+                        className="react-custom-select with-text"
+                        classNamePrefix="select"
+                        options={options}
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                    <Button variant="secondary" className="size-lg">
+                      Use my location
+                      <em className="ic right">
+                        <Image src={images.IcLocMark} alt="" />
+                      </em>
+                    </Button>
+                  </div>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Select dealership</Form.Label>
+                    <Select
+                      className="react-custom-select"
+                      classNamePrefix="select"
+                      isSearchable={false}
+                      options={options}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </>
+              ) : (
+                ""
+              )}
+
+              {currentStep === 3 || currentStep === 4 ? <>4 step</> : ""}
+
+              <div className="action mt-auto">
+                {currentStep !== 0 ? (
+                  <Button
+                    variant="secondary"
+                    className="size-lg"
+                    onClick={goToPreviousStep}
+                  >
+                    Back
+                  </Button>
+                ) : (
+                  ""
+                )}
+                <Button
+                  variant="primary"
+                  className="size-lg ms-auto"
+                  onClick={goToNextStep}
+                >
+                  Next
+                  <em className="ic right">
+                    <Image src={images.ArrowNarrowRightSMWhite} alt="" />
+                  </em>
+                </Button>
+              </div>
             </div>
             <div className="enquiry-car">
               <div className="car-detail">
                 <p className="car-badge">Power. Driven.</p>
                 <h1 className="title">DBX707</h1>
               </div>
-              <img src={DBX707Green.src} alt="DBX707Green" loading="lazy" decoding="async" />
+              <img
+                src={DBX707Green.src}
+                alt="DBX707Green"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </Offcanvas.Body>
