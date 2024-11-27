@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import AvailableLocation from "@/components/AvailableLocation";
 import images from "@/public/images";
@@ -8,6 +9,8 @@ import {
   Collapse,
   Container,
   Offcanvas,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "react-bootstrap";
 import EngineImg from "@/public/images/explore-model/engine-img.jpg";
 import CarHandlingImg from "@/public/images/explore-model/car-handling-img.jpg";
@@ -28,6 +31,7 @@ import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
+import DBX707Green from "@/public/images/home/DBX707-green.png"
 import Stepper from "./stepper";
 import DesignerFromControls from "./form-controls";
 
@@ -765,9 +769,8 @@ const DesignerExploreModel = () => {
 
       {/* Offcanvas enquire Start */}
       <Offcanvas
-        scroll={false}
         placement={offcanavasPlacement}
-        show={equireDrawer}
+        show={equireDrawer || true}
         onHide={() => setequireDrawer(false)}
       >
         <Button
@@ -786,14 +789,35 @@ const DesignerExploreModel = () => {
               isComplete={isComplete}
             />
           </div>
-          <div className="_body">
-            <Button onClick={() => goToPreviousStep()}>Back</Button>
-            <Button onClick={() => goToNextStep()}>Next</Button>
-            <br />
-            <br />
-            <br />
+          <div className="stepper-body">
+            <div className="enquiry-form">
+              <h5 className="form-title mb-40p">
+                Tell us about the nature of your enquiry below
+              </h5>
 
-            <DesignerFromControls />
+              <p className="secondary-form-title">Select</p>
+              <ToggleButtonGroup className="toggle-radio" type="radio" name="options">
+                <ToggleButton className="mirror-card" id="tbg-radio-1" value={1} variant="light" >
+                  Sale/purchase
+                  <span className="highlighted">Sale/purchase</span>
+                </ToggleButton>
+                <ToggleButton className="mirror-card" id="tbg-radio-2" value={2} variant="light" >
+                  Book a test drive
+                  <span className="highlighted">Book a test drive</span>
+                </ToggleButton>
+                <ToggleButton className="mirror-card" id="tbg-radio-3" value={3} variant="light" >
+                  General
+                  <span className="highlighted">General</span>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
+            <div className="enquiry-car">
+              <div className="car-detail">
+                <p className="car-badge">Power. Driven.</p>
+                <h1 className="title">DBX707</h1>
+              </div>
+              <img src={DBX707Green.src} alt="DBX707Green" loading="lazy" decoding="async" />
+            </div>
           </div>
         </Offcanvas.Body>
       </Offcanvas>
