@@ -38,6 +38,8 @@
     }
 }
 
+
+// Buttons
 .btn {
     display: flex;
     align-items: center;
@@ -216,6 +218,44 @@
     }
 }
 
+// textfields
+.form-control {
+    --bs-body-bg: #EEF0F080;
+    --bs-border-color: #E2E4E4;
+    --bs-border-width: 1.5px;
+    --bs-border-radius: 0;
+    color: $Neutral100;
+    min-height: 56px;
+    padding: 15px 16px;
+    box-shadow: none !important;
+
+    &:focus {
+        --bs-body-bg: #EEF0F080;
+        color: $Neutral100;
+        border-color: $Primary50;
+    }
+
+}
+
+textarea.form-control {
+    min-height: 248px;
+    resize: none;
+}
+
+.input-group.space {
+    gap: 16px;
+    flex-wrap: nowrap;
+
+    > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+        border-radius: 4px;
+    }
+
+    .btn {
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+}
+
 // Dropdown
 .dropdown {
     .dropdown-toggle {
@@ -298,23 +338,36 @@
     padding-left: 24px;
     margin-bottom: 0;
 
+    &:has(.form-check-input[type="checkbox"]) {
+        display: flex;
+        align-items: center;
+        min-height: 32px;
+        padding-left: 32px;
+
+        .form-check-input {
+            margin-left: -32px;
+        }
+    }
+
     .form-check-input {
         margin-top: 0;
         margin-left: -24px;
         cursor: pointer;
-
+        box-shadow: none !important;
         transition: all 200ms ease-in-out;
 
         &[type="checkbox"] {
-            border: 1.5px solid $Neutral20;
-            border-radius: 6px;
-            width: 24px;
-            height: 24px;
+            // border: 1.5px solid $Neutral20;
+            // border-radius: 2px;
+            border: none;
+            width: 32px;
+            height: 32px;
+            --bs-form-check-bg-image: url("./../public/images/icons/ic-unchecked.svg");
 
             &:checked {
                 border: 0;
                 background-color: $White;
-                // --bs-form-check-bg-image: url("./../images/checkbox-checked.svg");
+                --bs-form-check-bg-image: url("./../public/images/icons/ic-checked.svg");
             }
         }
 
@@ -421,58 +474,181 @@
 .react-custom-select {
     min-height: 56px;
 
-    >div {
-        &:not([class*="-menu"]) {
-            border: 1.5px solid #E2E4E4;
-            background: #EEF0F080;
-            border-radius: 2px;
-            height: 100%;
-            min-height: inherit;
-            box-shadow: none;
-            cursor: pointer;
+    // >div {
+    //     &:not([class*="-menu"]) {
+    //         border: 1.5px solid #E2E4E4;
+    //         background: #EEF0F080;
+    //         border-radius: 2px;
+    //         height: 100%;
+    //         min-height: inherit;
+    //         box-shadow: none;
+    //         cursor: pointer;
 
-            &:hover,
-            &:focus {
-                border-color: $Primary50;
-            }
+    //         &:hover,
+    //         &:focus {
+    //             border-color: $Primary50;
+    //         }
 
-            >div {
-                &:first-child {
-                    >div {
-                        &:first-child {
-                            margin: 0 8px;
-                            color: $Neutral100;
-                        }
-                    }
-                }
+    //         >div {
+    //             &:first-child {
+    //                 >div {
+    //                     &:first-child {
+    //                         margin: 0 8px;
+    //                         color: $Neutral100;
+    //                     }
+    //                 }
+    //             }
 
-                &:last-child {
-                    >span {
-                        display: none;
-                    }
+    //             &:last-child {
+    //                 >span {
+    //                     display: none;
+    //                 }
 
-                    >div {
-                        position: relative;
-                        right: 12px;
-                        padding: 0;
+    //                 >div {
+    //                     position: relative;
+    //                     right: 12px;
+    //                     padding: 0;
 
-                        svg {
-                            height: 24px;
-                            width: 24px;
-                            background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
-                            background-size: 24px;
+    //                     svg {
+    //                         height: 24px;
+    //                         width: 24px;
+    //                         background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+    //                         background-size: 24px;
 
-                            path {
-                                display: none;
-                            }
-                        }
-                    }
+    //                         path {
+    //                             display: none;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // [class*="-menu"] {
+    //     box-shadow: 0px 4px 6px -2px rgba($color: $Black, $alpha: 0.03),
+    //         0px 12px 16px -4px rgba($color: $Black, $alpha: 0.08);
+    //     border-radius: 2px;
+    //     border: 1px solid #F2F4F7;
+    //     margin: 0;
+    //     z-index: 3;
+
+    //     [class*="-option"] {
+    //         min-height: 44px;
+    //         display: flex;
+    //         align-items: center;
+    //         padding: 8px 16px;
+    //         background: none;
+    //         color: $Neutral100;
+
+    //         &[aria-selected="true"] {
+    //             background-color: $Primary50;
+    //         }
+
+    //         &:hover {
+    //             background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
+    //             color: $Primary50 !important;
+    //         }
+
+    //         &[aria-selected="true"] {
+    //             background-color: rgba($color: $Primary50, $alpha: 0.2) !important;
+    //             color: $Primary50 !important;
+    //         }
+
+    //         @media (hover: none) {
+    //             &:hover {
+    //                 // background-color: rgba($color: $primary, $alpha: 0.12);
+    //                 background-color: $Primary50 !important;
+    //                 color: $White !important;
+    //             }
+
+    //         }
+
+    //         &:focus,
+    //         &:active {
+    //             background-color: $Primary50 !important;
+    //             color: $White !important;
+    //         }
+    //     }
+    // }
+
+    // &.dark {
+    //     >div {
+    //         &:not([class*="-menu"]) {
+    //             border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
+    //             background: var(--black-15, rgba(0, 0, 0, 0.15));
+
+    //             &:hover,
+    //             &:focus {
+    //                 border-color: $Primary50;
+    //             }
+
+    //             >div {
+    //                 &:first-child {
+    //                     >div {
+    //                         &:first-child {
+    //                             color: $White;
+    //                         }
+    //                     }
+    //                 }
+
+    //                 &:last-child {
+    //                     >div {
+    //                         svg {
+    //                             background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
+    //                             background-size: 24px;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    .select__control {
+        border: 1.5px solid $Neutral10;
+        background: rgba($color: $Bg30, $alpha: 0.8);
+        border-radius: 2px;
+        height: 100%;
+        min-height: inherit;
+        box-shadow: none;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            border-color: $Primary50;
+        }
+
+        .select__single-value,
+        .select__input-container,
+        .select__placeholder {
+            margin: 0 8px;
+            color: $Neutral100;
+        }
+
+        .select__indicator-separator {
+            display: none;
+        }
+
+        .select__indicator {
+            position: relative;
+            right: 12px;
+            padding: 0;
+
+            svg {
+                height: 24px;
+                width: 24px;
+                background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+                background-size: 24px;
+
+                path {
+                    display: none;
                 }
             }
         }
     }
 
-    [class*="-menu"] {
+    .select__menu {
         box-shadow: 0px 4px 6px -2px rgba($color: $Black, $alpha: 0.03),
             0px 12px 16px -4px rgba($color: $Black, $alpha: 0.08);
         border-radius: 2px;
@@ -480,7 +656,7 @@
         margin: 0;
         z-index: 3;
 
-        [class*="-option"] {
+        .select__option {
             min-height: 44px;
             display: flex;
             align-items: center;
@@ -492,7 +668,8 @@
                 background-color: $Primary50;
             }
 
-            &:hover {
+            &:hover,
+            &.select__option--is-focused {
                 background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
                 color: $Primary50 !important;
             }
@@ -520,38 +697,35 @@
     }
 
     &.dark {
-        >div {
-            &:not([class*="-menu"]) {
-                border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
-                background: var(--black-15, rgba(0, 0, 0, 0.15));
+        .select__control {
+            border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
+            background: var(--black-15, rgba(0, 0, 0, 0.15));
 
-                &:hover,
-                &:focus {
-                    border-color: $Primary50;
-                }
+            &:hover,
+            &:focus {
+                border-color: $Primary50;
+            }
 
-                >div {
-                    &:first-child {
-                        >div {
-                            &:first-child {
-                                color: $White;
-                            }
-                        }
-                    }
+            .select__single-value,
+            .select__input-container,
+            .select__placeholder {
+                color: $White;
+            }
 
-                    &:last-child {
-                        >div {
-                            svg {
-                                background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
-                                background-size: 24px;
-                            }
-                        }
-                    }
+            .select__indicator {
+                svg {
+                    background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
+                    background-size: 24px;
                 }
             }
         }
     }
 
+    &.with-text {
+        .select__indicators {
+            display: none;
+        }
+    }
 }
 
 // Offcanvas Backdrop
@@ -839,6 +1013,7 @@
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
+        padding-bottom: 4px;
 
         li {
             display: flex;

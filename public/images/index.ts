@@ -35,7 +35,9 @@ export default {
   ChevronUpLGBlack: require("./icons/ic-chevron-up-lg-black.svg").default,
   DatepickerPrev: require("./icons/ic-datepicker-prev.svg").default,
   DatepickerNext: require("./icons/ic-datepicker-next.svg").default,
-
+  IcCheck: require("./icons/ic-check.svg").default,
+  IcLocMark: require("./icons/ic-loc-mark.svg").default,
+  
 
   // HomePageImages
   Hero1: require("./home/hero1.jpg"),
