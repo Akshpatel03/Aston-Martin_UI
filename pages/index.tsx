@@ -117,7 +117,7 @@ const Home = () => {
                   </Form>
                 </div>
                 <div className="col-sm">
-                  <Select className="react-custom-select dark" options={options} isSearchable={false} />
+                  <Select className="react-custom-select dark" classNamePrefix="select" options={options} isSearchable={false} />
                 </div>
                 <div className="col-sm-auto">
                   <Button className="size-lg w-100" variant="light">

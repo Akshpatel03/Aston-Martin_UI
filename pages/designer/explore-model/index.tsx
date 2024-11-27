@@ -29,6 +29,7 @@ import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
 import Stepper from "./stepper";
+import DesignerFromControls from "./form-controls";
 
 const DesignerExploreModel = () => {
   // collapse
@@ -788,6 +789,11 @@ const DesignerExploreModel = () => {
           <div className="_body">
             <Button onClick={() => goToPreviousStep()}>Back</Button>
             <Button onClick={() => goToNextStep()}>Next</Button>
+            <br />
+            <br />
+            <br />
+
+            <DesignerFromControls />
           </div>
         </Offcanvas.Body>
       </Offcanvas>

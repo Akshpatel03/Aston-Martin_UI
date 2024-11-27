@@ -127,7 +127,7 @@ const DesignerHome = () => {
                   </Form>
                 </div>
                 <div className="col-sm">
-                  <Select className="react-custom-select dark" options={options} value={selectedOption} onChange={handleChange} isSearchable={false} />
+                  <Select className="react-custom-select dark" classNamePrefix="select" options={options} value={selectedOption} onChange={handleChange} isSearchable={false} />
                 </div>
                 <div className="col-sm-auto">
                   <Button className="size-lg w-100" variant="light">
