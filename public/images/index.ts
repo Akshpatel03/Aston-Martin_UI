@@ -31,6 +31,8 @@ export default {
     require("./icons/ic-arrow-narrow-right-sm-primary.svg").default,
   ChevronDownPrimary: require("./icons/ic-chevron-down-primary.svg").default,
   ChevronDownDark: require("./icons/ic-chevron-down-dark.svg").default,
+  MapMarkerIconActive: "../images/icons/marker-icon-active.png",
+  MapMarkerIconInactive: "../images/icons/marker-icon-inactive.png",
 
   // HomePageImages
   Hero1: require("./home/hero1.jpg"),
