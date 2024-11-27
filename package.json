@@ -16,6 +16,7 @@
     "odometer": "^0.4.8",
     "react": "18.3.1",
     "react-bootstrap": "^2.10.5",
+    "react-datepicker": "^7.5.0",
     "react-dom": "18.3.1",
     "react-player": "^2.16.0",
     "react-select": "^5.8.3",

@@ -2611,11 +2611,34 @@ footer {
     display: flex;
     flex-direction: column;
 
+    @include bp(lg-max) {
+        padding-top: 100px;
+    }
+
+    @include bp(sm-max) {
+        padding-top: 72px;
+    }
+
     .stepper-head {
         position: relative;
         padding: 32px 80px;
         min-height: 192px;
         flex-shrink: 0;
+
+        @include bp(xxl-max) {
+            padding: 24px 54px;
+            min-height: 176px;
+        }
+
+
+        @include bp(xl-max) {
+            padding: 16px 36px;
+            min-height: 160px;
+        }
+
+        @include bp(lg-max) {
+            padding: 16px;
+        }
 
         &::before {
             content: '';
@@ -2628,21 +2651,47 @@ footer {
             height: 1px;
             z-index: 1;
         }
+
+        .selected-enquiry {
+            display: block;
+            font-size: 16px;
+            line-height: 24px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            color: $Neutral40;
+        }
     }
 
     .stepper-body {
         display: flex;
         align-items: stretch;
         flex-grow: 1;
-        overflow: auto;
-        max-height: calc(100vh - 192px);
 
         .enquiry-form {
             padding: 56px 80px;
-            max-width: 725px;
-            width: 725px;
-            flex-direction: column;
-            display: flex;
+            min-width: 725px;
+            flex-grow: 1;
+            overflow: auto;
+            max-height: calc(100vh - 192px);
+
+            @include bp(xxl-max) {
+                padding: 40px 56px;
+                max-width: 650px;
+                min-width: 650px;
+                max-height: calc(100vh - 176px);
+            }
+
+            @include bp(xl-max) {
+                padding: 40px 36px;
+                max-height: calc(100vh - 240px);
+            }
+
+            @include bp(lg-max) {
+                padding: 30px 16px;
+                max-width: none;
+                min-width: auto;
+                max-height: calc(100vh - 340px);
+            }
 
             .form-title {
                 font-size: 20px;
@@ -2658,7 +2707,12 @@ footer {
                 font-weight: 500;
                 color: $Neutral100;
                 margin-bottom: 8px;
-                @extend .am-sans-medium;
+                // @extend .am-sans-medium;
+                @extend .am-sans;
+
+                &.am-sans {
+                    font-weight: 400;
+                }
             }
 
             .mb-40p {
@@ -2677,31 +2731,85 @@ footer {
             position: sticky;
             top: 0;
             padding: 100px 46px;
-            height: calc(100vh - 192px);
-            min-height: calc(100vh - 192px);
+            height: 100%;
             background: #EDEDED;
             display: flex;
             flex-direction: column;
+
+            @include bp(xxl-max) {
+                padding: 80px 46px;
+            }
+
+            @include bp(lg-max) {
+                flex-direction: row;
+                padding: 0 16px;
+                align-items: center;
+                justify-content: space-between;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                min-height: 100px;
+                height: auto;
+            }
+
+            @include bp(sm-max) {
+                min-height: 72px;
+                padding: 0;
+            }
 
             .car-detail {
                 color: $Black;
                 text-align: center;
                 margin-bottom: 92px;
 
+                @include bp(xxl-max) {
+                    margin-bottom: 60px;
+                }
+
+                @include bp(lg-max) {
+                    margin: 0;
+                    text-align: left
+                }
+
+                @include bp(sm-max) {
+                    margin: 0 16px;
+                }
+
                 .car-badge {
                     @extend .am;
                     @extend .subtitle1;
                     color: $Black;
                     text-transform: uppercase;
+
+                    @include bp(lg-max) {
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
                 }
 
                 .title {
                     @extend .am;
+
+                    @include bp(lg-max) {
+                        font-size: 30px;
+                        line-height: 40px;
+                    }
                 }
             }
 
             img {
                 max-width: 100%;
+
+                @include bp(lg-max) {
+                    height: 80px;
+                    width: auto;
+                }
+
+                @include bp(sm-max) {
+                    height: 72px;
+                    width: auto;
+                }
             }
         }
     }

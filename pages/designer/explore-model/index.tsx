@@ -32,12 +32,13 @@ import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
+import DatePicker from "react-datepicker";
 import DBX707Green from "@/public/images/home/DBX707-green.png";
 import Stepper from "./stepper";
-import DesignerFromControls from "./form-controls";
-import Select, { SingleValue } from "react-select";
+import Select from "react-select";
 
 const DesignerExploreModel = () => {
+  const [startDate] = React.useState();
   // collapse
   const [openENGINE, setENGINEOpen] = useState(true);
   const [openCarHandling, setCarHandlingOpen] = useState(true);
@@ -129,15 +130,6 @@ const DesignerExploreModel = () => {
     { value: "option2", label: "14 Friar Street, Reading, RG1 1DB" },
     { value: "option3", label: "15 Friar Street, Reading, RG1 1DB" },
   ];
-  const [selectedOption, setSelectedOption] = React.useState<{
-    value: string;
-    label: string;
-  } | null>(options[0]);
-  const handleChange = (
-    option: SingleValue<{ value: string; label: string }>
-  ) => {
-    setSelectedOption(option); // `option` can be `null`
-  };
 
   return (
     <>
@@ -676,7 +668,7 @@ const DesignerExploreModel = () => {
           </div>
         </Container>
       </div>
-      {/*  */}
+      {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
       <AvailableLocation />
@@ -787,8 +779,8 @@ const DesignerExploreModel = () => {
 
       {/* Offcanvas enquire Start */}
       <Offcanvas
+        show={equireDrawer}
         placement={offcanavasPlacement}
-        show={equireDrawer || true}
         onHide={() => setequireDrawer(false)}
       >
         <Button
@@ -800,7 +792,8 @@ const DesignerExploreModel = () => {
         </Button>
         <Offcanvas.Body className="enquiry-wrapper-drawer">
           <div className="stepper-head">
-            <h3 className="mb-56p">Make an Enquiry</h3>
+            <h3>Make an Enquiry</h3>
+            <span className="selected-enquiry">Sale/purchase enquiry</span>
             <Stepper
               stepsConfig={stepperData}
               currentStep={currentStep}
@@ -860,7 +853,7 @@ const DesignerExploreModel = () => {
                     Please provide us with your personal details and contact
                     information
                   </h5>
-                  <Form.Label>Title</Form.Label>
+                  <p className="secondary-form-title">Title</p>
                   <Form className="inline-level gap-5 mb-24p">
                     <Form.Check
                       type="radio"
@@ -919,7 +912,6 @@ const DesignerExploreModel = () => {
                       className="react-custom-select with-text"
                       classNamePrefix="select"
                       options={options}
-                      onChange={handleChange}
                     />
                   </Form.Group>
                   <div className="mb-24p">
@@ -936,9 +928,9 @@ const DesignerExploreModel = () => {
                     <Form.Control as="textarea" rows={3} />
                   </Form.Group>
 
-                  <Form.Label>
+                  <p className="secondary-form-title">
                     How you would like us to contact with you
-                  </Form.Label>
+                  </p>
                   <Form className="inline-level gap-3 mb-24p">
                     <Form.Check
                       type="radio"
@@ -999,7 +991,6 @@ const DesignerExploreModel = () => {
                         className="react-custom-select with-text"
                         classNamePrefix="select"
                         options={options}
-                        onChange={handleChange}
                       />
                     </Form.Group>
                     <Button variant="secondary" className="size-lg">
@@ -1017,7 +1008,6 @@ const DesignerExploreModel = () => {
                       classNamePrefix="select"
                       isSearchable={false}
                       options={options}
-                      onChange={handleChange}
                     />
                   </Form.Group>
                 </>
@@ -1025,7 +1015,79 @@ const DesignerExploreModel = () => {
                 ""
               )}
 
-              {currentStep === 3 || currentStep === 4 ? <>4 step</> : ""}
+              {currentStep === 3 || currentStep === 4 ? <>
+                <p className="secondary-form-title am-sans mb-3">
+                  Please select a preferred date for a test drive
+                </p>
+                <div className="mb-5">
+                  <DatePicker
+                    inline
+                    calendarClassName="inline-datepicker"
+                    selected={startDate}
+                    renderCustomHeader={({
+                      date,
+                      decreaseMonth,
+                      increaseMonth,
+                      prevMonthButtonDisabled,
+                      nextMonthButtonDisabled,
+                    }) => (
+                      <div className="custom-header">
+                        <Button
+                          className="btn-icon"
+                          variant="light"
+                          onClick={decreaseMonth}
+                          disabled={prevMonthButtonDisabled}
+                        >
+                          <Image
+                            src={images.DatepickerPrev}
+                            alt="Datepicker Previous"
+                          />
+                        </Button>
+
+                        <span className="month_name">
+                          {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(date)}
+                        </span>
+
+                        <Button
+                          className="btn-icon"
+                          variant="light"
+                          onClick={increaseMonth}
+                          disabled={nextMonthButtonDisabled}
+                        >
+                          <Image
+                            src={images.DatepickerNext}
+                            alt="Datepicker Next"
+                          />
+                        </Button>
+                      </div>
+                    )}
+                  />
+                </div>
+
+                <p className="secondary-form-title am-sans mb-3">
+                  Please select a preferred time
+                </p>
+                <ToggleButtonGroup className="toggle-chips" type="radio" name="time-slot-options">
+                  <ToggleButton className="toggle-button" id="time-slot-radio-1" value={1} variant="secondary">
+                    10:00 <sup>AM</sup>
+                  </ToggleButton>
+                  <ToggleButton className="toggle-button" id="time-slot-radio-2" value={2} variant="secondary">
+                    11:30 <sup>AM</sup>
+                  </ToggleButton>
+                  <ToggleButton className="toggle-button" id="time-slot-radio-3" value={3} variant="secondary">
+                    12:00 <sup>AM</sup>
+                  </ToggleButton>
+                  <ToggleButton className="toggle-button" id="time-slot-radio-4" value={4} variant="secondary">
+                    1:30 <sup>PM</sup>
+                  </ToggleButton>
+                  <ToggleButton className="toggle-button" id="time-slot-radio-5" value={5} variant="secondary">
+                    2:00 <sup>PM</sup>
+                  </ToggleButton>
+                  <ToggleButton className="toggle-button" id="time-slot-radio-6" value={6} variant="secondary">
+                    3:30 <sup>PM</sup>
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </> : ""}
 
               <div className="action mt-auto">
                 {currentStep !== 0 ? (
@@ -1065,7 +1127,7 @@ const DesignerExploreModel = () => {
             </div>
           </div>
         </Offcanvas.Body>
-      </Offcanvas>
+      </Offcanvas >
       {/* Offcanvas enquire Start */}
     </>
   );

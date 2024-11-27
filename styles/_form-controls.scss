@@ -1,5 +1,6 @@
 @import './variable';
 @import './break-points';
+@import "../node_modules/react-datepicker/dist/react-datepicker.css";
 
 .mb-4p {
     margin-bottom: 4px;
@@ -43,10 +44,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     transition: all 200ms cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &.rounded {
         --bs-btn-border-radius: 50%;
@@ -205,15 +204,8 @@
     }
 
     .ic {
-        display: flex;
-
-        &.right {
-            margin-left: 4px;
-        }
-
-        &.left {
-            margin-right: 4px;
-        }
+        width: 24px;
+        height: 24px;
     }
 }
 
@@ -844,14 +836,14 @@ textarea.form-control {
     }
 
     ::-webkit-scrollbar {
-        width: 8px !important;
-        height: 8px !important;
+        width: 4px !important;
+        height: 4px !important;
         background: #FFFFFF;
     }
 
     ::-webkit-scrollbar-thumb {
         border: 0 !important;
-        background-color: rgba(0, 0, 0, 0.2) !important;
+        background-color: rgba(0, 0, 0, 0.1) !important;
         border-radius: 12px !important;
     }
 }
@@ -1011,8 +1003,8 @@ textarea.form-control {
         gap: 8px;
         overflow-x: auto;
         overflow-y: hidden;
-        padding-bottom: 10px;
         white-space: nowrap;
+        padding-bottom: 4px;
 
         li {
             display: flex;
@@ -1101,6 +1093,7 @@ textarea.form-control {
             align-items: center;
             padding: 44px 32px;
             position: relative;
+            border-radius: 4px !important;
             box-shadow: 0px 1px 3px 0px #12121233, 0px -1px 0px 0px #12121214 inset, 0px 1px 0.5px 0px #FFFFFF1F inset;
             backdrop-filter: blur(70px);
             background: #EDEDED;
@@ -1110,6 +1103,7 @@ textarea.form-control {
             line-height: 32px;
             font-weight: 500;
             @extend .am-medium;
+            transition: all 250ms ease-in-out;
             color: $Black;
 
             &:hover {
@@ -1134,7 +1128,221 @@ textarea.form-control {
                 text-transform: uppercase;
                 white-space: nowrap;
                 z-index: -1;
-                transition: all 250ms ease-in-out;
+            }
+        }
+    }
+
+    &.toggle-chips {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .btn-check:checked+.toggle-button {
+            background: $Primary50;
+            color: $White;
+        }
+
+        .toggle-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 20px;
+            border-radius: 2px !important;
+            box-shadow: 0px 1px 2px 0px rgba(0, 64, 58, 0.04), 0px -1px 0px 0px rgba(0, 64, 58, 0.03) inset, 0px 1px 2px 0px rgba(255, 255, 255, 0.3) inset;
+            background: $Neutral5;
+            max-width: 104px;
+            border: 0;
+            font-size: 16px;
+            line-height: 24px;
+            @extend .am-sans;
+            color: $Primary50;
+            transition: all 250ms ease-in-out;
+
+            &:hover {
+                background: #E3F1F0;
+            }
+
+            sup {
+                display: inline-block;
+                font-size: 10px;
+                line-height: 14px;
+                text-transform: uppercase;
+                margin: 0 3px -8px;
+            }
+        }
+    }
+}
+
+// React Inline Datepicker
+.react-datepicker {
+    @extend .am-sans;
+    position: relative;
+    background-color: transparent;
+    color: $Neutral100;
+    border-radius: 0;
+    line-height: initial;
+
+    &.inline-datepicker {
+        border: 0;
+        max-width: 565px;
+        margin: 0 auto;
+
+        .react-datepicker__month-container {
+            width: 100%;
+
+            .react-datepicker__header {
+                background: transparent;
+                border-radius: 0;
+                padding: 0;
+                border: 0;
+
+                .custom-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    max-width: 420px;
+                    margin: 10px auto;
+
+                    .month_name {
+                        font-size: 20px;
+                        line-height: 24px;
+                        color: $Neutral100;
+                    }
+                }
+
+                .react-datepicker__day-names {
+                    margin: 0 0 10px;
+                }
+
+                .btn-icon {
+                    box-shadow: 0px 1px 1px 0px #000e330d !important;
+                    background: $White;
+                    width: 48px;
+                    height: 48px;
+                    min-height: 48px;
+                    flex-shrink: 0;
+                    border: 0;
+
+                    img {
+                        width: 32px;
+                        height: 32px;
+                    }
+
+                    &:hover {
+                        background: rgba($color: $Primary50, $alpha: 0.1);
+                    }
+
+                    &:first-child {
+                        margin-right: auto;
+                    }
+
+                    &:last-child {
+                        margin-left: auto;
+                    }
+                }
+            }
+
+            .react-datepicker__month {
+                margin: 0;
+            }
+
+            .react-datepicker__day-name,
+            .react-datepicker__day,
+            .react-datepicker__time-name {
+                width: 70px;
+                height: 32px;
+                margin: 5px;
+                border-radius: 2px;
+                color: $Primary50;
+                font-size: 14px;
+                line-height: 32px;
+                background: $Neutral5;
+                box-shadow: 0px 1px 2px 0px rgba(0, 64, 58, 0.04), 0px -1px 0px 0px rgba(0, 64, 58, 0.03) inset, 0px 1px 2px 0px rgba(255, 255, 255, 0.3) inset;
+                transition: all 200ms ease-in-out;
+
+                @include bp(xxl-max) {
+                    width: 67px;
+                }
+
+                &.react-datepicker__day:not(.react-datepicker__day--outside-month):not(.react-datepicker__day--weekend):hover {
+                    background: $Primary50;
+                    color: $White;
+                }
+
+                &.react-datepicker__day--weekend {
+                    background: #E3F1F0;
+                    pointer-events: none;
+                }
+
+                &.react-datepicker__day--outside-month {
+                    background: none;
+                    box-shadow: none;
+                    font-size: 0;
+                    pointer-events: none;
+                }
+
+                &.react-datepicker__day--keyboard-selected {
+                    background: $Primary50;
+                    color: $White;
+                }
+            }
+
+            .react-datepicker__day--today,
+            .react-datepicker__month-text--today,
+            .react-datepicker__quarter-text--today,
+            .react-datepicker__year-text--today {
+                border-color: $Primary50;
+                font-weight: 400;
+            }
+
+            .react-datepicker__day-name {
+                font-size: 0;
+                position: relative;
+                background: none;
+                box-shadow: none;
+                border-color: transparent !important;
+                vertical-align: middle;
+                height: 22px;
+                margin: 0 5px;
+
+                &::after {
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: $Black;
+                    @extend .am-sans;
+                }
+
+                &[aria-label="Sunday"]::after {
+                    content: "Sun";
+                }
+
+                &[aria-label="Monday"]::after {
+                    content: "Mon";
+                }
+
+                &[aria-label="Tuesday"]::after {
+                    content: "Tue";
+                }
+
+                &[aria-label="Wednesday"]::after {
+                    content: "Wed";
+                }
+
+                &[aria-label="Thursday"]::after {
+                    content: "Thu";
+                }
+
+                &[aria-label="Friday"]::after {
+                    content: "Fri";
+                }
+
+                &[aria-label="Saturday"]::after {
+                    content: "Sat";
+                }
+
+                &[aria-label="Sunday"]::after {
+                    content: "Sun";
+                }
             }
         }
     }
