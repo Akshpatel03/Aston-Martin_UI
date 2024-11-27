@@ -34,6 +34,8 @@ export default {
   CloseBlack: require("./icons/ic-close-black.svg").default,
   ChevronUpLGBlack: require("./icons/ic-chevron-up-lg-black.svg").default,
   
+  MapMarkerIconActive: "../images/icons/marker-icon-active.png",
+  MapMarkerIconInactive: "../images/icons/marker-icon-inactive.png",
 
   // HomePageImages
   Hero1: require("./home/hero1.jpg"),

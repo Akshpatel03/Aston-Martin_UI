@@ -1721,6 +1721,10 @@ footer {
     }
 }
 
+.active-location{
+    border: 1px solid #00665E !important;
+}
+
 // Common Links
 .link {
     display: inline-block;
@@ -1817,6 +1821,20 @@ footer {
     &.block-spacing-y-64 {
         padding-bottom: 40px;
     }
+}
+
+.marker-label {
+    position: relative;
+    font-size: 16px;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -5px;
+    pointer-events: none;
 }
 
 // new-car page
