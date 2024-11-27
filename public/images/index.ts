@@ -31,6 +31,9 @@ export default {
     require("./icons/ic-arrow-narrow-right-sm-primary.svg").default,
   ChevronDownPrimary: require("./icons/ic-chevron-down-primary.svg").default,
   ChevronDownDark: require("./icons/ic-chevron-down-dark.svg").default,
+  CloseBlack: require("./icons/ic-close-black.svg").default,
+  ChevronUpLGBlack: require("./icons/ic-chevron-up-lg-black.svg").default,
+  
   MapMarkerIconActive: "../images/icons/marker-icon-active.png",
   MapMarkerIconInactive: "../images/icons/marker-icon-inactive.png",
 
@@ -73,11 +76,7 @@ export default {
   CustomiseMartinImg: require("./new-car/customise-martin-img.jpg"),
   BuyWithusImg: require("./new-car/buy-withus-img.jpg"),
 
-  // NewCarModelPageImages
+  // ExploreCarModelPageImages
   CarImg: require("./explore-model/car-img.jpg"),
   CarExteriorImg: require("./explore-model/car-img-exterior.jpg"),
-  // CarHandlingImg: require("./explore-model/car-handling-img.jpg"),
-  // BreakImg: require("./explore-model/break-img.jpg"),
-
-
 };

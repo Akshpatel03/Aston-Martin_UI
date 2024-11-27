@@ -4,7 +4,6 @@
 @import './typography';
 @import './break-points';
 @import './form-controls';
-// @import "../node_modules/odometer/themes/odometer-theme-default.css";
 
 .flex-center {
     display: flex;
@@ -185,6 +184,8 @@ body.page-scrolled {
         overflow: auto;
 
         .nav-link {
+            margin-bottom: 4px;
+
             .nav-item {
                 display: block;
                 position: relative;
@@ -535,6 +536,7 @@ footer {
                 z-index: -1;
                 object-fit: cover;
                 width: 100%;
+                height: 100%;
 
                 @include bp(lg-max) {
                     width: auto;
@@ -643,19 +645,19 @@ footer {
 
         .swiper-pagination {
             @include bp(md-max) {
-                top: calc(50% - 20px) !important;
+                top: 350px !important;
             }
         }
 
         .swiper-button-prev {
             @include bp(md-max) {
-                top: calc(50% + 8px) !important;
+                top: 380px !important;
             }
         }
 
         .swiper-button-next {
             @include bp(md-max) {
-                top: calc(50% + 8px) !important;
+                top: 380px !important;
             }
         }
     }
@@ -676,6 +678,23 @@ footer {
     background-position: left 17% center;
     background-size: cover;
     z-index: 1;
+
+    &.size-lg {
+        min-height: 860px;
+
+        @include bp(xxl-max) {
+            min-height: 680px;
+        }
+
+        @include bp(xl-max) {
+            padding: 60px 30px;
+        }
+
+        @include bp (sm-max) {
+            padding: 20px 16px;
+            min-height: 600px;
+        }
+    }
 
     &::before {
         content: '';
@@ -703,6 +722,40 @@ footer {
         height: 100%;
         object-fit: cover;
         z-index: -1;
+    }
+
+    .banner-video {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100% !important;
+        height: 860px !important;
+        z-index: -1;
+
+        @include bp(xxl-max) {
+            height: 680px !important;
+        }
+
+        @include bp (sm-max) {
+            height: 600px !important;
+        }
+
+        video {
+            object-fit: cover;
+            width: 100% !important;
+            height: 860px !important;
+
+            @include bp(xxl-max) {
+                height: 680px !important;
+            }
+
+            @include bp (sm-max) {
+                height: 600px !important;
+            }
+        }
+
     }
 
     .label {
@@ -737,7 +790,7 @@ footer {
         justify-content: center;
         gap: 16px;
 
-        @include bp(sm-max) { 
+        @include bp(sm-max) {
             width: 100%;
             flex-direction: column;
         }
@@ -747,7 +800,7 @@ footer {
 
             @include bp(sm-max) {
                 min-width: calc(50% - 8px);
-               width: 100%;
+                width: 100%;
             }
         }
     }
@@ -1571,7 +1624,7 @@ footer {
 
         &::-webkit-scrollbar-thumb {
             border: 0 !important;
-            background-color: rgba(0, 0, 0, 0.3) !important;
+            background-color: rgba(0, 0, 0, 0.1) !important;
             border-radius: 12px !important;
         }
 
@@ -2291,6 +2344,120 @@ footer {
     }
 }
 
+// Text Animations Block
+.text-animation-block {
+    background: $Primary50;
+    padding: 136px 0 98px;
+
+    @include bp(xl-max) {
+        padding: 120px 0 98px;
+    }
+
+    @include bp(lg-max) {
+        padding: 80px 0;
+    }
+
+    @include bp(sm-max) {
+        padding: 48px 0;
+    }
+
+    &.black-bg {
+        background: $Neutral90;
+    }
+
+    .custom-container {
+        max-width: 1458px;
+        margin: 0 auto;
+    }
+
+    .animated-text {
+        flex-wrap: wrap;
+        font-size: 44px;
+        line-height: 58px;
+        font-weight: 300;
+        color: $White;
+
+        @include bp(lg-max) {
+            font-size: 36px;
+            line-height: 50px;
+        }
+
+        @include bp(md-max) {
+            font-size: 28px;
+            line-height: 38px;
+        }
+
+        // .word {
+        //     position: relative;
+        //     margin-right: 12px;
+        //     margin-top: 12px;
+
+        //     .default {
+        //         position: absolute;
+        //         opacity: 50%;
+        //     }
+        // }
+
+        .word {
+            display: inline-block;
+            color: rgba($color: $White, $alpha: 0.5);
+        }
+
+    }
+
+    .text-wrapper {
+        .white {
+            font-size: 42px;
+            line-height: 1.5;
+
+            >div {
+                display: inline-block;
+            }
+        }
+    }
+
+    .owner-info {
+        position: relative;
+        padding-left: 64px;
+        margin-top: 74px;
+
+        @include bp(lg-max) {
+            margin-top: 50px;
+        }
+
+        @include bp(sm-max) {
+            margin-top: 32px;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 49px;
+            height: 2px;
+            background: $White;
+        }
+
+        .name {
+            color: $White;
+
+            @include bp(md-max) {
+                font-size: 20px;
+                line-height: 24px;
+            }
+        }
+
+        .designation {
+            color: rgba($color: $White, $alpha: 0.7);
+
+            @include bp(md-max) {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+}
 
 .info-thumb-section {
     background-color: $Bg10;
@@ -2450,6 +2617,23 @@ footer {
 }
 
 // explore-model page End
+// -----------------------------------------------------------------
+
+// offcanvas drawer Start
+// -----------------------------------------------------------------
+.enquiry-wrapper-drawer {
+    .stepper-head {
+        position: relative;
+        padding: 32px 0;
+        border-bottom: 1px solid $Neutral10;
+        margin: 0 80px;
+
+        h3 {
+            margin-bottom: 56px;   
+        }
+    }
+}
+// offcanvas drawer End
 // -----------------------------------------------------------------
 
 /* Responsive Media Query

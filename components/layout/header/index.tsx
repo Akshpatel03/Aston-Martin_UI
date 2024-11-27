@@ -112,7 +112,10 @@ const Header = () => {
               />
             </Button>
           </div>
-          <Navbar.Brand href="#" className="d-lg-flex d-none">
+          <Navbar.Brand
+            onClick={() => router.push(ROUTES.Home)}
+            className="d-lg-flex d-none"
+          >
             <Image src={images.DealerLogo} alt="Dealer" />
           </Navbar.Brand>
         </Navbar>
