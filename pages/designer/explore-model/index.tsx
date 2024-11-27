@@ -32,8 +32,10 @@ import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
 import DBX707Green from "@/public/images/home/DBX707-green.png"
+import DatePicker from "react-datepicker";
 
 const DesignerExploreModel = () => {
+  const [startDate] = React.useState();
 
   // collapse
   const [openENGINE, setENGINEOpen] = useState(true);
@@ -624,7 +626,7 @@ const DesignerExploreModel = () => {
           </div>
         </Container>
       </div>
-      {/*  */}
+      {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
       <AvailableLocation />
@@ -735,8 +737,8 @@ const DesignerExploreModel = () => {
 
       {/* Offcanvas enquire Start */}
       <Offcanvas
-        placement={offcanavasPlacement}
         show={equireDrawer || true}
+        placement={offcanavasPlacement}
         onHide={() => setequireDrawer(false)}
       >
         <Button
@@ -749,6 +751,7 @@ const DesignerExploreModel = () => {
         <Offcanvas.Body className="enquiry-wrapper-drawer">
           <div className="stepper-head">
             <h3>Make an Enquiry</h3>
+            <span className="selected-enquiry">Sale/purchase enquiry</span>
             <div className="stepper-wrapper">
               <ul className="stepper">
                 <li>
@@ -776,8 +779,81 @@ const DesignerExploreModel = () => {
                 Tell us about the nature of your enquiry below
               </h5>
 
+
+              <p className="secondary-form-title am-sans mb-3">
+                Please select a preferred date for a test drive
+              </p>
+              <div className="mb-5">
+                <DatePicker
+                  inline
+                  calendarClassName="inline-datepicker"
+                  selected={startDate}
+                  renderCustomHeader={({
+                    date,
+                    decreaseMonth,
+                    increaseMonth,
+                    prevMonthButtonDisabled,
+                    nextMonthButtonDisabled,
+                  }) => (
+                    <div className="custom-header">
+                      <Button
+                        className="btn-icon"
+                        variant="light"
+                        onClick={decreaseMonth}
+                        disabled={prevMonthButtonDisabled}
+                      >
+                        <Image
+                          src={images.DatepickerPrev}
+                          alt="Datepicker Previous"
+                        />
+                      </Button>
+
+                      <span className="month_name">
+                        {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(date)}
+                      </span>
+
+                      <Button
+                        className="btn-icon"
+                        variant="light"
+                        onClick={increaseMonth}
+                        disabled={nextMonthButtonDisabled}
+                      >
+                        <Image
+                          src={images.DatepickerNext}
+                          alt="Datepicker Next"
+                        />
+                      </Button>
+                    </div>
+                  )}
+                />
+              </div>
+
+              <p className="secondary-form-title am-sans mb-3">
+                Please select a preferred time
+              </p>
+              <ToggleButtonGroup className="toggle-chips" type="radio" name="time-slot-options">
+                <ToggleButton className="toggle-button" id="time-slot-radio-1" value={1} variant="secondary">
+                  10:00 <sup>AM</sup>
+                </ToggleButton>
+                <ToggleButton className="toggle-button" id="time-slot-radio-2" value={2} variant="secondary">
+                  11:30 <sup>AM</sup>
+                </ToggleButton>
+                <ToggleButton className="toggle-button" id="time-slot-radio-3" value={3} variant="secondary">
+                  12:00 <sup>AM</sup>
+                </ToggleButton>
+                <ToggleButton className="toggle-button" id="time-slot-radio-4" value={4} variant="secondary">
+                  1:30 <sup>PM</sup>
+                </ToggleButton>
+                <ToggleButton className="toggle-button" id="time-slot-radio-5" value={5} variant="secondary">
+                  2:00 <sup>PM</sup>
+                </ToggleButton>
+                <ToggleButton className="toggle-button" id="time-slot-radio-6" value={6} variant="secondary">
+                  3:30 <sup>PM</sup>
+                </ToggleButton>
+              </ToggleButtonGroup>
+
               <p className="secondary-form-title">Select</p>
-              <ToggleButtonGroup className="toggle-radio" type="radio" name="options">
+              <ToggleButtonGroup className="toggle-radio" type="radio" name="stepper-option">
                 <ToggleButton className="mirror-card" id="tbg-radio-1" value={1} variant="light" >
                   Sale/purchase
                   <span className="highlighted">Sale/purchase</span>
@@ -791,6 +867,7 @@ const DesignerExploreModel = () => {
                   <span className="highlighted">General</span>
                 </ToggleButton>
               </ToggleButtonGroup>
+
             </div>
             <div className="enquiry-car">
               <div className="car-detail">
