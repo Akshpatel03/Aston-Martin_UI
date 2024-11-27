@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import AvailableLocation from "@/components/AvailableLocation";
 import images from "@/public/images";
@@ -8,6 +9,8 @@ import {
   Collapse,
   Container,
   Offcanvas,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "react-bootstrap";
 import EngineImg from "@/public/images/explore-model/engine-img.jpg";
 import CarHandlingImg from "@/public/images/explore-model/car-handling-img.jpg";
@@ -28,6 +31,7 @@ import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
+import DBX707Green from "@/public/images/home/DBX707-green.png"
 
 const DesignerExploreModel = () => {
 
@@ -106,7 +110,7 @@ const DesignerExploreModel = () => {
           The world&apos;s most powerful luxury SUV
         </p>
         <div className="action" data-swiper-parallax="-500">
-          <Button className="size-lg" variant="light"  onClick={() => setequireDrawer(true)}>
+          <Button className="size-lg" variant="light" onClick={() => setequireDrawer(true)}>
             Enquire
           </Button>
           <Button className="size-lg" variant="mid-transparent">
@@ -731,9 +735,8 @@ const DesignerExploreModel = () => {
 
       {/* Offcanvas enquire Start */}
       <Offcanvas
-        scroll={false}
         placement={offcanavasPlacement}
-        show={equireDrawer}
+        show={equireDrawer || true}
         onHide={() => setequireDrawer(false)}
       >
         <Button
@@ -744,29 +747,59 @@ const DesignerExploreModel = () => {
           <Image src={images.CloseBlack} alt="Close Icon" />
         </Button>
         <Offcanvas.Body className="enquiry-wrapper-drawer">
-                      <div className="head">
-                        <h3>Make an Enquiry</h3>
-                        <div className="stepper-wrapper">
-                          <ul className="stepper">
-                            <li>
-                                <em className="i">1</em>
-                                Nature of enquiry
-                            </li>
-                            <li>
-                                <em className="i">2</em>
-                                Contact details
-                            </li>
-                            <li>
-                                <em className="i">3</em>
-                                Preferred dealership
-                            </li>
-                            <li>
-                                <em className="i">4</em>
-                                Schedule test drive
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+          <div className="stepper-head">
+            <h3>Make an Enquiry</h3>
+            <div className="stepper-wrapper">
+              <ul className="stepper">
+                <li>
+                  <em className="i">1</em>
+                  Nature of enquiry
+                </li>
+                <li>
+                  <em className="i">2</em>
+                  Contact details
+                </li>
+                <li>
+                  <em className="i">3</em>
+                  Preferred dealership
+                </li>
+                <li>
+                  <em className="i">4</em>
+                  Schedule test drive
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="stepper-body">
+            <div className="enquiry-form">
+              <h5 className="form-title mb-40p">
+                Tell us about the nature of your enquiry below
+              </h5>
+
+              <p className="secondary-form-title">Select</p>
+              <ToggleButtonGroup className="toggle-radio" type="radio" name="options">
+                <ToggleButton className="mirror-card" id="tbg-radio-1" value={1} variant="light" >
+                  Sale/purchase
+                  <span className="highlighted">Sale/purchase</span>
+                </ToggleButton>
+                <ToggleButton className="mirror-card" id="tbg-radio-2" value={2} variant="light" >
+                  Book a test drive
+                  <span className="highlighted">Book a test drive</span>
+                </ToggleButton>
+                <ToggleButton className="mirror-card" id="tbg-radio-3" value={3} variant="light" >
+                  General
+                  <span className="highlighted">General</span>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
+            <div className="enquiry-car">
+              <div className="car-detail">
+                <p className="car-badge">Power. Driven.</p>
+                <h1 className="title">DBX707</h1>
+              </div>
+              <img src={DBX707Green.src} alt="DBX707Green" loading="lazy" decoding="async" />
+            </div>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
       {/* Offcanvas enquire Start */}
