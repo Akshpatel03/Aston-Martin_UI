@@ -656,7 +656,7 @@ const DesignerExploreModel = () => {
       {/*  */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={[]} />
       {/* Aston Martin Address End */}
 
       {/* Offcanvas Right Start */}

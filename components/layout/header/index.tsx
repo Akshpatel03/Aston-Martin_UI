@@ -43,7 +43,11 @@ const Header = () => {
       <Container fluid="xxl">
         <Navbar>
           <div className="menu-link">
-            <Button className="btn-icon d-lg-none me-lg-0 me-2" variant="text" onClick={handleSidebar}>
+            <Button
+              className="btn-icon d-lg-none me-lg-0 me-2"
+              variant="text"
+              onClick={handleSidebar}
+            >
               <Image src={images.MenuWhite} alt="Menu" height="24" width="24" />
             </Button>
             <Navbar.Brand href="#" className="d-lg-none d-flex">
@@ -52,41 +56,66 @@ const Header = () => {
             <ul className="main-navigation d-lg-flex d-none">
               <li className="nav-link">
                 {/* ${router.pathname === ROUTES.Home ? 'active' : ''}` */}
-                <NextLink className={`nav-item ${router.pathname === ROUTES.DesignerNewCar ? 'active' : ''}`} href={ROUTES.DesignerNewCar} title="Cars">
+                <NextLink
+                  className={`nav-item ${
+                    router.pathname === ROUTES.NewCar ? "active" : ""
+                  }`}
+                  href={ROUTES.NewCar}
+                  title="Cars"
+                >
                   New Cars
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Cars">
+                <NextLink className="nav-item" href={ROUTES.Home} title="Cars">
                   Pre-owned Cars
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Repairs">
+                <NextLink
+                  className="nav-item"
+                  href={ROUTES.Home}
+                  title="Repairs"
+                >
                   Servicing & Repairs
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Car">
+                <NextLink className="nav-item" href={ROUTES.Home} title="Car">
                   Value My Car
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="News">
+                <NextLink className="nav-item" href={ROUTES.Home} title="News">
                   News
                 </NextLink>
               </li>
               <li className="nav-link">
-                <NextLink className="nav-item" href={ROUTES.DesignerHome} title="Contact">
+                <NextLink
+                  className="nav-item"
+                  href={ROUTES.Home}
+                  title="Contact"
+                >
                   Contact
                 </NextLink>
               </li>
             </ul>
-            <Button className="btn-icon size-sm ms-lg-0 ms-auto d-sm-flex d-none" variant="text">
-              <Image src={images.SearchWhite} alt="Search" height="24" width="24" />
+            <Button
+              className="btn-icon size-sm ms-lg-0 ms-auto d-sm-flex d-none"
+              variant="text"
+            >
+              <Image
+                src={images.SearchWhite}
+                alt="Search"
+                height="24"
+                width="24"
+              />
             </Button>
           </div>
-          <Navbar.Brand href="#" className="d-lg-flex d-none">
+          <Navbar.Brand
+            onClick={() => router.push(ROUTES.Home)}
+            className="d-lg-flex d-none"
+          >
             <Image src={images.DealerLogo} alt="Dealer" />
           </Navbar.Brand>
         </Navbar>
