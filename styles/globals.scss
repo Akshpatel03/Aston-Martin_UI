@@ -1,9 +1,10 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import './reset';
-@import './variable';
-@import './typography';
-@import './break-points';
-@import './form-controls';
+@import "./reset";
+@import "./variable";
+@import "./typography";
+@import "./break-points";
+@import "./form-controls";
+@import "./dev";
 
 .flex-center {
     display: flex;
@@ -127,10 +128,8 @@ header {
                 left: 50%;
                 transform: translate(-50%, 0);
             }
-
         }
     }
-
 }
 
 body.page-scrolled {
@@ -269,7 +268,6 @@ footer {
         padding: 32px 8px 20px;
     }
 
-
     .footer-img-link {
         @extend .flex-center;
 
@@ -302,7 +300,6 @@ footer {
     }
 
     .bottom-footer {
-
         .footer-nav {
             @extend .flex-center;
             padding: 43px 16px;
@@ -443,7 +440,7 @@ footer {
 
     .copyright {
         @extend .body2;
-        color: $Neutral50
+        color: $Neutral50;
     }
 }
 
@@ -498,7 +495,9 @@ footer {
                 bottom: 0;
                 height: 70%;
                 z-index: -1;
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+                background: linear-gradient(180deg,
+                        rgba(0, 0, 0, 0) 0%,
+                        rgba(0, 0, 0, 0.5) 100%);
 
                 @include bp(md-max) {
                     height: 356px;
@@ -554,7 +553,6 @@ footer {
                 }
             }
         }
-
     }
 
     .swiper-pagination {
@@ -623,7 +621,6 @@ footer {
 
                 @include bp(lg-max) {
                     min-height: 600px;
-
                 }
 
                 @include bp(md-max) {
@@ -638,7 +635,6 @@ footer {
                         max-width: 100%;
                         width: 100%;
                     }
-
                 }
             }
         }
@@ -690,19 +686,21 @@ footer {
             padding: 60px 30px;
         }
 
-        @include bp (sm-max) {
+        @include bp(sm-max) {
             padding: 20px 16px;
             min-height: 600px;
         }
     }
 
     &::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+        background: linear-gradient(180deg,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.5) 100%);
         z-index: -1;
     }
 
@@ -710,7 +708,7 @@ footer {
         padding: 60px 30px;
     }
 
-    @include bp (sm-max) {
+    @include bp(sm-max) {
         padding: 20px 16px;
         min-height: 600px;
     }
@@ -738,7 +736,7 @@ footer {
             height: 680px !important;
         }
 
-        @include bp (sm-max) {
+        @include bp(sm-max) {
             height: 600px !important;
         }
 
@@ -751,11 +749,10 @@ footer {
                 height: 680px !important;
             }
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 height: 600px !important;
             }
         }
-
     }
 
     .label {
@@ -763,7 +760,7 @@ footer {
         line-height: 24px;
         text-transform: uppercase;
 
-        @include bp (sm-max) {
+        @include bp(sm-max) {
             font-size: 14px;
             line-height: 24px;
         }
@@ -774,11 +771,11 @@ footer {
         margin: 22px 0 32px;
         max-width: 600px;
 
-        @include bp (md-max) {
+        @include bp(md-max) {
             margin: 18px 0;
         }
 
-        @include bp (sm-max) {
+        @include bp(sm-max) {
             margin: 8px 0;
         }
     }
@@ -858,7 +855,7 @@ footer {
         }
 
         .swiper-button-prev {
-            background: url('./../public/images/icons/ic-arrow-narrow-left-white.svg') no-repeat center center;
+            background: url("./../public/images/icons/ic-arrow-narrow-left-white.svg") no-repeat center center;
             background-size: cover;
 
             &:hover {
@@ -867,7 +864,7 @@ footer {
         }
 
         .swiper-button-next {
-            background: url('./../public/images/icons/ic-arrow-narrow-right-white.svg') no-repeat center center;
+            background: url("./../public/images/icons/ic-arrow-narrow-right-white.svg") no-repeat center center;
             background-size: cover;
 
             &:hover {
@@ -936,7 +933,10 @@ footer {
                     bottom: 0;
                     left: 0;
                     right: 0;
-                    background: linear-gradient(0deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.05) 73.32%, rgba(0, 0, 0, 0) 100%);
+                    background: linear-gradient(0deg,
+                            rgba(0, 0, 0, 0.08) 0%,
+                            rgba(0, 0, 0, 0.05) 73.32%,
+                            rgba(0, 0, 0, 0) 100%);
                     height: 340px;
                     z-index: 0;
 
@@ -1036,7 +1036,6 @@ footer {
     }
 
     &.testimonial-slider {
-
         .swiper-wrapper {
             .swiper-slide {
                 padding: 88px 0;
@@ -1142,7 +1141,6 @@ footer {
             gap: 100px !important;
             margin-bottom: 24px;
         }
-
     }
 
     @include bp(sm-max) {
@@ -1264,7 +1262,9 @@ footer {
 .quick-link-card {
     position: relative;
     padding: 30px 24px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 69.06%);
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.7) 69.06%);
     color: $White;
     border-radius: 6px;
     overflow: hidden;
@@ -1373,7 +1373,7 @@ footer {
     }
 
     .right-img-block {
-        @include bp (lg-max) {
+        @include bp(lg-max) {
             order: -1;
         }
     }
@@ -1574,45 +1574,43 @@ footer {
 
 // Location
 .location-wrapper {
-    background: #F4F4F2;
+    background: #f4f4f2;
     position: relative;
     overflow: hidden;
     padding: 76px 0;
 
-    @include bp (xxl-max) {
+    @include bp(xxl-max) {
         padding: 60px 0;
     }
 
-    @include bp (sm-max) {
+    @include bp(sm-max) {
         padding: 48px 0;
     }
-
 
     .title {
         padding-bottom: 76px;
         max-width: 41.66666667%;
 
-        @include bp (xxl-max) {
+        @include bp(xxl-max) {
             padding-bottom: 60px;
         }
 
-        @include bp (xl-max) {
+        @include bp(xl-max) {
             max-width: 50%;
         }
 
-        @include bp (md-max) {
+        @include bp(md-max) {
             width: 100%;
             max-width: 100%;
             padding-bottom: 48px;
         }
     }
 
-    @include bp (lg-max) {
+    @include bp(lg-max) {
         .row {
             flex-direction: column-reverse;
         }
     }
-
 
     .store-loaction-list {
         max-height: 480px;
@@ -1632,7 +1630,7 @@ footer {
             border-radius: 12px !important;
         }
 
-        @include bp (md-max) {
+        @include bp(md-max) {
             max-height: 100%;
         }
 
@@ -1642,11 +1640,11 @@ footer {
             gap: 32px;
             padding: 45px 0;
 
-            @include bp (xxl-max) {
+            @include bp(xxl-max) {
                 flex-wrap: wrap;
             }
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 flex-direction: column;
                 gap: 18px;
                 padding: 20px 0;
@@ -1661,7 +1659,7 @@ footer {
             .dealer-info {
                 flex-grow: 1;
 
-                @include bp (xxl-max) {
+                @include bp(xxl-max) {
                     max-width: calc(100% - 114px);
                 }
 
@@ -1680,16 +1678,15 @@ footer {
                 min-width: 156px;
                 padding-inline: 28px;
 
-                @include bp (xxl-max) {
+                @include bp(xxl-max) {
                     width: 100%;
                 }
-
             }
 
             &+li {
                 border-top: 1px solid $Neutral10;
 
-                @include bp (sm-max) {
+                @include bp(sm-max) {
                     border-top: none;
                 }
             }
@@ -1704,13 +1701,12 @@ footer {
         width: 58%;
         max-width: calc(50% + 68px);
 
-        @include bp (xl-max) {
+        @include bp(xl-max) {
             width: 50%;
             max-width: 50%;
         }
 
-
-        @include bp (md-max) {
+        @include bp(md-max) {
             position: static;
             width: calc(100% + 32px);
             max-width: calc(100% + 32px);
@@ -1759,7 +1755,6 @@ footer {
             @include bp(xxl-max) {
                 padding-right: 16px;
             }
-
         }
     }
 
@@ -1814,7 +1809,6 @@ footer {
             @include bp(xxl-max) {
                 padding-right: 16px;
             }
-
         }
     }
 
@@ -1837,7 +1831,6 @@ footer {
     @include bp(lg-max) {
         padding: 48px 0;
     }
-
 
     .info {
         padding: 20px 126px;
@@ -1956,7 +1949,7 @@ footer {
         position: relative;
         z-index: 1;
 
-        @include bp (xxl-max) {
+        @include bp(xxl-max) {
             max-width: 480px;
         }
 
@@ -1973,7 +1966,7 @@ footer {
             z-index: -1;
             height: auto;
 
-            @include bp (xxl-max) {
+            @include bp(xxl-max) {
                 min-width: auto;
                 width: 100%;
                 max-width: 580px;
@@ -2005,12 +1998,12 @@ footer {
             font-weight: 400;
             line-height: 84px;
 
-            @include bp (xxl-max) {
+            @include bp(xxl-max) {
                 font-size: 52px;
                 line-height: 74px;
             }
 
-            @include bp (md-max) {
+            @include bp(md-max) {
                 font-size: 36px;
                 line-height: 45px;
             }
@@ -2019,7 +2012,7 @@ footer {
         .description {
             max-width: 267px;
 
-            @include bp (lg-max) {
+            @include bp(lg-max) {
                 max-width: 100%;
             }
         }
@@ -2030,15 +2023,15 @@ footer {
         position: absolute;
         right: 0;
 
-        @include bp (xxxl-max) {
+        @include bp(xxxl-max) {
             width: calc(50vw + 156px);
         }
 
-        @include bp (xxl-max) {
+        @include bp(xxl-max) {
             width: calc(50vw + 266px);
         }
 
-        @include bp (xl-max) {
+        @include bp(xl-max) {
             width: calc(50vw + 155px);
         }
 
@@ -2047,7 +2040,6 @@ footer {
             position: static;
             margin-top: 16px;
         }
-
     }
 
     .swiper.default-slider {
@@ -2055,7 +2047,7 @@ footer {
             width: auto !important;
             padding: 3px;
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 &.one {
                     width: 100% !important;
                 }
@@ -2113,19 +2105,20 @@ footer {
     .car-variant-card {
         max-width: 565px;
         min-width: 565px;
-        box-shadow: 0px 1px 3px 0px #1212121A, 0px -0.5px 0px 0px #12121212 inset, 0px 0px 0px 1px #1212120D;
+        box-shadow: 0px 1px 3px 0px #1212121a, 0px -0.5px 0px 0px #12121212 inset,
+            0px 0px 0px 1px #1212120d;
         background-color: $White;
         padding: 30px 40px 40px;
         min-height: 351px;
 
-        @include bp (xxl-max) {
+        @include bp(xxl-max) {
             max-width: 516px;
             min-width: 516px;
             min-height: auto;
             padding: 16px;
         }
 
-        @include bp (sm-max) {
+        @include bp(sm-max) {
             max-width: 253px;
             min-width: 253px;
             min-height: auto;
@@ -2135,7 +2128,6 @@ footer {
                 max-width: 100%;
                 width: 100%;
             }
-
         }
 
         h3 {
@@ -2143,7 +2135,7 @@ footer {
             white-space: nowrap;
             overflow: hidden;
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 font-size: 20px;
                 line-height: 26px;
             }
@@ -2163,7 +2155,7 @@ footer {
             align-items: center;
             gap: 16px;
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 flex-direction: column;
             }
 
@@ -2172,7 +2164,7 @@ footer {
                     min-width: 150px;
                     padding: 4px;
 
-                    @include bp (sm-max) {
+                    @include bp(sm-max) {
                         min-height: 40px;
                         width: 100%;
                         min-width: auto;
@@ -2185,8 +2177,6 @@ footer {
 
 // new-car page End
 // -----------------------------------------------------------------
-
-
 
 // explore-model page start
 // -----------------------------------------------------------------
@@ -2215,12 +2205,12 @@ footer {
     }
 
     &::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
-        content: '';
+        content: "";
         background-image: url("../public/images/explore-model/countup-bg.jpg");
         background-repeat: no-repeat;
         background-position: center;
@@ -2388,7 +2378,6 @@ footer {
             display: inline-block;
             color: rgba($color: $White, $alpha: 0.5);
         }
-
     }
 
     .text-wrapper {
@@ -2449,22 +2438,22 @@ footer {
     background-color: $Bg10;
     padding: 88px 0 104px;
 
-    @include bp (lg-max) {
+    @include bp(lg-max) {
         padding: 70px 0;
     }
 
-    @include bp (sm-max) {
+    @include bp(sm-max) {
         padding: 50px 0;
     }
 
-    @include bp (xs-max) {
+    @include bp(xs-max) {
         padding: 24px 0;
     }
 
     .row {
         --bs-gutter-y: 32px;
 
-        @include bp (lg-max) {
+        @include bp(lg-max) {
             --bs-gutter-y: 16px;
         }
     }
@@ -2475,22 +2464,22 @@ footer {
     flex-direction: column;
     background: #fff;
 
-    @include bp (lg-max) {
+    @include bp(lg-max) {
         padding: 20px;
     }
 
-    @include bp (xs-max) {
+    @include bp(xs-max) {
         padding: 16px;
     }
 
     .info {
         padding: 40px;
 
-        @include bp (xl-max) {
+        @include bp(xl-max) {
             padding: 20px;
         }
 
-        @include bp (lg-max) {
+        @include bp(lg-max) {
             padding: 0;
             padding-bottom: 20px;
         }
@@ -2513,21 +2502,21 @@ footer {
                     transform: rotate(180deg);
                 }
 
-                @include bp (lg-max) {
+                @include bp(lg-max) {
                     display: block;
                 }
             }
         }
 
         .subtitle1 {
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 font-size: 14px;
                 line-height: 18px;
             }
         }
 
         .title {
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 font-size: 30px;
                 line-height: 36px;
             }
@@ -2539,12 +2528,11 @@ footer {
             line-height: 24px;
             padding-top: 22px;
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 padding-top: 10px;
             }
         }
     }
-
 
     .img-thumb {
         flex-grow: 1;
@@ -2553,15 +2541,15 @@ footer {
         background-position: center;
         background-size: cover;
 
-        @include bp (lg-max) {
+        @include bp(lg-max) {
             min-height: 380px;
         }
 
-        @include bp (md-max) {
+        @include bp(md-max) {
             min-height: 275px;
         }
 
-        @include bp (sm-max) {
+        @include bp(sm-max) {
             min-height: 175px;
         }
     }
@@ -2569,37 +2557,35 @@ footer {
     &.side {
         flex-direction: row;
 
-        @include bp (lg-max) {
+        @include bp(lg-max) {
             flex-direction: column;
         }
 
         .info {
             width: 45%;
 
-            @include bp (lg-max) {
+            @include bp(lg-max) {
                 width: 100%;
             }
-
         }
 
         .img-thumb {
             width: 55%;
             min-height: 380px;
 
-            @include bp (lg-max) {
+            @include bp(lg-max) {
                 width: 100%;
             }
 
-            @include bp (md-max) {
+            @include bp(md-max) {
                 min-height: 275px;
             }
 
-            @include bp (sm-max) {
+            @include bp(sm-max) {
                 min-height: 175px;
             }
         }
     }
-
 }
 
 // explore-model page End
@@ -2928,55 +2914,6 @@ footer {
             img {
                 max-width: 100%;
                 height: auto;
-            }
-        }
-    }
-}
-
-// Details Block
-.detail-block {
-    margin-bottom: 40px;
-
-    @include bp(sm-max) {
-        margin-bottom: 32px;
-    }
-
-    .detail-title {
-        font-size: 20px;
-        margin-bottom: 24px;
-        @extend .am-sans-medium;
-
-        @include bp(sm-max) {
-            margin-bottom: 20px;
-        }
-    }
-
-    .detail-lisitng {
-        li {
-            display: flex;
-            gap: 10px 20px;
-            @extend .subtitle2;
-            color: $Neutral100;
-
-            @include bp(sm-max) {
-                display: block;
-            }
-
-            .label {
-                min-width: 130px;
-                @extend .am-sans-medium;
-            }
-
-            .value {
-                max-width: 352px;
-
-                @include bp(lg-max) {
-                    max-width: 100%;
-                }
-            }
-
-            +li {
-                margin-top: 12px;
             }
         }
     }
