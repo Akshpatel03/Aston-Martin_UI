@@ -38,7 +38,6 @@ export default {
   IcCheck: require("./icons/ic-check.svg").default,
   IcLocMark: require("./icons/ic-loc-mark.svg").default,
   
-
   // HomePageImages
   Hero1: require("./home/hero1.jpg"),
   NewCar: require("./home/new-car.jpg"),

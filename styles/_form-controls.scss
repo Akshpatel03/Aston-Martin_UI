@@ -1126,6 +1126,7 @@ textarea.form-control {
                 @extend .am-bold;
                 font-weight: 700;
                 text-transform: uppercase;
+                transition: all 250ms ease-in-out;
                 white-space: nowrap;
                 z-index: -1;
             }
@@ -1262,6 +1263,10 @@ textarea.form-control {
 
                 @include bp(xxl-max) {
                     width: 67px;
+                }
+
+                @include bp(xl-max) {
+                    width: 72px;
                 }
 
                 &.react-datepicker__day:not(.react-datepicker__day--outside-month):not(.react-datepicker__day--weekend):hover {
