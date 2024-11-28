@@ -887,7 +887,7 @@ const DesignerExploreModel = () => {
                         information
                       </h5>
                       <p className="secondary-form-title">Title</p>
-                      <Form className="inline-level gap-5 mb-24p">
+                      <Form className="inline-level justify-content-sm-start justify-content-between column-gap-sm-5 row-gap-3 mb-24p">
                         <Form.Check
                           type="radio"
                           label="Mr"

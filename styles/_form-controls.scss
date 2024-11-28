@@ -1011,14 +1011,19 @@ textarea.form-control {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            color: $Neutral70;
+            position: relative;
+            @extend .am-sans-medium;
 
             &:not(:last-child) {
                 padding-right: 56px;
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 24px;
-                color: $Neutral70;
-                position: relative;
+
+                @include bp(md-max) {
+                    padding-right: 20px;
+                }
 
                 &::before {
                     content: '';
@@ -1028,6 +1033,10 @@ textarea.form-control {
                     position: absolute;
                     top: calc(50% - 0.5px);
                     right: 0;
+
+                    @include bp(md-max) {
+                        width: 12px;
+                    }
                 }
             }
 
