@@ -24,18 +24,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from "react-slot-counter";
 import dynamic from "next/dynamic";
 import ReactPlayer from "react-player";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
 import videos from "@/public/videos";
 import DatePicker from "react-datepicker";
 import DBX707Green from "@/public/images/home/DBX707-green.png";
-import Stepper from "./stepper";
 import Select from "react-select";
+import Stepper from "@/components/Stepper";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const DesignerExploreModel = () => {
   const [startDate] = React.useState();
