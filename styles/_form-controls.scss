@@ -1,5 +1,6 @@
 @import './variable';
 @import './break-points';
+@import "../node_modules/react-datepicker/dist/react-datepicker.css";
 
 .mb-4p {
     margin-bottom: 4px;
@@ -37,14 +38,14 @@
     }
 }
 
+
+// Buttons
 .btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     transition: all 200ms cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &.rounded {
         --bs-btn-border-radius: 50%;
@@ -203,18 +204,50 @@
     }
 
     .ic {
-        display: flex;
-
-        &.right {
-            margin-left: 4px;
-        }
-
-        &.left {
-            margin-right: 4px;
-        }
+        width: 24px;
+        height: 24px;
     }
 }
 
+// textfields
+.form-control {
+    --bs-body-bg: #EEF0F080;
+    --bs-border-color: #E2E4E4;
+    --bs-border-width: 1.5px;
+    --bs-border-radius: 0;
+    color: $Neutral100;
+    min-height: 56px;
+    padding: 15px 16px;
+    box-shadow: none !important;
+
+    &:focus {
+        --bs-body-bg: #EEF0F080;
+        color: $Neutral100;
+        border-color: $Primary50;
+    }
+
+}
+
+textarea.form-control {
+    min-height: 248px;
+    resize: none;
+}
+
+.input-group.space {
+    gap: 16px;
+    flex-wrap: nowrap;
+
+    > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+        border-radius: 4px;
+    }
+
+    .btn {
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+}
+
+// Dropdown
 .dropdown {
     .dropdown-toggle {
         &::after {
@@ -282,7 +315,7 @@
     }
 }
 
-
+// Inline Level
 .inline-level {
     display: inline-flex;
     align-items: center;
@@ -296,23 +329,36 @@
     padding-left: 24px;
     margin-bottom: 0;
 
+    &:has(.form-check-input[type="checkbox"]) {
+        display: flex;
+        align-items: center;
+        min-height: 32px;
+        padding-left: 32px;
+
+        .form-check-input {
+            margin-left: -32px;
+        }
+    }
+
     .form-check-input {
         margin-top: 0;
         margin-left: -24px;
         cursor: pointer;
-
+        box-shadow: none !important;
         transition: all 200ms ease-in-out;
 
         &[type="checkbox"] {
-            border: 1.5px solid $Neutral20;
-            border-radius: 6px;
-            width: 24px;
-            height: 24px;
+            // border: 1.5px solid $Neutral20;
+            // border-radius: 2px;
+            border: none;
+            width: 32px;
+            height: 32px;
+            --bs-form-check-bg-image: url("./../public/images/icons/ic-unchecked.svg");
 
             &:checked {
                 border: 0;
                 background-color: $White;
-                // --bs-form-check-bg-image: url("./../images/checkbox-checked.svg");
+                --bs-form-check-bg-image: url("./../public/images/icons/ic-checked.svg");
             }
         }
 
@@ -419,58 +465,181 @@
 .react-custom-select {
     min-height: 56px;
 
-    >div {
-        &:not([class*="-menu"]) {
-            border: 1.5px solid #E2E4E4;
-            background: #EEF0F080;
-            border-radius: 2px;
-            height: 100%;
-            min-height: inherit;
-            box-shadow: none;
-            cursor: pointer;
+    // >div {
+    //     &:not([class*="-menu"]) {
+    //         border: 1.5px solid #E2E4E4;
+    //         background: #EEF0F080;
+    //         border-radius: 2px;
+    //         height: 100%;
+    //         min-height: inherit;
+    //         box-shadow: none;
+    //         cursor: pointer;
 
-            &:hover,
-            &:focus {
-                border-color: $Primary50;
-            }
+    //         &:hover,
+    //         &:focus {
+    //             border-color: $Primary50;
+    //         }
 
-            >div {
-                &:first-child {
-                    >div {
-                        &:first-child {
-                            margin: 0 8px;
-                            color: $Neutral100;
-                        }
-                    }
-                }
+    //         >div {
+    //             &:first-child {
+    //                 >div {
+    //                     &:first-child {
+    //                         margin: 0 8px;
+    //                         color: $Neutral100;
+    //                     }
+    //                 }
+    //             }
 
-                &:last-child {
-                    >span {
-                        display: none;
-                    }
+    //             &:last-child {
+    //                 >span {
+    //                     display: none;
+    //                 }
 
-                    >div {
-                        position: relative;
-                        right: 12px;
-                        padding: 0;
+    //                 >div {
+    //                     position: relative;
+    //                     right: 12px;
+    //                     padding: 0;
 
-                        svg {
-                            height: 24px;
-                            width: 24px;
-                            background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
-                            background-size: 24px;
+    //                     svg {
+    //                         height: 24px;
+    //                         width: 24px;
+    //                         background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+    //                         background-size: 24px;
 
-                            path {
-                                display: none;
-                            }
-                        }
-                    }
+    //                         path {
+    //                             display: none;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // [class*="-menu"] {
+    //     box-shadow: 0px 4px 6px -2px rgba($color: $Black, $alpha: 0.03),
+    //         0px 12px 16px -4px rgba($color: $Black, $alpha: 0.08);
+    //     border-radius: 2px;
+    //     border: 1px solid #F2F4F7;
+    //     margin: 0;
+    //     z-index: 3;
+
+    //     [class*="-option"] {
+    //         min-height: 44px;
+    //         display: flex;
+    //         align-items: center;
+    //         padding: 8px 16px;
+    //         background: none;
+    //         color: $Neutral100;
+
+    //         &[aria-selected="true"] {
+    //             background-color: $Primary50;
+    //         }
+
+    //         &:hover {
+    //             background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
+    //             color: $Primary50 !important;
+    //         }
+
+    //         &[aria-selected="true"] {
+    //             background-color: rgba($color: $Primary50, $alpha: 0.2) !important;
+    //             color: $Primary50 !important;
+    //         }
+
+    //         @media (hover: none) {
+    //             &:hover {
+    //                 // background-color: rgba($color: $primary, $alpha: 0.12);
+    //                 background-color: $Primary50 !important;
+    //                 color: $White !important;
+    //             }
+
+    //         }
+
+    //         &:focus,
+    //         &:active {
+    //             background-color: $Primary50 !important;
+    //             color: $White !important;
+    //         }
+    //     }
+    // }
+
+    // &.dark {
+    //     >div {
+    //         &:not([class*="-menu"]) {
+    //             border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
+    //             background: var(--black-15, rgba(0, 0, 0, 0.15));
+
+    //             &:hover,
+    //             &:focus {
+    //                 border-color: $Primary50;
+    //             }
+
+    //             >div {
+    //                 &:first-child {
+    //                     >div {
+    //                         &:first-child {
+    //                             color: $White;
+    //                         }
+    //                     }
+    //                 }
+
+    //                 &:last-child {
+    //                     >div {
+    //                         svg {
+    //                             background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
+    //                             background-size: 24px;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    .select__control {
+        border: 1.5px solid $Neutral10;
+        background: rgba($color: $Bg30, $alpha: 0.8);
+        border-radius: 2px;
+        height: 100%;
+        min-height: inherit;
+        box-shadow: none;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            border-color: $Primary50;
+        }
+
+        .select__single-value,
+        .select__input-container,
+        .select__placeholder {
+            margin: 0 8px;
+            color: $Neutral100;
+        }
+
+        .select__indicator-separator {
+            display: none;
+        }
+
+        .select__indicator {
+            position: relative;
+            right: 12px;
+            padding: 0;
+
+            svg {
+                height: 24px;
+                width: 24px;
+                background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+                background-size: 24px;
+
+                path {
+                    display: none;
                 }
             }
         }
     }
 
-    [class*="-menu"] {
+    .select__menu {
         box-shadow: 0px 4px 6px -2px rgba($color: $Black, $alpha: 0.03),
             0px 12px 16px -4px rgba($color: $Black, $alpha: 0.08);
         border-radius: 2px;
@@ -478,7 +647,7 @@
         margin: 0;
         z-index: 3;
 
-        [class*="-option"] {
+        .select__option {
             min-height: 44px;
             display: flex;
             align-items: center;
@@ -490,7 +659,8 @@
                 background-color: $Primary50;
             }
 
-            &:hover {
+            &:hover,
+            &.select__option--is-focused {
                 background-color: rgba($color: $Primary50, $alpha: 0.12) !important;
                 color: $Primary50 !important;
             }
@@ -518,41 +688,38 @@
     }
 
     &.dark {
-        >div {
-            &:not([class*="-menu"]) {
-                border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
-                background: var(--black-15, rgba(0, 0, 0, 0.15));
+        .select__control {
+            border: 1.5px solid var(--white-25, rgba(255, 255, 255, 0.25));
+            background: var(--black-15, rgba(0, 0, 0, 0.15));
 
-                &:hover,
-                &:focus {
-                    border-color: $Primary50;
-                }
+            &:hover,
+            &:focus {
+                border-color: $Primary50;
+            }
 
-                >div {
-                    &:first-child {
-                        >div {
-                            &:first-child {
-                                color: $White;
-                            }
-                        }
-                    }
+            .select__single-value,
+            .select__input-container,
+            .select__placeholder {
+                color: $White;
+            }
 
-                    &:last-child {
-                        >div {
-                            svg {
-                                background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
-                                background-size: 24px;
-                            }
-                        }
-                    }
+            .select__indicator {
+                svg {
+                    background: url("../public/images/icons/ic-chevron-down-white.svg") no-repeat center;
+                    background-size: 24px;
                 }
             }
         }
     }
 
+    &.with-text {
+        .select__indicators {
+            display: none;
+        }
+    }
 }
 
-
+// Offcanvas Backdrop
 .offcanvas-backdrop {
     opacity: 1;
     background: rgba(0, 0, 0, 0.5);
@@ -563,6 +730,7 @@
     }
 }
 
+// Offcanvas
 .offcanvas {
     --bs-offcanvas-padding-x: 0;
     --bs-offcanvas-padding-y: 0;
@@ -667,9 +835,20 @@
         }
     }
 
+    ::-webkit-scrollbar {
+        width: 4px !important;
+        height: 4px !important;
+        background: #FFFFFF;
+    }
 
+    ::-webkit-scrollbar-thumb {
+        border: 0 !important;
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        border-radius: 12px !important;
+    }
 }
 
+// Accordion
 .accordion {
     &.specs {
         --bs-accordion-color: #121212;
@@ -824,8 +1003,8 @@
         gap: 8px;
         overflow-x: auto;
         overflow-y: hidden;
-        padding-bottom: 10px;
         white-space: nowrap;
+        padding-bottom: 4px;
 
         li {
             display: flex;
@@ -880,6 +1059,294 @@
                 .i {
                     background-color: $Primary50;
                     color: $White;
+                }
+            }
+        }
+    }
+}
+
+// Btn Group
+.btn-group {
+    &.toggle-radio {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        .btn-check:checked+.mirror-card {
+            background: $Primary50;
+            color: $White;
+
+            .highlighted {
+                color: rgba($color: $White, $alpha: 0.05);
+            }
+
+            &:hover {
+                .highlighted {
+                    color: rgba($color: $White, $alpha: 0.05);
+                }
+            }
+        }
+
+        .mirror-card {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 44px 32px;
+            position: relative;
+            border-radius: 4px !important;
+            box-shadow: 0px 1px 3px 0px #12121233, 0px -1px 0px 0px #12121214 inset, 0px 1px 0.5px 0px #FFFFFF1F inset;
+            backdrop-filter: blur(70px);
+            background: #EDEDED;
+            overflow: hidden;
+            border: 0;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 500;
+            @extend .am-medium;
+            transition: all 250ms ease-in-out;
+            color: $Black;
+
+            &:hover {
+                color: $Primary50;
+
+                .highlighted {
+                    color: rgba($color: $Primary50, $alpha: 0.2);
+                }
+            }
+
+            .highlighted {
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                left: 100%;
+                margin-left: -174px;
+                font-size: 96px;
+                line-height: 120px;
+                color: $Neutral10;
+                @extend .am-bold;
+                font-weight: 700;
+                text-transform: uppercase;
+                transition: all 250ms ease-in-out;
+                white-space: nowrap;
+                z-index: -1;
+            }
+        }
+    }
+
+    &.toggle-chips {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .btn-check:checked+.toggle-button {
+            background: $Primary50;
+            color: $White;
+        }
+
+        .toggle-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 20px;
+            border-radius: 2px !important;
+            box-shadow: 0px 1px 2px 0px rgba(0, 64, 58, 0.04), 0px -1px 0px 0px rgba(0, 64, 58, 0.03) inset, 0px 1px 2px 0px rgba(255, 255, 255, 0.3) inset;
+            background: $Neutral5;
+            max-width: 104px;
+            border: 0;
+            font-size: 16px;
+            line-height: 24px;
+            @extend .am-sans;
+            color: $Primary50;
+            transition: all 250ms ease-in-out;
+
+            &:hover {
+                background: #E3F1F0;
+            }
+
+            sup {
+                display: inline-block;
+                font-size: 10px;
+                line-height: 14px;
+                text-transform: uppercase;
+                margin: 0 3px -8px;
+            }
+        }
+    }
+}
+
+// React Inline Datepicker
+.react-datepicker {
+    @extend .am-sans;
+    position: relative;
+    background-color: transparent;
+    color: $Neutral100;
+    border-radius: 0;
+    line-height: initial;
+
+    &.inline-datepicker {
+        border: 0;
+        max-width: 565px;
+        margin: 0 auto;
+
+        .react-datepicker__month-container {
+            width: 100%;
+
+            .react-datepicker__header {
+                background: transparent;
+                border-radius: 0;
+                padding: 0;
+                border: 0;
+
+                .custom-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    max-width: 420px;
+                    margin: 10px auto;
+
+                    .month_name {
+                        font-size: 20px;
+                        line-height: 24px;
+                        color: $Neutral100;
+                    }
+                }
+
+                .react-datepicker__day-names {
+                    margin: 0 0 10px;
+                }
+
+                .btn-icon {
+                    box-shadow: 0px 1px 1px 0px #000e330d !important;
+                    background: $White;
+                    width: 48px;
+                    height: 48px;
+                    min-height: 48px;
+                    flex-shrink: 0;
+                    border: 0;
+
+                    img {
+                        width: 32px;
+                        height: 32px;
+                    }
+
+                    &:hover {
+                        background: rgba($color: $Primary50, $alpha: 0.1);
+                    }
+
+                    &:first-child {
+                        margin-right: auto;
+                    }
+
+                    &:last-child {
+                        margin-left: auto;
+                    }
+                }
+            }
+
+            .react-datepicker__month {
+                margin: 0;
+            }
+
+            .react-datepicker__day-name,
+            .react-datepicker__day,
+            .react-datepicker__time-name {
+                width: 70px;
+                height: 32px;
+                margin: 5px;
+                border-radius: 2px;
+                color: $Primary50;
+                font-size: 14px;
+                line-height: 32px;
+                background: $Neutral5;
+                box-shadow: 0px 1px 2px 0px rgba(0, 64, 58, 0.04), 0px -1px 0px 0px rgba(0, 64, 58, 0.03) inset, 0px 1px 2px 0px rgba(255, 255, 255, 0.3) inset;
+                transition: all 200ms ease-in-out;
+
+                @include bp(xxl-max) {
+                    width: 67px;
+                }
+
+                @include bp(xl-max) {
+                    width: 72px;
+                }
+
+                &.react-datepicker__day:not(.react-datepicker__day--outside-month):not(.react-datepicker__day--weekend):hover {
+                    background: $Primary50;
+                    color: $White;
+                }
+
+                &.react-datepicker__day--weekend {
+                    background: #E3F1F0;
+                    pointer-events: none;
+                }
+
+                &.react-datepicker__day--outside-month {
+                    background: none;
+                    box-shadow: none;
+                    font-size: 0;
+                    pointer-events: none;
+                }
+
+                &.react-datepicker__day--keyboard-selected {
+                    background: $Primary50;
+                    color: $White;
+                }
+            }
+
+            .react-datepicker__day--today,
+            .react-datepicker__month-text--today,
+            .react-datepicker__quarter-text--today,
+            .react-datepicker__year-text--today {
+                border-color: $Primary50;
+                font-weight: 400;
+            }
+
+            .react-datepicker__day-name {
+                font-size: 0;
+                position: relative;
+                background: none;
+                box-shadow: none;
+                border-color: transparent !important;
+                vertical-align: middle;
+                height: 22px;
+                margin: 0 5px;
+
+                &::after {
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: $Black;
+                    @extend .am-sans;
+                }
+
+                &[aria-label="Sunday"]::after {
+                    content: "Sun";
+                }
+
+                &[aria-label="Monday"]::after {
+                    content: "Mon";
+                }
+
+                &[aria-label="Tuesday"]::after {
+                    content: "Tue";
+                }
+
+                &[aria-label="Wednesday"]::after {
+                    content: "Wed";
+                }
+
+                &[aria-label="Thursday"]::after {
+                    content: "Thu";
+                }
+
+                &[aria-label="Friday"]::after {
+                    content: "Fri";
+                }
+
+                &[aria-label="Saturday"]::after {
+                    content: "Sat";
+                }
+
+                &[aria-label="Sunday"]::after {
+                    content: "Sun";
                 }
             }
         }

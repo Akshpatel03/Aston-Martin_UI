@@ -1,7 +1,9 @@
+import images from "@/public/images";
+import Image from "next/image";
 import React from "react";
 
 interface Step {
-  id: number; 
+  id: number;
   name: string;
 }
 
@@ -27,7 +29,13 @@ const Stepper: React.FC<StepperProps> = ({
                 currentStep > index || isComplete ? "done" : ""
               }`}
             >
-              <em className="i">{row.id}</em>
+              {currentStep > index || isComplete ? (
+                <em className="i">
+                  <Image src={images.IcCheck} alt="checksign" />
+                </em>
+              ) : (
+                <em className="i">{row.id}</em>
+              )}
               {row.name}
             </li>
           ))}

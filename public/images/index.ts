@@ -33,7 +33,10 @@ export default {
   ChevronDownDark: require("./icons/ic-chevron-down-dark.svg").default,
   CloseBlack: require("./icons/ic-close-black.svg").default,
   ChevronUpLGBlack: require("./icons/ic-chevron-up-lg-black.svg").default,
-  
+  DatepickerPrev: require("./icons/ic-datepicker-prev.svg").default,
+  DatepickerNext: require("./icons/ic-datepicker-next.svg").default,
+  IcCheck: require("./icons/ic-check.svg").default,
+  IcLocMark: require("./icons/ic-loc-mark.svg").default,
   MapMarkerIconActive: "../images/icons/marker-icon-active.png",
   MapMarkerIconInactive: "../images/icons/marker-icon-inactive.png",
 
