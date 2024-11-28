@@ -399,7 +399,7 @@ const DesignerNewCar = () => {
       {/* Info Section End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={[]} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
