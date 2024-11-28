@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
-import AvailableLocation from "@/components/AvailableLocation";
+import DesignerAvailableLocation from "@/components/designer/DesignerAvailableLocation";
 import images from "@/public/images";
 import Image from "next/image";
 import {
@@ -31,13 +31,13 @@ import DatePicker from "react-datepicker";
 import DBX707Green from "@/public/images/home/DBX707-green.png";
 import DBX707GreenBack from "@/public/images/explore-model/DBX707-green-back.png";
 import Select from "react-select";
-import Stepper from "@/components/Stepper";
+import DesignerStepper from "@/components/designer/DesignerStepper";
+import { useRouter } from "next/router";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useRouter } from "next/router";
 
 const DesignerExploreModel = () => {
   const navigate = useRouter();
@@ -90,9 +90,12 @@ const DesignerExploreModel = () => {
     };
   }, []);
 
-  const TextAnimation = dynamic(() => import("@/components/TextAnimation"), {
-    ssr: false,
-  });
+  const DesignerTextAnimation = dynamic(
+    () => import("@/components/designer/DesignerTextAnimation"),
+    {
+      ssr: false,
+    }
+  );
 
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -402,7 +405,7 @@ const DesignerExploreModel = () => {
       {/* info-thumb Section End */}
 
       {/* Text Animation Start */}
-      <TextAnimation
+      <DesignerTextAnimation
         paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model."
         owner="Drummond Jacoy"
         ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin"
@@ -615,7 +618,7 @@ const DesignerExploreModel = () => {
       {/* info-thumb Section End */}
 
       {/* Text Animation Start */}
-      <TextAnimation
+      <DesignerTextAnimation
         classname="black-bg"
         paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin."
         owner="Sam Field"
@@ -689,7 +692,7 @@ const DesignerExploreModel = () => {
       {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation dealers={[]} />
+      <DesignerAvailableLocation />
       {/* Aston Martin Address End */}
 
       {/* Offcanvas Right Start */}
@@ -824,7 +827,7 @@ const DesignerExploreModel = () => {
               <div className="stepper-head">
                 <h3>Make an Enquiry</h3>
                 <span className="selected-enquiry">Sale/purchase enquiry</span>
-                <Stepper
+                <DesignerStepper
                   stepsConfig={stepperData}
                   currentStep={currentStep}
                   isComplete={isComplete}
@@ -1249,7 +1252,7 @@ const DesignerExploreModel = () => {
       </Offcanvas >
       {/* Offcanvas enquire Start */}
     </>
-  );
-};
+  )
+}
 
 export default DesignerExploreModel;
