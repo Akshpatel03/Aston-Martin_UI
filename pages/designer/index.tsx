@@ -8,9 +8,9 @@ import Image from "next/image";
 import Select, { SingleValue } from "react-select";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
-import AvailableLocation from "@/components/AvailableLocation";
-import Testimonials from "@/components/Testimonials";
-import News from "@/components/News";
+import DesignerAvailableLocation from "@/components/designer/DesignerAvailableLocation";
+import DesignerTestimonials from "@/components/designer/DesignerTestimonials";
+import DesignerNews from "@/components/designer/DesignerNews";
 import { useRouter } from "next/router";
 
 // Import Swiper styles
@@ -160,7 +160,14 @@ const DesignerHome = () => {
                   </Form>
                 </div>
                 <div className="col-sm">
-                  <Select className="react-custom-select dark" classNamePrefix="select" options={options} value={selectedOption} onChange={handleChange} isSearchable={false} />
+                  <Select
+                    className="react-custom-select dark"
+                    classNamePrefix="select"
+                    options={options}
+                    value={selectedOption}
+                    onChange={handleChange}
+                    isSearchable={false}
+                  />
                 </div>
                 <div className="col-sm-auto">
                   <Button className="size-lg w-100" variant="light">
@@ -545,15 +552,15 @@ const DesignerHome = () => {
       {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation dealers={[]} />
+      <DesignerAvailableLocation />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials />
+      <DesignerTestimonials />
       {/* Testimonial End */}
 
       {/* News Start */}
-      <News />
+      <DesignerNews />
       {/* News End */}
     </>
   );

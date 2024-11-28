@@ -13,24 +13,22 @@ interface IAvailableLocationProps {
 const AvailableLocation: React.FC<IAvailableLocationProps> = ({
   dealers = [],
 }) => {
-    const [selectedLocation, setSelectedLocation] = useState<string|null>()
-    const updateSelectedLocation = (id:string) => {
-      const listWrapper = document.getElementById(`store-location-list`);
-      const item = document.getElementById(`dealer-${id}`);
-    
-      if (item && listWrapper) {
-        const itemPosition = item.offsetTop;
-        const containerHeight = listWrapper.offsetHeight;
-    
-        listWrapper.scrollTo({
-          top: itemPosition - containerHeight / 2 + item.offsetHeight / 12,
-          behavior: 'smooth',
-        });
-        setSelectedLocation(id);
-      } else {
-        console.log('Item not found:', id);
-      }
+  const [selectedLocation, setSelectedLocation] = useState<string | null>();
+  const updateSelectedLocation = (id: string) => {
+    const listWrapper = document.getElementById(`store-location-list`);
+    const item = document.getElementById(`dealer-${id}`);
+
+    if (item && listWrapper) {
+      const itemPosition = item.offsetTop;
+      const containerHeight = listWrapper.offsetHeight;
+
+      listWrapper.scrollTo({
+        top: itemPosition - containerHeight / 2 + item.offsetHeight / 12,
+        behavior: "smooth",
+      });
+      setSelectedLocation(id);
     }
+  };
 
   return (
     <div className="location-wrapper">
@@ -42,7 +40,15 @@ const AvailableLocation: React.FC<IAvailableLocationProps> = ({
               <ul className="store-loaction-list" id="store-location-list">
                 {dealers &&
                   dealers?.map((dealer) => (
-                    <li key={dealer.id} id={`dealer-${dealer.id}`} className={selectedLocation === dealer.id ? "active-location px-2" : "px-2"}>
+                    <li
+                      key={dealer.id}
+                      id={`dealer-${dealer.id}`}
+                      className={
+                        selectedLocation === dealer.id
+                          ? "active-location px-2"
+                          : "px-2"
+                      }
+                    >
                       <Image
                         className="dealer-logo"
                         src={images.DealerLogoBlack}
@@ -79,7 +85,10 @@ const AvailableLocation: React.FC<IAvailableLocationProps> = ({
           </div>
           <div className="col-md-6 col-xl-7">
             <div className="map-wrapper">
-                <MapComponent dealers={dealers} updateSelectedLocation={updateSelectedLocation}/>
+              <MapComponent
+                dealers={dealers}
+                updateSelectedLocation={updateSelectedLocation}
+              />
             </div>
           </div>
         </div>

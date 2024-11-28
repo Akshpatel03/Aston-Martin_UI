@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
-import AvailableLocation from "@/components/AvailableLocation";
+import DesignerAvailableLocation from "@/components/designer/DesignerAvailableLocation";
 import images from "@/public/images";
 import Image from "next/image";
 import {
@@ -30,7 +30,7 @@ import videos from "@/public/videos";
 import DatePicker from "react-datepicker";
 import DBX707Green from "@/public/images/home/DBX707-green.png";
 import Select from "react-select";
-import Stepper from "@/components/Stepper";
+import DesignerStepper from "@/components/designer/DesignerStepper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -86,9 +86,12 @@ const DesignerExploreModel = () => {
     };
   }, []);
 
-  const TextAnimation = dynamic(() => import("@/components/TextAnimation"), {
-    ssr: false,
-  });
+  const DesignerTextAnimation = dynamic(
+    () => import("@/components/designer/DesignerTextAnimation"),
+    {
+      ssr: false,
+    }
+  );
 
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -384,7 +387,7 @@ const DesignerExploreModel = () => {
       {/* info-thumb Section End */}
 
       {/* Text Animation Start */}
-      <TextAnimation
+      <DesignerTextAnimation
         paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model."
         owner="Drummond Jacoy"
         ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin"
@@ -597,7 +600,7 @@ const DesignerExploreModel = () => {
       {/* info-thumb Section End */}
 
       {/* Text Animation Start */}
-      <TextAnimation
+      <DesignerTextAnimation
         classname="black-bg"
         paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin."
         owner="Sam Field"
@@ -671,7 +674,7 @@ const DesignerExploreModel = () => {
       {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation dealers={[]} />
+      <DesignerAvailableLocation />
       {/* Aston Martin Address End */}
 
       {/* Offcanvas Right Start */}
@@ -795,7 +798,7 @@ const DesignerExploreModel = () => {
           <div className="stepper-head">
             <h3>Make an Enquiry</h3>
             <span className="selected-enquiry">Sale/purchase enquiry</span>
-            <Stepper
+            <DesignerStepper
               stepsConfig={stepperData}
               currentStep={currentStep}
               isComplete={isComplete}
@@ -1016,79 +1019,120 @@ const DesignerExploreModel = () => {
                 ""
               )}
 
-              {currentStep === 3 || currentStep === 4 ? <>
-                <p className="secondary-form-title am-sans mb-3">
-                  Please select a preferred date for a test drive
-                </p>
-                <div className="mb-5">
-                  <DatePicker
-                    inline
-                    calendarClassName="inline-datepicker"
-                    selected={startDate}
-                    renderCustomHeader={({
-                      date,
-                      decreaseMonth,
-                      increaseMonth,
-                      prevMonthButtonDisabled,
-                      nextMonthButtonDisabled,
-                    }) => (
-                      <div className="custom-header">
-                        <Button
-                          className="btn-icon"
-                          variant="light"
-                          onClick={decreaseMonth}
-                          disabled={prevMonthButtonDisabled}
-                        >
-                          <Image
-                            src={images.DatepickerPrev}
-                            alt="Datepicker Previous"
-                          />
-                        </Button>
+              {currentStep === 3 || currentStep === 4 ? (
+                <>
+                  <p className="secondary-form-title am-sans mb-3">
+                    Please select a preferred date for a test drive
+                  </p>
+                  <div className="mb-5">
+                    <DatePicker
+                      inline
+                      calendarClassName="inline-datepicker"
+                      selected={startDate}
+                      renderCustomHeader={({
+                        date,
+                        decreaseMonth,
+                        increaseMonth,
+                        prevMonthButtonDisabled,
+                        nextMonthButtonDisabled,
+                      }) => (
+                        <div className="custom-header">
+                          <Button
+                            className="btn-icon"
+                            variant="light"
+                            onClick={decreaseMonth}
+                            disabled={prevMonthButtonDisabled}
+                          >
+                            <Image
+                              src={images.DatepickerPrev}
+                              alt="Datepicker Previous"
+                            />
+                          </Button>
 
-                        <span className="month_name">
-                          {new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(date)}
-                        </span>
+                          <span className="month_name">
+                            {new Intl.DateTimeFormat("en-US", {
+                              month: "long",
+                              year: "numeric",
+                            }).format(date)}
+                          </span>
 
-                        <Button
-                          className="btn-icon"
-                          variant="light"
-                          onClick={increaseMonth}
-                          disabled={nextMonthButtonDisabled}
-                        >
-                          <Image
-                            src={images.DatepickerNext}
-                            alt="Datepicker Next"
-                          />
-                        </Button>
-                      </div>
-                    )}
-                  />
-                </div>
+                          <Button
+                            className="btn-icon"
+                            variant="light"
+                            onClick={increaseMonth}
+                            disabled={nextMonthButtonDisabled}
+                          >
+                            <Image
+                              src={images.DatepickerNext}
+                              alt="Datepicker Next"
+                            />
+                          </Button>
+                        </div>
+                      )}
+                    />
+                  </div>
 
-                <p className="secondary-form-title am-sans mb-3">
-                  Please select a preferred time
-                </p>
-                <ToggleButtonGroup className="toggle-chips" type="radio" name="time-slot-options">
-                  <ToggleButton className="toggle-button" id="time-slot-radio-1" value={1} variant="secondary">
-                    10:00 <sup>AM</sup>
-                  </ToggleButton>
-                  <ToggleButton className="toggle-button" id="time-slot-radio-2" value={2} variant="secondary">
-                    11:30 <sup>AM</sup>
-                  </ToggleButton>
-                  <ToggleButton className="toggle-button" id="time-slot-radio-3" value={3} variant="secondary">
-                    12:00 <sup>AM</sup>
-                  </ToggleButton>
-                  <ToggleButton className="toggle-button" id="time-slot-radio-4" value={4} variant="secondary">
-                    1:30 <sup>PM</sup>
-                  </ToggleButton>
-                  <ToggleButton className="toggle-button" id="time-slot-radio-5" value={5} variant="secondary">
-                    2:00 <sup>PM</sup>
-                  </ToggleButton>
-                  <ToggleButton className="toggle-button" id="time-slot-radio-6" value={6} variant="secondary">
-                    3:30 <sup>PM</sup>
-                  </ToggleButton>
-                </ToggleButtonGroup>
-              </> : ""}
+                  <p className="secondary-form-title am-sans mb-3">
+                    Please select a preferred time
+                  </p>
+                  <ToggleButtonGroup
+                    className="toggle-chips"
+                    type="radio"
+                    name="time-slot-options"
+                  >
+                    <ToggleButton
+                      className="toggle-button"
+                      id="time-slot-radio-1"
+                      value={1}
+                      variant="secondary"
+                    >
+                      10:00 <sup>AM</sup>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="toggle-button"
+                      id="time-slot-radio-2"
+                      value={2}
+                      variant="secondary"
+                    >
+                      11:30 <sup>AM</sup>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="toggle-button"
+                      id="time-slot-radio-3"
+                      value={3}
+                      variant="secondary"
+                    >
+                      12:00 <sup>AM</sup>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="toggle-button"
+                      id="time-slot-radio-4"
+                      value={4}
+                      variant="secondary"
+                    >
+                      1:30 <sup>PM</sup>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="toggle-button"
+                      id="time-slot-radio-5"
+                      value={5}
+                      variant="secondary"
+                    >
+                      2:00 <sup>PM</sup>
+                    </ToggleButton>
+                    <ToggleButton
+                      className="toggle-button"
+                      id="time-slot-radio-6"
+                      value={6}
+                      variant="secondary"
+                    >
+                      3:30 <sup>PM</sup>
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </>
+              ) : (
+                ""
+              )}
 
               <div className="action mt-auto">
                 {currentStep !== 0 ? (
@@ -1128,7 +1172,7 @@ const DesignerExploreModel = () => {
             </div>
           </div>
         </Offcanvas.Body>
-      </Offcanvas >
+      </Offcanvas>
       {/* Offcanvas enquire Start */}
     </>
   );

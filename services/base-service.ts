@@ -15,7 +15,6 @@ axios.interceptors.request.use(
     if (config.url && !config.url.startsWith("http")) {
       config.url = `${Config.env.BaseUrl}${config.url}`;
     }
-    console.log("url", config.url);
     if (config.url) {
       config.headers["Cache-Control"] =
         "no-cache, no-store, must-revalidate, post-check=0, pre-check=0";
@@ -34,7 +33,6 @@ axios.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-    console.log(error.message);
     return Promise.reject(error);
   }
 );
