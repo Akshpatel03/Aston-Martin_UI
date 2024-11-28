@@ -220,7 +220,8 @@
     padding: 15px 16px;
     box-shadow: none !important;
 
-    &:focus {
+    &:focus,
+    &:hover {
         --bs-body-bg: #EEF0F080;
         color: $Neutral100;
         border-color: $Primary50;
@@ -629,7 +630,7 @@ textarea.form-control {
             svg {
                 height: 24px;
                 width: 24px;
-                background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+                background: url("../public/images/icons/ic-chevron-down-dark.svg") no-repeat center;
                 background-size: 24px;
 
                 path {
@@ -1188,6 +1189,10 @@ textarea.form-control {
         max-width: 565px;
         margin: 0 auto;
 
+        @include bp(xl-max) {
+            max-width: 100%;
+        }
+
         .react-datepicker__month-container {
             width: 100%;
 
@@ -1269,6 +1274,11 @@ textarea.form-control {
                     width: 72px;
                 }
 
+                @include bp(md-max) {
+                    width: 40.25px;
+                    margin: 4px;
+                }
+
                 &.react-datepicker__day:not(.react-datepicker__day--outside-month):not(.react-datepicker__day--weekend):hover {
                     background: $Primary50;
                     color: $White;
@@ -1309,6 +1319,10 @@ textarea.form-control {
                 vertical-align: middle;
                 height: 22px;
                 margin: 0 5px;
+
+                @include bp(md-max) {
+                    margin: 0 4px;
+                }
 
                 &::after {
                     font-size: 16px;
