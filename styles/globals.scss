@@ -2919,6 +2919,55 @@ footer {
     }
 }
 
+// Details Block
+.detail-block {
+    margin-bottom: 40px;
+
+    @include bp(sm-max) {
+        margin-bottom: 32px;
+    }
+
+    .detail-title {
+        font-size: 20px;
+        margin-bottom: 24px;
+        @extend .am-sans-medium;
+
+        @include bp(sm-max) {
+            margin-bottom: 20px;
+        }
+    }
+
+    .detail-lisitng {
+        li {
+            display: flex;
+            gap: 10px 20px;
+            @extend .subtitle2;
+            color: $Neutral100;
+
+            @include bp(sm-max) {
+                display: block;
+            }
+
+            .label {
+                min-width: 130px;
+                @extend .am-sans-medium;
+            }
+
+            .value {
+                max-width: 352px;
+
+                @include bp(lg-max) {
+                    max-width: 100%;
+                }
+            }
+
+            +li {
+                margin-top: 12px;
+            }
+        }
+    }
+}
+
 // offcanvas drawer End
 // -----------------------------------------------------------------
 
