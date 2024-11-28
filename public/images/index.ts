@@ -37,7 +37,9 @@ export default {
   DatepickerNext: require("./icons/ic-datepicker-next.svg").default,
   IcCheck: require("./icons/ic-check.svg").default,
   IcLocMark: require("./icons/ic-loc-mark.svg").default,
-  
+  MapMarkerIconActive: "../images/icons/marker-icon-active.png",
+  MapMarkerIconInactive: "../images/icons/marker-icon-inactive.png",
+
   // HomePageImages
   Hero1: require("./home/hero1.jpg"),
   NewCar: require("./home/new-car.jpg"),
