@@ -82,4 +82,5 @@ export default {
   // ExploreCarModelPageImages
   CarImg: require("./explore-model/car-img.jpg"),
   CarExteriorImg: require("./explore-model/car-img-exterior.jpg"),
+  DBX707GreenBack: require("./explore-model/DBX707-green-back.jpg"),
 };

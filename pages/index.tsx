@@ -20,12 +20,17 @@ import News from "@/components/News";
 import contentfulLandingPageService from "@/services/contentful-landingPage-service";
 import { ContentfulHomePage } from "@/utils/interface/landing-page";
 import { IDealer } from "@/utils/interface/home";
-interface landingPageProps {
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+
+interface IHomeProps {
   dealers: IDealer[];
   homePageData: ContentfulHomePage;
 }
 
-const Home = (landingPageProps: landingPageProps) => {
+const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
+  const navigate = useRouter();
+
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
@@ -61,7 +66,7 @@ const Home = (landingPageProps: landingPageProps) => {
         navigation
         className="hero-banner-slider default-slider"
       >
-        {landingPageProps.homePageData.content[0].map(
+        {homePageData.content[0].map(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (slideData: any, index: any) => (
             <SwiperSlide key={index}>
@@ -75,7 +80,11 @@ const Home = (landingPageProps: landingPageProps) => {
                 {slideData.description}
               </p>
               <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-                <Button className="size-lg w-sm-auto w-100" variant="light">
+                <Button
+                  onClick={() => navigate.push(ROUTES.Explore)}
+                  className="size-lg w-sm-auto w-100"
+                  variant="light"
+                >
                   Explore
                 </Button>
               </div>
@@ -142,7 +151,7 @@ const Home = (landingPageProps: landingPageProps) => {
       <div className="quick-redirects block-spacing-y-80 tablet-spacing-y-16">
         <Container fluid="xxl">
           <div className="row row-gap-3">
-            {landingPageProps.homePageData.content[1].map(
+            {homePageData.content[1].map(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (navigation: any, index: any) => (
                 <div key={index} className="col-xxl-3 col-md-6">
@@ -174,28 +183,22 @@ const Home = (landingPageProps: landingPageProps) => {
             <div className="col-xl-6 ps-xxxl-0">
               <Image
                 className="left-side-image"
-                src={`http:${landingPageProps.homePageData.content[2][0].imageFile.url}`}
-                width={
-                  landingPageProps.homePageData.content[2][0].imageFile.details
-                    .image.width
-                }
+                src={`http:${homePageData.content[2][0].imageFile.url}`}
+                width={homePageData.content[2][0].imageFile.details.image.width}
                 height={
-                  landingPageProps.homePageData.content[2][0].imageFile.details
-                    .image.height
+                  homePageData.content[2][0].imageFile.details.image.height
                 }
                 alt="Aston Martin Dealer"
               />
             </div>
             <div className="col-xl-6">
               <div className="info">
-                <h3 className="title am">
-                  {landingPageProps.homePageData.content[2][0].title}
-                </h3>
+                <h3 className="title am">{homePageData.content[2][0].title}</h3>
                 <p className="description">
-                  {landingPageProps.homePageData.content[2][0].description1}
+                  {homePageData.content[2][0].description1}
                 </p>
                 <p className="description">
-                  {landingPageProps.homePageData.content[2][0].description2}
+                  {homePageData.content[2][0].description2}
                 </p>
               </div>
             </div>
@@ -209,7 +212,7 @@ const Home = (landingPageProps: landingPageProps) => {
         <Container fluid="xxl">
           <h2 className="mb-32p am">Why Dealer X?</h2>
           <div className="row info-points-wrapper">
-            {landingPageProps.homePageData.content[3].map(
+            {homePageData.content[3].map(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (benefit: any, index: any) => (
                 <div key={index} className="col-xxl-3 col-md-6 info-points">
@@ -235,7 +238,7 @@ const Home = (landingPageProps: landingPageProps) => {
           loop
           className="product-explore-slider"
         >
-          {landingPageProps.homePageData.content[4].map(
+          {homePageData.content[4].map(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (range: any, index: any) => (
               <SwiperSlide key={index}>
@@ -314,16 +317,16 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">
-                    {landingPageProps.homePageData.content[5][0].title}
+                    {homePageData.content[5][0].title}
                   </h3>
                   <p className="description">
-                    {landingPageProps.homePageData.content[5][0].description}
+                    {homePageData.content[5][0].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {landingPageProps.homePageData.content[5][0].navigationLink}
+                    {homePageData.content[5][0].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -331,14 +334,12 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${landingPageProps.homePageData.content[5][0].imageFile.url}`}
+                  src={`http:${homePageData.content[5][0].imageFile.url}`}
                   width={
-                    landingPageProps.homePageData.content[5][0].imageFile
-                      .details.image.width
+                    homePageData.content[5][0].imageFile.details.image.width
                   }
                   height={
-                    landingPageProps.homePageData.content[5][0].imageFile
-                      .details.image.height
+                    homePageData.content[5][0].imageFile.details.image.height
                   }
                   alt="New Model"
                 />
@@ -350,14 +351,12 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${landingPageProps.homePageData.content[5][1].imageFile.url}`}
+                  src={`http:${homePageData.content[5][1].imageFile.url}`}
                   width={
-                    landingPageProps.homePageData.content[5][1].imageFile
-                      .details.image.width
+                    homePageData.content[5][1].imageFile.details.image.width
                   }
                   height={
-                    landingPageProps.homePageData.content[5][1].imageFile
-                      .details.image.height
+                    homePageData.content[5][1].imageFile.details.image.height
                   }
                   alt="Timeless Martin"
                 />
@@ -365,16 +364,16 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">
-                    {landingPageProps.homePageData.content[5][1].title}
+                    {homePageData.content[5][1].title}
                   </h3>
                   <p className="description">
-                    {landingPageProps.homePageData.content[5][1].description}
+                    {homePageData.content[5][1].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {landingPageProps.homePageData.content[5][1].navigationLink}
+                    {homePageData.content[5][1].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -386,16 +385,16 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">
-                    {landingPageProps.homePageData.content[5][2].title}
+                    {homePageData.content[5][2].title}
                   </h3>
                   <p className="description">
-                    {landingPageProps.homePageData.content[5][2].description}
+                    {homePageData.content[5][2].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {landingPageProps.homePageData.content[5][2].navigationLink}
+                    {homePageData.content[5][2].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -403,14 +402,12 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${landingPageProps.homePageData.content[5][2].imageFile.url}`}
+                  src={`http:${homePageData.content[5][2].imageFile.url}`}
                   width={
-                    landingPageProps.homePageData.content[5][2].imageFile
-                      .details.image.width
+                    homePageData.content[5][2].imageFile.details.image.width
                   }
                   height={
-                    landingPageProps.homePageData.content[5][2].imageFile
-                      .details.image.height
+                    homePageData.content[5][2].imageFile.details.image.height
                   }
                   alt="Parts and Accessories"
                 />
@@ -422,14 +419,12 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${landingPageProps.homePageData.content[5][3].imageFile.url}`}
+                  src={`http:${homePageData.content[5][3].imageFile.url}`}
                   width={
-                    landingPageProps.homePageData.content[5][3].imageFile
-                      .details.image.width
+                    homePageData.content[5][3].imageFile.details.image.width
                   }
                   height={
-                    landingPageProps.homePageData.content[5][3].imageFile
-                      .details.image.height
+                    homePageData.content[5][3].imageFile.details.image.height
                   }
                   alt="Aston Martin Dealer"
                 />
@@ -437,16 +432,16 @@ const Home = (landingPageProps: landingPageProps) => {
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">
-                    {landingPageProps.homePageData.content[5][3].title}
+                    {homePageData.content[5][3].title}
                   </h3>
                   <p className="description">
-                    {landingPageProps.homePageData.content[5][3].description}
+                    {homePageData.content[5][3].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {landingPageProps.homePageData.content[5][3].navigationLink}
+                    {homePageData.content[5][3].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -458,21 +453,21 @@ const Home = (landingPageProps: landingPageProps) => {
       {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation dealers={landingPageProps.dealers} />
+      <AvailableLocation dealers={dealers} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials customerReview={landingPageProps.homePageData.content[6]} />
+      <Testimonials customerReview={homePageData.content[6]} />
       {/* Testimonial End */}
 
       {/* News Start */}
-      <News latestNews={landingPageProps.homePageData.content[7]} />
+      <News latestNews={homePageData.content[7]} />
       {/* News End */}
     </>
   );
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.resolvedUrl;
   const route = slug === "/" ? "home" : slug.slice(1);
   try {
