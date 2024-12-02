@@ -17,11 +17,11 @@ import CarModelSlider from "@/components/CarModelSlider";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
-import Herobanner from "@/public/images/new-car/hero-img.jpg";
 import { Container } from "react-bootstrap";
 import homePageService from "@/services/home-page-service";
-import { GetServerSideProps } from "next";
 import { IDealer } from "@/utils/interface/home";
+import { ContentfulHomePage } from "@/utils/interface/landing-page";
+import contentfulLandingPageService from "@/services/contentful-landingPage-service";
 
 const DBXCarModel = {
   modelname: "DBX",
@@ -134,9 +134,10 @@ const ValkyrieCarModel = {
 
 interface INewCarProps {
   dealers: IDealer[];
+  newCarsPageData: ContentfulHomePage;
 }
 
-const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
+const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
@@ -205,18 +206,19 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
       {/* Hero Banner Start */}
       <div
         className="hero-banner"
-        style={{ backgroundImage: `url(${Herobanner.src})` }}
+        style={{
+          backgroundImage: `url(${newCarsPageData.content[0][0].imageFile.url})`,
+        }}
       >
         {/* <Image
           className="banner-img"
           src={images.Herobanner}
           alt="Herobanner"
         /> */}
-        <p className="label">New cars</p>
-        <h1 className="title">Explore the Aston Martin range</h1>
+        <p className="label">{newCarsPageData.content[0][0].title}</p>
+        <h1 className="title">{newCarsPageData.content[0][0].description1}</h1>
         <p className="description mb-0">
-          Where ultra luxury meets British engineering mastery. Discover our
-          range of new Aston Martin vehicles.
+          {newCarsPageData.content[0][0].description2}
         </p>
       </div>
       {/* Hero Banner End */}
@@ -227,20 +229,16 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3>Intensely powerful, rare and addictive.</h3>
+                <h3>{newCarsPageData.content[1][0].title}</h3>
                 <p className="subtitle1">
-                  From muscular hypercars with enough downforce to drive on the
-                  ceiling, to commanding SUVs which perform like sports cars,
-                  Aston Martin vehicles stand at the forefront of automotive
-                  engineering and deliver unrivalled driving experiences which
-                  supercharge the senses. Explore our range of models below,
-                  book a test drive with us or customise the car of your dreams
-                  today.
+                  {newCarsPageData.content[1][0].description}
                 </p>
               </div>
             </div>
             <div className="col-lg-6">
-              <h1 className="d-lg-block d-none">ASTON MARTIN MODEL RANGE</h1>
+              <h1 className="d-lg-block d-none">
+                {newCarsPageData.content[1][0].heading}
+              </h1>
             </div>
           </div>
         </div>
@@ -251,36 +249,20 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
       <div className="car-models-wrapper">
         <div className="car-models-links px-md-4 px-3">
           <ul className="links container-xxl px-0 scrollspy">
-            <li>
-              <a href="#DBX" onClick={(e) => ScrollspyClick(e)}>
-                DBX
-              </a>
-            </li>
-            <li>
-              <a href="#Vantage" onClick={(e) => ScrollspyClick(e)}>
-                Vantage
-              </a>
-            </li>
-            <li>
-              <a href="#DB12" onClick={(e) => ScrollspyClick(e)}>
-                DB12
-              </a>
-            </li>
-            <li>
-              <a href="#DBS" onClick={(e) => ScrollspyClick(e)}>
-                DBS
-              </a>
-            </li>
-            <li>
-              <a href="#ValHalla" onClick={(e) => ScrollspyClick(e)}>
-                ValHalla
-              </a>
-            </li>
-            <li>
-              <a href="#Valkyrie" onClick={(e) => ScrollspyClick(e)}>
-                Valkyrie
-              </a>
-            </li>
+            {newCarsPageData.content[3].map(
+              (model: { title: string }, index: string) => {
+                return (
+                  <li key={index}>
+                    <a
+                      href={`#${model.title}`}
+                      onClick={(e) => ScrollspyClick(e)}
+                    >
+                      {model.title}
+                    </a>
+                  </li>
+                );
+              }
+            )}
           </ul>
         </div>
         <div className="scrollspy-content car-models-content">
@@ -313,18 +295,17 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">After-sales with Dealer X</h3>
+                  <h3 className="title am">
+                    {newCarsPageData.content[4][0].title}
+                  </h3>
                   <p className="description">
-                    Choosing to buy an Aston Martin with us means choosing the
-                    expertise of Aston Martin approved technicians. Our
-                    after-sales team offer everything from skilled servicing,
-                    extensive accident repairs or bespoke modifications.
+                    {newCarsPageData.content[4][0].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.NewCar}
                   >
-                    Explore after-sales
+                    {newCarsPageData.content[4][0].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -332,7 +313,13 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.DealerMartinImg}
+                  src={`http:${newCarsPageData.content[4][0].imageFile.url}`}
+                  width={
+                    newCarsPageData.content[4][0].imageFile.details.image.width
+                  }
+                  height={
+                    newCarsPageData.content[4][0].imageFile.details.image.height
+                  }
                   alt="DealerMartinImg"
                 />
               </div>
@@ -343,24 +330,29 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.CustomiseMartinImg}
+                  src={`http:${newCarsPageData.content[4][1].imageFile.url}`}
+                  width={
+                    newCarsPageData.content[4][1].imageFile.details.image.width
+                  }
+                  height={
+                    newCarsPageData.content[4][1].imageFile.details.image.height
+                  }
                   alt="CustomiseMartinImg"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">Customise an Aston Martin</h3>
+                  <h3 className="title am">
+                    {newCarsPageData.content[4][1].title}
+                  </h3>
                   <p className="description">
-                    Use the Aston Martin configurator to design the car of your
-                    dreams. From specific grille finishes to the colour of your
-                    hand stitched leather interior, take your new Aston Martin
-                    to new levels of luxury and customise a car like no other.
+                    {newCarsPageData.content[4][1].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.NewCar}
                   >
-                    Start configuration
+                    {newCarsPageData.content[4][1].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -377,28 +369,30 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3 className="title am">Buying with us</h3>
+                <h3 className="title am">
+                  {newCarsPageData.content[5][0].title}
+                </h3>
                 <p className="description">
-                  Having represented Aston Martin for over 65 years, we know
-                  that buying a new model is an experience to be enjoyed and
-                  savoured.
+                  {newCarsPageData.content[5][0].description1}
                 </p>
                 <p className="description">
-                  Our state-of-the-art dealerships stock the complete range of
-                  new Aston Martin models to view, test drive and buy.
+                  {newCarsPageData.content[5][0].description2}
                 </p>
                 <p className="description">
-                  Whether it&rsquo;s deciding between V8 or V12 or a coupé or
-                  convertible, our experts have exhaustive knowledge of each
-                  vehicle&rsquo;s capabilities and can advise on servicing,
-                  financing and bespoke personalisation too.
+                  {newCarsPageData.content[5][0].description3}
                 </p>
               </div>
             </div>
             <div className="col-lg-6 right-img-block">
               <Image
                 className="right-side-image"
-                src={images.BuyWithusImg}
+                src={`http:${newCarsPageData.content[5][0].imageFile.url}`}
+                width={
+                  newCarsPageData.content[5][0].imageFile.details.image.width
+                }
+                height={
+                  newCarsPageData.content[5][0].imageFile.details.image.height
+                }
                 alt="Aston Martin Dealer"
               />
             </div>
@@ -412,17 +406,23 @@ const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials />
+      <Testimonials customerReview={newCarsPageData.content[6]} />
       {/* Testimonial End */}
     </>
   );
 };
-
-export const getServerSideProps: GetServerSideProps = async () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getServerSideProps = async (context: any) => {
+  const currentRoute = context.resolvedUrl.slice(1);
   const res = await homePageService.getAllBranches();
+  const newCarsPageRes = await contentfulLandingPageService.getHomePageContent(
+    currentRoute
+  );
+  const newCarsPageData = newCarsPageRes.data.item;
   return {
     props: {
       dealers: res.item.dealers,
+      newCarsPageData,
     },
   };
 };
