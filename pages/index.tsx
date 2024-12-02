@@ -17,14 +17,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import News from "@/components/News";
+import contentfulLandingPageService from "@/services/contentful-landingPage-service";
+import { ContentfulHomePage } from "@/utils/interface/landing-page";
 import { IDealer } from "@/utils/interface/home";
-import { GetServerSideProps } from "next";
-
-interface IHomeProps {
+interface landingPageProps {
   dealers: IDealer[];
+  homePageData: ContentfulHomePage;
 }
 
-const Home: React.FC<IHomeProps> = ({ dealers }) => {
+const Home = (landingPageProps: landingPageProps) => {
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
@@ -60,57 +61,33 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
         navigation
         className="hero-banner-slider default-slider"
       >
-        <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">
-            Power. Driven.
-          </p>
-          <h1 className="title" data-swiper-parallax="-400">
-            Aston Martin DBX707
-          </h1>
-          <p className="description" data-swiper-parallax="-500">
-            The most powerful luxury SUV
-          </p>
-          <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
-              Explore
-            </Button>
-          </div>
-          <Image className="banner-img" src={images.Hero1} alt="Hero1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">
-            Power. Driven.
-          </p>
-          <h1 className="title" data-swiper-parallax="-400">
-            Aston Martin DBX707
-          </h1>
-          <p className="description" data-swiper-parallax="-500">
-            The most powerful luxury SUV
-          </p>
-          <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
-              Explore
-            </Button>
-          </div>
-          <Image className="banner-img" src={images.Hero1} alt="Hero1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">
-            Power. Driven.
-          </p>
-          <h1 className="title" data-swiper-parallax="-400">
-            Aston Martin DBX707
-          </h1>
-          <p className="description" data-swiper-parallax="-500">
-            The most powerful luxury SUV
-          </p>
-          <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
-              Explore
-            </Button>
-          </div>
-          <Image className="banner-img" src={images.Hero1} alt="Hero1" />
-        </SwiperSlide>
+        {landingPageProps.homePageData.content[0].map(
+          (slideData: any, index: any) => (
+            <SwiperSlide key={index}>
+              <p className="label" data-swiper-parallax="-300">
+                {slideData.tag}
+              </p>
+              <h1 className="title" data-swiper-parallax="-400">
+                {slideData.title}
+              </h1>
+              <p className="description" data-swiper-parallax="-500">
+                {slideData.description}
+              </p>
+              <div className="w-sm-auto w-100" data-swiper-parallax="-600">
+                <Button className="size-lg w-sm-auto w-100" variant="light">
+                  Explore
+                </Button>
+              </div>
+              <Image
+                className="banner-img"
+                src={`http:${slideData.imageFile.url}`}
+                width={slideData.imageFile.details.image.width}
+                height={slideData.imageFile.details.image.height}
+                alt={`Hero${index}`}
+              />
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
       {/* Hero Banner End */}
 
@@ -141,7 +118,12 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
                   </Form>
                 </div>
                 <div className="col-sm">
-                  <Select className="react-custom-select dark" classNamePrefix="select" options={options} isSearchable={false} />
+                  <Select
+                    className="react-custom-select dark"
+                    classNamePrefix="select"
+                    options={options}
+                    isSearchable={false}
+                  />
                 </div>
                 <div className="col-sm-auto">
                   <Button className="size-lg w-100" variant="light">
@@ -159,52 +141,25 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
       <div className="quick-redirects block-spacing-y-80 tablet-spacing-y-16">
         <Container fluid="xxl">
           <div className="row row-gap-3">
-            <div className="col-xxl-3 col-md-6">
-              <div className="quick-link-card">
-                <h4 className="am">New cars</h4>
-                <Image src={images.NewCar} alt="New Car" />
-                <Link className="quick-link" href={ROUTES.NewCar}>
-                  Discover the new Aston Martin range
-                  <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
-                </Link>
-              </div>
-            </div>
-            <div className="col-xxl-3 col-md-6">
-              <div className="quick-link-card">
-                <h4 className="am">Pre-owned Aston Martin</h4>
-                <Image
-                  src={images.PreOwnedAstonMartin}
-                  alt="Pre-owned Aston Martin"
-                />
-                <Link className="quick-link" href={ROUTES.PreOwned}>
-                  Browse pre-owned Aston Martin cars
-                  <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
-                </Link>
-              </div>
-            </div>
-            <div className="col-xxl-3 col-md-6">
-              <div className="quick-link-card">
-                <h4 className="am">Book a service</h4>
-                <Image src={images.BookService} alt="Book a service" />
-                <Link className="quick-link" href={ROUTES.BookService}>
-                  Book your next service online
-                  <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
-                </Link>
-              </div>
-            </div>
-            <div className="col-xxl-3 col-md-6">
-              <div className="quick-link-card">
-                <h4 className="am">Value my Aston Martin</h4>
-                <Image
-                  src={images.ValueMyAstonMartin}
-                  alt="Value my Aston Martin"
-                />
-                <Link className="quick-link" href={ROUTES.ValueMyAstonMartin}>
-                  Arrange a valuation with us
-                  <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
-                </Link>
-              </div>
-            </div>
+            {landingPageProps.homePageData.content[1].map(
+              (navigation: any, index: any) => (
+                <div key={index} className="col-xxl-3 col-md-6">
+                  <div className="quick-link-card">
+                    <h4 className="am">{navigation.title}</h4>
+                    <Image
+                      src={`http:${navigation.imageFile.url}`}
+                      width={navigation.imageFile.details.image.width}
+                      height={navigation.imageFile.details.image.height}
+                      alt="New Car"
+                    />
+                    <Link className="quick-link" href={ROUTES.DesignerNewCar}>
+                      {navigation.navigationLink}
+                      <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
+                    </Link>
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </Container>
       </div>
@@ -217,23 +172,28 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
             <div className="col-xl-6 ps-xxxl-0">
               <Image
                 className="left-side-image"
-                src={images.AstonMartinDealer}
+                src={`http:${landingPageProps.homePageData.content[2][0].imageFile.url}`}
+                width={
+                  landingPageProps.homePageData.content[2][0].imageFile.details
+                    .image.width
+                }
+                height={
+                  landingPageProps.homePageData.content[2][0].imageFile.details
+                    .image.height
+                }
                 alt="Aston Martin Dealer"
               />
             </div>
             <div className="col-xl-6">
               <div className="info">
-                <h3 className="title am">Welcome to Dealer X Aston Martin</h3>
+                <h3 className="title am">
+                  {landingPageProps.homePageData.content[2][0].title}
+                </h3>
                 <p className="description">
-                  As one of the UK&rsquo;s leading luxury car dealerships, we
-                  take pride in our outstanding levels of customer service and
-                  unrivalled automotive expertise.
+                  {landingPageProps.homePageData.content[2][0].description1}
                 </p>
                 <p className="description">
-                  We operate state-of-the art Aston Martin showrooms in both
-                  Reading and Cheltenham and offer a wide range of iconic Aston
-                  Martin models to buy both new and pre-owned as well as
-                  personalised aftersales and repair services.
+                  {landingPageProps.homePageData.content[2][0].description2}
                 </p>
               </div>
             </div>
@@ -247,18 +207,13 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
         <Container fluid="xxl">
           <h2 className="mb-32p am">Why Dealer X?</h2>
           <div className="row info-points-wrapper">
-            <div className="col-xxl-3 col-md-6 info-points">
-              <h4>65 years of proud motoring heritage</h4>
-            </div>
-            <div className="col-xxl-3 col-md-6 info-points">
-              <h4>94% on all customer reviews collected by Reputation</h4>
-            </div>
-            <div className="col-xxl-3 col-md-6 info-points">
-              <h4>Fully certified technicians and engineers</h4>
-            </div>
-            <div className="col-xxl-3 col-md-6 info-points">
-              <h4>First class personalised customer care</h4>
-            </div>
+            {landingPageProps.homePageData.content[3].map(
+              (benefit: any, index: any) => (
+                <div key={index} className="col-xxl-3 col-md-6 info-points">
+                  <h4>{benefit.title}</h4>
+                </div>
+              )
+            )}
           </div>
         </Container>
       </div>
@@ -277,126 +232,72 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
           loop
           className="product-explore-slider"
         >
-          <SwiperSlide>
-            <Image
-              className="model-crop"
-              src={images.DBX707Green}
-              alt="model"
-            />
-            <div className="slider-handler">
-              <div className="header">
-                <Button
-                  className="btn-icon swiper-button-prev"
-                  variant="text"
-                  onClick={handleExplorePrev}
-                >
-                  <Image
-                    src={images.ArrowNarrowLeftLongTailWhite}
-                    alt="Previous"
-                  />
-                </Button>
-                <div className="header-info">
-                  <p className="label" data-swiper-parallax="-200">
-                    POWER. DRIVEN.
+          {landingPageProps.homePageData.content[4].map(
+            (range: any, index: any) => (
+              <SwiperSlide key={index}>
+                <Image
+                  className="model-crop"
+                  src={`http:${range.imageFile.url}`}
+                  width={range.imageFile.details.image.width}
+                  height={range.imageFile.details.image.height}
+                  alt="model"
+                />
+                <div className="slider-handler">
+                  <div className="header">
+                    <Button
+                      className="btn-icon swiper-button-prev"
+                      variant="text"
+                      onClick={handleExplorePrev}
+                    >
+                      <Image
+                        src={images.ArrowNarrowLeftLongTailWhite}
+                        alt="Previous"
+                      />
+                    </Button>
+                    <div className="header-info">
+                      <p className="label" data-swiper-parallax="-200">
+                        {range.tag}
+                      </p>
+                      <h1 className="title" data-swiper-parallax="-300">
+                        {range.title}
+                      </h1>
+                    </div>
+                    <Button
+                      className="btn-icon swiper-button-next"
+                      variant="text"
+                      onClick={handleExploreNext}
+                    >
+                      <Image
+                        src={images.ArrowNarrowRightLongTailWhite}
+                        alt="Next"
+                      />
+                    </Button>
+                  </div>
+                  <p className="description" data-swiper-parallax="-400">
+                    {range.description}
                   </p>
-                  <h1 className="title" data-swiper-parallax="-300">
-                    DBX707
-                  </h1>
+                  <div className="action" data-swiper-parallax="-500">
+                    <Button className="size-lg" variant="light">
+                      New
+                    </Button>
+                    <Button className="size-lg" variant="primary">
+                      Pre-owned
+                    </Button>
+                  </div>
                 </div>
-                <Button
-                  className="btn-icon swiper-button-next"
-                  variant="text"
-                  onClick={handleExploreNext}
-                >
-                  <Image
-                    src={images.ArrowNarrowRightLongTailWhite}
-                    alt="Next"
-                  />
-                </Button>
-              </div>
-              <p className="description" data-swiper-parallax="-400">
-                The most powerful luxury SUV
-              </p>
-              <div className="action" data-swiper-parallax="-500">
-                <Button className="size-lg" variant="light">
-                  New
-                </Button>
-                <Button className="size-lg" variant="primary">
-                  Pre-owned
-                </Button>
-              </div>
-            </div>
-            <Image
-              className="banner-img"
-              src={images.ExploreProductDBX707GreenBG}
-              alt="Hero1"
-            />
-            <Image
-              className="banner-img"
-              src={images.ExploreBGPettern}
-              alt="Hero1"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              className="model-crop"
-              src={images.DBX707Green}
-              alt="model"
-            />
-            <div className="slider-handler">
-              <div className="header">
-                <Button
-                  className="btn-icon swiper-button-prev"
-                  variant="text"
-                  onClick={handleExplorePrev}
-                >
-                  <Image
-                    src={images.ArrowNarrowLeftLongTailWhite}
-                    alt="Previous"
-                  />
-                </Button>
-                <div className="header-info">
-                  <p className="label" data-swiper-parallax="-200">
-                    POWER. DRIVEN.
-                  </p>
-                  <h1 className="title" data-swiper-parallax="-300">
-                    DBX707
-                  </h1>
-                </div>
-                <Button
-                  className="btn-icon swiper-button-next"
-                  variant="text"
-                  onClick={handleExploreNext}
-                >
-                  <Image
-                    src={images.ArrowNarrowRightLongTailWhite}
-                    alt="Next"
-                  />
-                </Button>
-              </div>
-              <p className="description" data-swiper-parallax="-400">
-                The most powerful luxury SUV
-              </p>
-              <div className="action" data-swiper-parallax="-500">
-                <Button className="size-lg" variant="light">
-                  New
-                </Button>
-                <Button className="size-lg" variant="primary">
-                  Pre-owned
-                </Button>
-              </div>
-            </div>
-            <Image
-              className="banner-img"
-              src={images.ExploreProductDBX707GreenBG}
-              alt="Hero1"
-            />
-            <Image
-              className="banner-img"
-              src={images.ExploreBGPettern}
-              alt="Hero1"
-            />
-          </SwiperSlide>
+                <Image
+                  className="banner-img"
+                  src={images.ExploreProductDBX707GreenBG}
+                  alt="Hero1"
+                />
+                <Image
+                  className="banner-img"
+                  src={images.ExploreBGPettern}
+                  alt="Hero1"
+                />
+              </SwiperSlide>
+            )
+          )}
         </Swiper>
       </div>
       {/* Product Explore Slider Start */}
@@ -408,16 +309,17 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">New Aston Martin models</h3>
+                  <h3 className="title am">
+                    {landingPageProps.homePageData.content[5][0].title}
+                  </h3>
                   <p className="description">
-                    Our stunning state-of-the-art dealership stocks a complete
-                    range of Aston Martin models to view, test drive and buy.
+                    {landingPageProps.homePageData.content[5][0].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.NewCar}
+                    href={ROUTES.DesignerNewCar}
                   >
-                    Discover the new Aston Martin range
+                    {landingPageProps.homePageData.content[5][0].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -425,7 +327,15 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.NewMartinModel}
+                  src={`http:${landingPageProps.homePageData.content[5][0].imageFile.url}`}
+                  width={
+                    landingPageProps.homePageData.content[5][0].imageFile
+                      .details.image.width
+                  }
+                  height={
+                    landingPageProps.homePageData.content[5][0].imageFile
+                      .details.image.height
+                  }
                   alt="New Model"
                 />
               </div>
@@ -436,22 +346,31 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.TimelessMartinCars}
+                  src={`http:${landingPageProps.homePageData.content[5][1].imageFile.url}`}
+                  width={
+                    landingPageProps.homePageData.content[5][1].imageFile
+                      .details.image.width
+                  }
+                  height={
+                    landingPageProps.homePageData.content[5][1].imageFile
+                      .details.image.height
+                  }
                   alt="Timeless Martin"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">Timeless Aston Martin cars</h3>
+                  <h3 className="title am">
+                    {landingPageProps.homePageData.content[5][1].title}
+                  </h3>
                   <p className="description">
-                    Find a timeless certified pre-owned Aston Martin which meets
-                    your needs and budget with our team of experts.
+                    {landingPageProps.homePageData.content[5][1].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.NewCar}
+                    href={ROUTES.DesignerNewCar}
                   >
-                    Browse Timeless
+                    {landingPageProps.homePageData.content[5][1].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -462,17 +381,17 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">Parts & accessories</h3>
+                  <h3 className="title am">
+                    {landingPageProps.homePageData.content[5][2].title}
+                  </h3>
                   <p className="description">
-                    We are an authorised dealer of Aston Martin parts and have
-                    an abundant supply of components and accessories ready to be
-                    fitted by accredited technicians.
+                    {landingPageProps.homePageData.content[5][2].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.NewCar}
+                    href={ROUTES.DesignerNewCar}
                   >
-                    Explore
+                    {landingPageProps.homePageData.content[5][2].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -480,7 +399,15 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.PartsAccessories}
+                  src={`http:${landingPageProps.homePageData.content[5][2].imageFile.url}`}
+                  width={
+                    landingPageProps.homePageData.content[5][2].imageFile
+                      .details.image.width
+                  }
+                  height={
+                    landingPageProps.homePageData.content[5][2].imageFile
+                      .details.image.height
+                  }
                   alt="Parts and Accessories"
                 />
               </div>
@@ -491,23 +418,31 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.ValueMyMartin}
+                  src={`http:${landingPageProps.homePageData.content[5][3].imageFile.url}`}
+                  width={
+                    landingPageProps.homePageData.content[5][3].imageFile
+                      .details.image.width
+                  }
+                  height={
+                    landingPageProps.homePageData.content[5][3].imageFile
+                      .details.image.height
+                  }
                   alt="Aston Martin Dealer"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">Value my Aston Martin</h3>
+                  <h3 className="title am">
+                    {landingPageProps.homePageData.content[5][3].title}
+                  </h3>
                   <p className="description">
-                    If you&rsquo;re looking for an instant valuation or to part
-                    exchange, find out how we can help sell your vehicle and get
-                    the very best value possible.
+                    {landingPageProps.homePageData.content[5][3].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.NewCar}
+                    href={ROUTES.DesignerNewCar}
                   >
-                    Let it go and start over
+                    {landingPageProps.homePageData.content[5][3].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -519,27 +454,40 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
       {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation dealers={dealers} />
+      <AvailableLocation dealers={landingPageProps.dealers} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials />
+      <Testimonials customerReview={landingPageProps.homePageData.content[6]} />
       {/* Testimonial End */}
 
       {/* News Start */}
-      <News />
+      <News latestNews={landingPageProps.homePageData.content[7]} />
       {/* News End */}
     </>
   );
 };
+export const getServerSideProps = async (context: any) => {
+  const slug = context.resolvedUrl;
+  const route = slug === "/" ? "home" : slug.slice(1);
+  try {
+    const res = await homePageService.getAllBranches();
+    const homePageDataRes =
+      await contentfulLandingPageService.getHomePageContent(route);
+    const homePageData = homePageDataRes.data.item;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await homePageService.getAllBranches();
-  return {
-    props: {
-      dealers: res.item.dealers,
-    },
-  };
+    console.log(homePageDataRes.data.item);
+    return {
+      props: { homePageData, dealers: res.item.dealers },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        homePageData: [],
+      },
+    };
+  }
 };
 
 export default Home;
