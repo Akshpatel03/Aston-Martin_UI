@@ -411,7 +411,7 @@ const NewCar: React.FC<NewCarProps> = ({ dealers, newCarsPageData }) => {
     </>
   );
 };
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getServerSideProps = async (context: any) => {
   const currentRoute = context.resolvedUrl.slice(1);
   const res = await homePageService.getAllBranches();

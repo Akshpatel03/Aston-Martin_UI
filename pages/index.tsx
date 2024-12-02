@@ -62,6 +62,7 @@ const Home = (landingPageProps: landingPageProps) => {
         className="hero-banner-slider default-slider"
       >
         {landingPageProps.homePageData.content[0].map(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (slideData: any, index: any) => (
             <SwiperSlide key={index}>
               <p className="label" data-swiper-parallax="-300">
@@ -142,6 +143,7 @@ const Home = (landingPageProps: landingPageProps) => {
         <Container fluid="xxl">
           <div className="row row-gap-3">
             {landingPageProps.homePageData.content[1].map(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (navigation: any, index: any) => (
                 <div key={index} className="col-xxl-3 col-md-6">
                   <div className="quick-link-card">
@@ -208,6 +210,7 @@ const Home = (landingPageProps: landingPageProps) => {
           <h2 className="mb-32p am">Why Dealer X?</h2>
           <div className="row info-points-wrapper">
             {landingPageProps.homePageData.content[3].map(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (benefit: any, index: any) => (
                 <div key={index} className="col-xxl-3 col-md-6 info-points">
                   <h4>{benefit.title}</h4>
@@ -233,6 +236,7 @@ const Home = (landingPageProps: landingPageProps) => {
           className="product-explore-slider"
         >
           {landingPageProps.homePageData.content[4].map(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (range: any, index: any) => (
               <SwiperSlide key={index}>
                 <Image
@@ -467,6 +471,7 @@ const Home = (landingPageProps: landingPageProps) => {
     </>
   );
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getServerSideProps = async (context: any) => {
   const slug = context.resolvedUrl;
   const route = slug === "/" ? "home" : slug.slice(1);
