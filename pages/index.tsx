@@ -10,15 +10,21 @@ import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 import AvailableLocation from "@/components/AvailableLocation";
 import Testimonials from "@/components/Testimonials";
+import homePageService from "@/services/home-page-service";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import News from "@/components/News";
+import { IDealer } from "@/utils/interface/home";
+import { GetServerSideProps } from "next";
 
+interface IHomeProps {
+  dealers: IDealer[];
+}
 
-const Home = () => {
+const Home: React.FC<IHomeProps> = ({ dealers }) => {
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
@@ -47,7 +53,7 @@ const Home = () => {
         speed={1200}
         parallax
         loop
-        effect={'fade'}
+        effect={"fade"}
         pagination={{
           clickable: true,
         }}
@@ -55,33 +61,51 @@ const Home = () => {
         className="hero-banner-slider default-slider"
       >
         <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
-          <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
-          <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
+          <p className="label" data-swiper-parallax="-300">
+            Power. Driven.
+          </p>
+          <h1 className="title" data-swiper-parallax="-400">
+            Aston Martin DBX707
+          </h1>
+          <p className="description" data-swiper-parallax="-500">
+            The most powerful luxury SUV
+          </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light" >
+            <Button className="size-lg w-sm-auto w-100" variant="light">
               Explore
             </Button>
           </div>
           <Image className="banner-img" src={images.Hero1} alt="Hero1" />
         </SwiperSlide>
         <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
-          <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
-          <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
+          <p className="label" data-swiper-parallax="-300">
+            Power. Driven.
+          </p>
+          <h1 className="title" data-swiper-parallax="-400">
+            Aston Martin DBX707
+          </h1>
+          <p className="description" data-swiper-parallax="-500">
+            The most powerful luxury SUV
+          </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light" >
+            <Button className="size-lg w-sm-auto w-100" variant="light">
               Explore
             </Button>
           </div>
           <Image className="banner-img" src={images.Hero1} alt="Hero1" />
         </SwiperSlide>
         <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">Power. Driven.</p>
-          <h1 className="title" data-swiper-parallax="-400">Aston Martin DBX707</h1>
-          <p className="description" data-swiper-parallax="-500">The most powerful luxury SUV</p>
+          <p className="label" data-swiper-parallax="-300">
+            Power. Driven.
+          </p>
+          <h1 className="title" data-swiper-parallax="-400">
+            Aston Martin DBX707
+          </h1>
+          <p className="description" data-swiper-parallax="-500">
+            The most powerful luxury SUV
+          </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light" >
+            <Button className="size-lg w-sm-auto w-100" variant="light">
               Explore
             </Button>
           </div>
@@ -139,7 +163,7 @@ const Home = () => {
               <div className="quick-link-card">
                 <h4 className="am">New cars</h4>
                 <Image src={images.NewCar} alt="New Car" />
-                <Link className="quick-link" href={ROUTES.DesignerNewCar}>
+                <Link className="quick-link" href={ROUTES.NewCar}>
                   Discover the new Aston Martin range
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -148,8 +172,11 @@ const Home = () => {
             <div className="col-xxl-3 col-md-6">
               <div className="quick-link-card">
                 <h4 className="am">Pre-owned Aston Martin</h4>
-                <Image src={images.PreOwnedAstonMartin} alt="Pre-owned Aston Martin" />
-                <Link className="quick-link" href={ROUTES.DesignerPreOwned}>
+                <Image
+                  src={images.PreOwnedAstonMartin}
+                  alt="Pre-owned Aston Martin"
+                />
+                <Link className="quick-link" href={ROUTES.PreOwned}>
                   Browse pre-owned Aston Martin cars
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -159,7 +186,7 @@ const Home = () => {
               <div className="quick-link-card">
                 <h4 className="am">Book a service</h4>
                 <Image src={images.BookService} alt="Book a service" />
-                <Link className="quick-link" href={ROUTES.DesignerBookService}>
+                <Link className="quick-link" href={ROUTES.BookService}>
                   Book your next service online
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -168,8 +195,11 @@ const Home = () => {
             <div className="col-xxl-3 col-md-6">
               <div className="quick-link-card">
                 <h4 className="am">Value my Aston Martin</h4>
-                <Image src={images.ValueMyAstonMartin} alt="Value my Aston Martin" />
-                <Link className="quick-link" href={ROUTES.DesignerValueMyAstonMartin}>
+                <Image
+                  src={images.ValueMyAstonMartin}
+                  alt="Value my Aston Martin"
+                />
+                <Link className="quick-link" href={ROUTES.ValueMyAstonMartin}>
                   Arrange a valuation with us
                   <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                 </Link>
@@ -177,7 +207,7 @@ const Home = () => {
             </div>
           </div>
         </Container>
-      </div >
+      </div>
       {/* Quick Redirects End */}
 
       {/* Info Section Start */}
@@ -185,18 +215,31 @@ const Home = () => {
         <Container fluid="xxl">
           <div className="row align-items-center">
             <div className="col-xl-6 ps-xxxl-0">
-              <Image className="left-side-image" src={images.AstonMartinDealer} alt="Aston Martin Dealer" />
+              <Image
+                className="left-side-image"
+                src={images.AstonMartinDealer}
+                alt="Aston Martin Dealer"
+              />
             </div>
             <div className="col-xl-6">
               <div className="info">
                 <h3 className="title am">Welcome to Dealer X Aston Martin</h3>
-                <p className="description">As one of the UK&rsquo;s leading luxury car dealerships, we take pride in our outstanding levels of customer service and unrivalled automotive expertise.</p>
-                <p className="description">We operate state-of-the art Aston Martin showrooms in both Reading and Cheltenham and offer a wide range of iconic Aston Martin models to buy both new and pre-owned as well as personalised aftersales and repair services.</p>
+                <p className="description">
+                  As one of the UK&rsquo;s leading luxury car dealerships, we
+                  take pride in our outstanding levels of customer service and
+                  unrivalled automotive expertise.
+                </p>
+                <p className="description">
+                  We operate state-of-the art Aston Martin showrooms in both
+                  Reading and Cheltenham and offer a wide range of iconic Aston
+                  Martin models to buy both new and pre-owned as well as
+                  personalised aftersales and repair services.
+                </p>
               </div>
             </div>
           </div>
         </Container>
-      </div >
+      </div>
       {/* Info Section End */}
 
       {/* Info Points Start */}
@@ -218,7 +261,7 @@ const Home = () => {
             </div>
           </div>
         </Container>
-      </div >
+      </div>
       {/* Info Points End */}
 
       {/* Product Explore Slider Start */}
@@ -235,60 +278,124 @@ const Home = () => {
           className="product-explore-slider"
         >
           <SwiperSlide>
-            <Image className="model-crop" src={images.DBX707Green} alt="model" />
+            <Image
+              className="model-crop"
+              src={images.DBX707Green}
+              alt="model"
+            />
             <div className="slider-handler">
               <div className="header">
-                <Button className="btn-icon swiper-button-prev" variant="text" onClick={handleExplorePrev}>
-                  <Image src={images.ArrowNarrowLeftLongTailWhite} alt="Previous" />
+                <Button
+                  className="btn-icon swiper-button-prev"
+                  variant="text"
+                  onClick={handleExplorePrev}
+                >
+                  <Image
+                    src={images.ArrowNarrowLeftLongTailWhite}
+                    alt="Previous"
+                  />
                 </Button>
                 <div className="header-info">
-                  <p className="label" data-swiper-parallax="-200">POWER. DRIVEN.</p>
-                  <h1 className="title" data-swiper-parallax="-300">DBX707</h1>
+                  <p className="label" data-swiper-parallax="-200">
+                    POWER. DRIVEN.
+                  </p>
+                  <h1 className="title" data-swiper-parallax="-300">
+                    DBX707
+                  </h1>
                 </div>
-                <Button className="btn-icon swiper-button-next" variant="text" onClick={handleExploreNext}>
-                  <Image src={images.ArrowNarrowRightLongTailWhite} alt="Next" />
+                <Button
+                  className="btn-icon swiper-button-next"
+                  variant="text"
+                  onClick={handleExploreNext}
+                >
+                  <Image
+                    src={images.ArrowNarrowRightLongTailWhite}
+                    alt="Next"
+                  />
                 </Button>
               </div>
-              <p className="description" data-swiper-parallax="-400">The most powerful luxury SUV</p>
+              <p className="description" data-swiper-parallax="-400">
+                The most powerful luxury SUV
+              </p>
               <div className="action" data-swiper-parallax="-500">
                 <Button className="size-lg" variant="light">
                   New
                 </Button>
-                <Button className="size-lg" variant="primary" >
+                <Button className="size-lg" variant="primary">
                   Pre-owned
                 </Button>
               </div>
             </div>
-            <Image className="banner-img" src={images.ExploreProductDBX707GreenBG} alt="Hero1" />
-            <Image className="banner-img" src={images.ExploreBGPettern} alt="Hero1" />
+            <Image
+              className="banner-img"
+              src={images.ExploreProductDBX707GreenBG}
+              alt="Hero1"
+            />
+            <Image
+              className="banner-img"
+              src={images.ExploreBGPettern}
+              alt="Hero1"
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <Image className="model-crop" src={images.DBX707Green} alt="model" />
+            <Image
+              className="model-crop"
+              src={images.DBX707Green}
+              alt="model"
+            />
             <div className="slider-handler">
               <div className="header">
-                <Button className="btn-icon swiper-button-prev" variant="text" onClick={handleExplorePrev}>
-                  <Image src={images.ArrowNarrowLeftLongTailWhite} alt="Previous" />
+                <Button
+                  className="btn-icon swiper-button-prev"
+                  variant="text"
+                  onClick={handleExplorePrev}
+                >
+                  <Image
+                    src={images.ArrowNarrowLeftLongTailWhite}
+                    alt="Previous"
+                  />
                 </Button>
                 <div className="header-info">
-                  <p className="label" data-swiper-parallax="-200">POWER. DRIVEN.</p>
-                  <h1 className="title" data-swiper-parallax="-300">DBX707</h1>
+                  <p className="label" data-swiper-parallax="-200">
+                    POWER. DRIVEN.
+                  </p>
+                  <h1 className="title" data-swiper-parallax="-300">
+                    DBX707
+                  </h1>
                 </div>
-                <Button className="btn-icon swiper-button-next" variant="text" onClick={handleExploreNext}>
-                  <Image src={images.ArrowNarrowRightLongTailWhite} alt="Next" />
+                <Button
+                  className="btn-icon swiper-button-next"
+                  variant="text"
+                  onClick={handleExploreNext}
+                >
+                  <Image
+                    src={images.ArrowNarrowRightLongTailWhite}
+                    alt="Next"
+                  />
                 </Button>
               </div>
-              <p className="description" data-swiper-parallax="-400">The most powerful luxury SUV</p>
+              <p className="description" data-swiper-parallax="-400">
+                The most powerful luxury SUV
+              </p>
               <div className="action" data-swiper-parallax="-500">
-                <Button className="size-lg" variant="light" >
+                <Button className="size-lg" variant="light">
                   New
                 </Button>
-                <Button className="size-lg" variant="primary" >
+                <Button className="size-lg" variant="primary">
                   Pre-owned
                 </Button>
               </div>
             </div>
-            <Image className="banner-img" src={images.ExploreProductDBX707GreenBG} alt="Hero1" />
-            <Image className="banner-img" src={images.ExploreBGPettern} alt="Hero1" />
+            <Image
+              className="banner-img"
+              src={images.ExploreProductDBX707GreenBG}
+              alt="Hero1"
+            />
+            <Image
+              className="banner-img"
+              src={images.ExploreBGPettern}
+              alt="Hero1"
+            />
           </SwiperSlide>
         </Swiper>
       </div>
@@ -302,75 +409,117 @@ const Home = () => {
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">New Aston Martin models</h3>
-                  <p className="description">Our stunning state-of-the-art dealership stocks a complete range of Aston Martin models to view, test drive and buy.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
+                  <p className="description">
+                    Our stunning state-of-the-art dealership stocks a complete
+                    range of Aston Martin models to view, test drive and buy.
+                  </p>
+                  <Link
+                    className="quick-link color-primary"
+                    href={ROUTES.NewCar}
+                  >
                     Discover the new Aston Martin range
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
               </div>
               <div className="col-lg-7 col-md-6">
-                <Image className="banner" src={images.NewMartinModel} alt="New Model" />
+                <Image
+                  className="banner"
+                  src={images.NewMartinModel}
+                  alt="New Model"
+                />
               </div>
             </div>
-          </div >
+          </div>
           <div className="info-block">
             <div className="row align-items-center">
               <div className="col-lg-7 col-md-6">
-                <Image className="banner" src={images.TimelessMartinCars} alt="Timeless Martin" />
+                <Image
+                  className="banner"
+                  src={images.TimelessMartinCars}
+                  alt="Timeless Martin"
+                />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">Timeless Aston Martin cars</h3>
-                  <p className="description">Find a timeless certified pre-owned Aston Martin which meets your needs and budget with our team of experts.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
+                  <p className="description">
+                    Find a timeless certified pre-owned Aston Martin which meets
+                    your needs and budget with our team of experts.
+                  </p>
+                  <Link
+                    className="quick-link color-primary"
+                    href={ROUTES.NewCar}
+                  >
                     Browse Timeless
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
               </div>
             </div>
-          </div >
+          </div>
           <div className="info-block">
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">Parts & accessories</h3>
-                  <p className="description">We are an authorised dealer of Aston Martin parts and have an abundant supply of components and accessories ready to be fitted by accredited technicians.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
+                  <p className="description">
+                    We are an authorised dealer of Aston Martin parts and have
+                    an abundant supply of components and accessories ready to be
+                    fitted by accredited technicians.
+                  </p>
+                  <Link
+                    className="quick-link color-primary"
+                    href={ROUTES.NewCar}
+                  >
                     Explore
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
               </div>
               <div className="col-lg-7 col-md-6">
-                <Image className="banner" src={images.PartsAccessories} alt="Parts and Accessories" />
+                <Image
+                  className="banner"
+                  src={images.PartsAccessories}
+                  alt="Parts and Accessories"
+                />
               </div>
             </div>
-          </div >
+          </div>
           <div className="info-block">
             <div className="row align-items-center">
               <div className="col-lg-7 col-md-6">
-                <Image className="banner" src={images.ValueMyMartin} alt="Aston Martin Dealer" />
+                <Image
+                  className="banner"
+                  src={images.ValueMyMartin}
+                  alt="Aston Martin Dealer"
+                />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
                   <h3 className="title am">Value my Aston Martin</h3>
-                  <p className="description">If you&rsquo;re looking for an instant valuation or to part exchange, find out how we can help sell your vehicle and get the very best value possible.</p>
-                  <Link className="quick-link color-primary" href={ROUTES.DesignerNewCar}>
+                  <p className="description">
+                    If you&rsquo;re looking for an instant valuation or to part
+                    exchange, find out how we can help sell your vehicle and get
+                    the very best value possible.
+                  </p>
+                  <Link
+                    className="quick-link color-primary"
+                    href={ROUTES.NewCar}
+                  >
                     Let it go and start over
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
               </div>
             </div>
-          </div >
+          </div>
         </Container>
       </div>
       {/* Info Blocks End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={dealers} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
@@ -383,4 +532,14 @@ const Home = () => {
     </>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await homePageService.getAllBranches();
+  return {
+    props: {
+      dealers: res.item.dealers,
+    },
+  };
+};
+
 export default Home;

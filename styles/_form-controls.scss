@@ -220,7 +220,8 @@
     padding: 15px 16px;
     box-shadow: none !important;
 
-    &:focus {
+    &:focus,
+    &:hover {
         --bs-body-bg: #EEF0F080;
         color: $Neutral100;
         border-color: $Primary50;
@@ -629,7 +630,7 @@ textarea.form-control {
             svg {
                 height: 24px;
                 width: 24px;
-                background: url("../public/images/icons/ic-chevron-down-grey.svg") no-repeat center;
+                background: url("../public/images/icons/ic-chevron-down-dark.svg") no-repeat center;
                 background-size: 24px;
 
                 path {
@@ -1010,14 +1011,19 @@ textarea.form-control {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            color: $Neutral70;
+            position: relative;
+            @extend .am-sans-medium;
 
             &:not(:last-child) {
                 padding-right: 56px;
-                font-size: 16px;
-                font-weight: 500;
-                line-height: 24px;
-                color: $Neutral70;
-                position: relative;
+
+                @include bp(md-max) {
+                    padding-right: 20px;
+                }
 
                 &::before {
                     content: '';
@@ -1027,6 +1033,10 @@ textarea.form-control {
                     position: absolute;
                     top: calc(50% - 0.5px);
                     right: 0;
+
+                    @include bp(md-max) {
+                        width: 12px;
+                    }
                 }
             }
 
@@ -1126,6 +1136,7 @@ textarea.form-control {
                 @extend .am-bold;
                 font-weight: 700;
                 text-transform: uppercase;
+                transition: all 250ms ease-in-out;
                 white-space: nowrap;
                 z-index: -1;
             }
@@ -1186,6 +1197,10 @@ textarea.form-control {
         border: 0;
         max-width: 565px;
         margin: 0 auto;
+
+        @include bp(xl-max) {
+            max-width: 100%;
+        }
 
         .react-datepicker__month-container {
             width: 100%;
@@ -1264,6 +1279,15 @@ textarea.form-control {
                     width: 67px;
                 }
 
+                @include bp(xl-max) {
+                    width: 72px;
+                }
+
+                @include bp(md-max) {
+                    width: 40.25px;
+                    margin: 4px;
+                }
+
                 &.react-datepicker__day:not(.react-datepicker__day--outside-month):not(.react-datepicker__day--weekend):hover {
                     background: $Primary50;
                     color: $White;
@@ -1304,6 +1328,10 @@ textarea.form-control {
                 vertical-align: middle;
                 height: 22px;
                 margin: 0 5px;
+
+                @include bp(md-max) {
+                    margin: 0 4px;
+                }
 
                 &::after {
                     font-size: 16px;

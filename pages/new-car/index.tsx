@@ -17,8 +17,11 @@ import CarModelSlider from "@/components/CarModelSlider";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
-import Herobanner from '@/public/images/new-car/hero-img.jpg';
+import Herobanner from "@/public/images/new-car/hero-img.jpg";
 import { Container } from "react-bootstrap";
+import homePageService from "@/services/home-page-service";
+import { GetServerSideProps } from "next";
+import { IDealer } from "@/utils/interface/home";
 
 const DBXCarModel = {
   modelname: "DBX",
@@ -129,7 +132,11 @@ const ValkyrieCarModel = {
   ],
 };
 
-const NewCar = () => {
+interface NewCarProps {
+  dealers: IDealer[];
+}
+
+const NewCar: React.FC<NewCarProps> = ({ dealers }) => {
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
@@ -176,7 +183,6 @@ const NewCar = () => {
         winScrollTop >= sectionOffset &&
         winScrollTop < sectionOffset + sectionHeight
       ) {
-        console.log(sectionId);
         setTimeout(function () {
           document
             .querySelectorAll(".car-models-links .scrollspy > li > a")
@@ -197,7 +203,8 @@ const NewCar = () => {
   return (
     <>
       {/* Hero Banner Start */}
-      <div className="hero-banner"
+      <div
+        className="hero-banner"
         style={{ backgroundImage: `url(${Herobanner.src})` }}
       >
         {/* <Image
@@ -315,7 +322,7 @@ const NewCar = () => {
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.DesignerNewCar}
+                    href={ROUTES.NewCar}
                   >
                     Explore after-sales
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
@@ -351,7 +358,7 @@ const NewCar = () => {
                   </p>
                   <Link
                     className="quick-link color-primary"
-                    href={ROUTES.DesignerNewCar}
+                    href={ROUTES.NewCar}
                   >
                     Start configuration
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
@@ -383,11 +390,11 @@ const NewCar = () => {
                 <p className="description">
                   Whether it&rsquo;s deciding between V8 or V12 or a coupé or
                   convertible, our experts have exhaustive knowledge of each
-                  vehicle&rsquo;s capabilities and can advise on servicing, financing
-                  and bespoke personalisation too.
+                  vehicle&rsquo;s capabilities and can advise on servicing,
+                  financing and bespoke personalisation too.
                 </p>
               </div>
-            </div >
+            </div>
             <div className="col-lg-6 right-img-block">
               <Image
                 className="right-side-image"
@@ -395,13 +402,13 @@ const NewCar = () => {
                 alt="Aston Martin Dealer"
               />
             </div>
-          </div >
-        </div >
-      </div >
+          </div>
+        </div>
+      </div>
       {/* Info Section End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <AvailableLocation dealers={dealers} />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
@@ -410,4 +417,14 @@ const NewCar = () => {
     </>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await homePageService.getAllBranches();
+  return {
+    props: {
+      dealers: res.item.dealers,
+    },
+  };
+};
+
 export default NewCar;

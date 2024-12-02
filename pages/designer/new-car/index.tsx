@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import AvailableLocation from "@/components/AvailableLocation";
-import Testimonials from "@/components/Testimonials";
+import DesignerAvailableLocation from "@/components/designer/DesignerAvailableLocation";
+import DesignerTestimonials from "@/components/designer/DesignerTestimonials";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,7 +10,7 @@ import images from "@/public/images";
 import Image from "next/image";
 
 // Import Swiper styles
-import CarModelSlider from "@/components/CarModelSlider";
+import DesignerCarModelSlider from "@/components/designer/DesignerCarModelSlider";
 import Link from "next/link";
 import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
@@ -276,22 +276,22 @@ const DesignerNewCar = () => {
         </div>
         <div className="scrollspy-content car-models-content">
           <div className="s-content" id="DBX">
-            <CarModelSlider {...DBXCarModel} />
+            <DesignerCarModelSlider {...DBXCarModel} />
           </div>
           <div className="s-content" id="Vantage">
-            <CarModelSlider {...VantageCarModel} />
+            <DesignerCarModelSlider {...VantageCarModel} />
           </div>
           <div className="s-content" id="DB12">
-            <CarModelSlider {...DB12CarModel} />
+            <DesignerCarModelSlider {...DB12CarModel} />
           </div>
           <div className="s-content" id="DBS">
-            <CarModelSlider {...DBSCarModel} />
+            <DesignerCarModelSlider {...DBSCarModel} />
           </div>
           <div className="s-content" id="ValHalla">
-            <CarModelSlider {...ValhallaCarModel} />
+            <DesignerCarModelSlider {...ValhallaCarModel} />
           </div>
           <div className="s-content" id="Valkyrie">
-            <CarModelSlider {...ValkyrieCarModel} />
+            <DesignerCarModelSlider {...ValkyrieCarModel} />
           </div>
         </div>
       </div>
@@ -399,11 +399,11 @@ const DesignerNewCar = () => {
       {/* Info Section End */}
 
       {/* Aston Martin Address Start */}
-      <AvailableLocation />
+      <DesignerAvailableLocation />
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials />
+      <DesignerTestimonials />
       {/* Testimonial End */}
     </>
   );
