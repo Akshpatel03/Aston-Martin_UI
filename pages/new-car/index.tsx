@@ -132,11 +132,11 @@ const ValkyrieCarModel = {
   ],
 };
 
-interface NewCarProps {
+interface INewCarProps {
   dealers: IDealer[];
 }
 
-const NewCar: React.FC<NewCarProps> = ({ dealers }) => {
+const NewCar: React.FC<INewCarProps> = ({ dealers }) => {
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();

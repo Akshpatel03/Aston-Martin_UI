@@ -82,7 +82,7 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
                     <Button
                       className="size-lg"
                       variant="primary"
-                      onClick={() => navigate.push(ROUTES.DesignerExploreModel)}
+                      onClick={() => navigate.push(ROUTES.Explore)}
                     >
                       Explore
                     </Button>

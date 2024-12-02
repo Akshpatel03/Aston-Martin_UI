@@ -19,12 +19,15 @@ import "swiper/css/navigation";
 import News from "@/components/News";
 import { IDealer } from "@/utils/interface/home";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 interface IHomeProps {
   dealers: IDealer[];
 }
 
 const Home: React.FC<IHomeProps> = ({ dealers }) => {
+  const navigate = useRouter();
+
   const options = [
     { value: "option1", label: "Model" },
     { value: "option2", label: "Engine" },
@@ -71,7 +74,11 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
             The most powerful luxury SUV
           </p>
           <div className="w-sm-auto w-100" data-swiper-parallax="-600">
-            <Button className="size-lg w-sm-auto w-100" variant="light">
+            <Button
+              onClick={() => navigate.push(ROUTES.Explore)}
+              className="size-lg w-sm-auto w-100"
+              variant="light"
+            >
               Explore
             </Button>
           </div>
@@ -141,7 +148,12 @@ const Home: React.FC<IHomeProps> = ({ dealers }) => {
                   </Form>
                 </div>
                 <div className="col-sm">
-                  <Select className="react-custom-select dark" classNamePrefix="select" options={options} isSearchable={false} />
+                  <Select
+                    className="react-custom-select dark"
+                    classNamePrefix="select"
+                    options={options}
+                    isSearchable={false}
+                  />
                 </div>
                 <div className="col-sm-auto">
                   <Button className="size-lg w-100" variant="light">

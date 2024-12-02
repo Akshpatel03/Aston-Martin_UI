@@ -4,6 +4,7 @@ export const ROUTES = {
   PreOwned: "/pre-owned",
   BookService: "/book-service",
   ValueMyAstonMartin: "/value",
+  Explore: "/explore",
 
   // Designer Routes
   DesignerHome: "/designer",
