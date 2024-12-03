@@ -9,8 +9,8 @@ const endPointBaseURL = `${process.env.NEXT_PUBLIC_LOCAL_API}/api/LandingPage`;
  
 
 
-const getHomePageContent = async (slug: string): Promise<AxiosResponse<BaseResponse<ContentfulHomePage[]>>> => 
-         await httpClient.get<BaseResponse<ContentfulHomePage[]>>(`${endPointBaseURL}/${slug}`);
+const getHomePageContent = async (slug: string): Promise<AxiosResponse<BaseResponse<ContentfulHomePage>>> => 
+         await httpClient.get<BaseResponse<ContentfulHomePage>>(`${endPointBaseURL}/${slug}`);
     
  
 export default {
