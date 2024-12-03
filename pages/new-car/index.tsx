@@ -20,7 +20,15 @@ import { ROUTES } from "@/shared/routes";
 import { Container } from "react-bootstrap";
 import homePageService from "@/services/home-page-service";
 import { IDealer } from "@/utils/interface/home";
-import { ContentfulHomePage } from "@/utils/interface/landing-page";
+
+import {
+  CustomerReviews,
+  HeadingandSubHeading,
+  ModelInformation,
+  PageContent,
+  PageNavigation,
+} from "@/utils/interface/landing-page";
+import { GetServerSideProps } from "next";
 import contentfulLandingPageService from "@/services/contentful-landingPage-service";
 
 const DBXCarModel = {
@@ -132,12 +140,26 @@ const ValkyrieCarModel = {
   ],
 };
 
-interface INewCarProps {
+interface NewCarProps {
   dealers: IDealer[];
-  newCarsPageData: ContentfulHomePage;
+  newCarsBannerData: HeadingandSubHeading[];
+  newCarsSubheadingData: ModelInformation[];
+  newCarsTabBarData: ModelInformation[];
+  newCarsModelsData: PageContent[];
+  newCarsInfoBlockData: PageNavigation[];
+  newCarsBuyingWithUsData: HeadingandSubHeading[];
+  newCarsCustomerReviewData: CustomerReviews[];
 }
 
-const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
+const NewCar: React.FC<NewCarProps> = ({
+  dealers,
+  newCarsBannerData,
+  newCarsSubheadingData,
+  newCarsTabBarData,
+  newCarsInfoBlockData,
+  newCarsBuyingWithUsData,
+  newCarsCustomerReviewData,
+}) => {
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
@@ -207,7 +229,7 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
       <div
         className="hero-banner"
         style={{
-          backgroundImage: `url(${newCarsPageData.content[0][0].imageFile.url})`,
+          backgroundImage: `url(${newCarsBannerData[0].imageFile.url})`,
         }}
       >
         {/* <Image
@@ -215,11 +237,9 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
           src={images.Herobanner}
           alt="Herobanner"
         /> */}
-        <p className="label">{newCarsPageData.content[0][0].title}</p>
-        <h1 className="title">{newCarsPageData.content[0][0].description1}</h1>
-        <p className="description mb-0">
-          {newCarsPageData.content[0][0].description2}
-        </p>
+        <p className="label">{newCarsBannerData[0].title}</p>
+        <h1 className="title">{newCarsBannerData[0].description1}</h1>
+        <p className="description mb-0">{newCarsBannerData[0].description2}</p>
       </div>
       {/* Hero Banner End */}
 
@@ -229,15 +249,15 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3>{newCarsPageData.content[1][0].title}</h3>
+                <h3>{newCarsSubheadingData[0].title}</h3>
                 <p className="subtitle1">
-                  {newCarsPageData.content[1][0].description}
+                  {newCarsSubheadingData[0].description}
                 </p>
               </div>
             </div>
             <div className="col-lg-6">
               <h1 className="d-lg-block d-none">
-                {newCarsPageData.content[1][0].heading}
+                {newCarsSubheadingData[0].heading}
               </h1>
             </div>
           </div>
@@ -249,8 +269,9 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
       <div className="car-models-wrapper">
         <div className="car-models-links px-md-4 px-3">
           <ul className="links container-xxl px-0 scrollspy">
-            {newCarsPageData.content[3].map(
-              (model: { title: string }, index: string) => {
+            {newCarsTabBarData.map(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              (model: ModelInformation, index: number) => {
                 return (
                   <li key={index}>
                     <a
@@ -269,7 +290,7 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
           <div className="s-content" id="DBX">
             <CarModelSlider {...DBXCarModel} />
           </div>
-          <div className="s-content" id="Vantage">
+          <div className="s-content" id="VANTAGE">
             <CarModelSlider {...VantageCarModel} />
           </div>
           <div className="s-content" id="DB12">
@@ -278,10 +299,10 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
           <div className="s-content" id="DBS">
             <CarModelSlider {...DBSCarModel} />
           </div>
-          <div className="s-content" id="ValHalla">
+          <div className="s-content" id="VALHALLA">
             <CarModelSlider {...ValhallaCarModel} />
           </div>
-          <div className="s-content" id="Valkyrie">
+          <div className="s-content" id="VALKYRIE">
             <CarModelSlider {...ValkyrieCarModel} />
           </div>
         </div>
@@ -295,17 +316,15 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">
-                    {newCarsPageData.content[4][0].title}
-                  </h3>
+                  <h3 className="title am">{newCarsInfoBlockData[0].title}</h3>
                   <p className="description">
-                    {newCarsPageData.content[4][0].description}
+                    {newCarsInfoBlockData[0].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.NewCar}
                   >
-                    {newCarsPageData.content[4][0].navigationLink}
+                    {newCarsInfoBlockData[0].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -313,12 +332,10 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${newCarsPageData.content[4][0].imageFile.url}`}
-                  width={
-                    newCarsPageData.content[4][0].imageFile.details.image.width
-                  }
+                  src={`http:${newCarsInfoBlockData[0].imageFile.url}`}
+                  width={newCarsInfoBlockData[0].imageFile.details.image.width}
                   height={
-                    newCarsPageData.content[4][0].imageFile.details.image.height
+                    newCarsInfoBlockData[0].imageFile.details.image.height
                   }
                   alt="DealerMartinImg"
                 />
@@ -330,29 +347,25 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${newCarsPageData.content[4][1].imageFile.url}`}
-                  width={
-                    newCarsPageData.content[4][1].imageFile.details.image.width
-                  }
+                  src={`http:${newCarsInfoBlockData[1].imageFile.url}`}
+                  width={newCarsInfoBlockData[1].imageFile.details.image.width}
                   height={
-                    newCarsPageData.content[4][1].imageFile.details.image.height
+                    newCarsInfoBlockData[1].imageFile.details.image.height
                   }
                   alt="CustomiseMartinImg"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">
-                    {newCarsPageData.content[4][1].title}
-                  </h3>
+                  <h3 className="title am">{newCarsInfoBlockData[1].title}</h3>
                   <p className="description">
-                    {newCarsPageData.content[4][1].description}
+                    {newCarsInfoBlockData[1].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.NewCar}
                   >
-                    {newCarsPageData.content[4][1].navigationLink}
+                    {newCarsInfoBlockData[1].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -369,29 +382,25 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3 className="title am">
-                  {newCarsPageData.content[5][0].title}
-                </h3>
+                <h3 className="title am">{newCarsBuyingWithUsData[0].title}</h3>
                 <p className="description">
-                  {newCarsPageData.content[5][0].description1}
+                  {newCarsBuyingWithUsData[0].description1}
                 </p>
                 <p className="description">
-                  {newCarsPageData.content[5][0].description2}
+                  {newCarsBuyingWithUsData[0].description2}
                 </p>
                 <p className="description">
-                  {newCarsPageData.content[5][0].description3}
+                  {newCarsBuyingWithUsData[0].description3}
                 </p>
               </div>
             </div>
             <div className="col-lg-6 right-img-block">
               <Image
                 className="right-side-image"
-                src={`http:${newCarsPageData.content[5][0].imageFile.url}`}
-                width={
-                  newCarsPageData.content[5][0].imageFile.details.image.width
-                }
+                src={`http:${newCarsBuyingWithUsData[0].imageFile.url}`}
+                width={newCarsBuyingWithUsData[0].imageFile.details.image.width}
                 height={
-                  newCarsPageData.content[5][0].imageFile.details.image.height
+                  newCarsBuyingWithUsData[0].imageFile.details.image.height
                 }
                 alt="Aston Martin Dealer"
               />
@@ -406,23 +415,38 @@ const NewCar: React.FC<INewCarProps> = ({ dealers, newCarsPageData }) => {
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials customerReview={newCarsPageData.content[6]} />
+      <Testimonials customerReview={newCarsCustomerReviewData} />
       {/* Testimonial End */}
     </>
   );
 };
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const currentRoute = context.resolvedUrl.slice(1);
+
   const res = await homePageService.getAllBranches();
   const newCarsPageRes = await contentfulLandingPageService.getHomePageContent(
     currentRoute
   );
   const newCarsPageData = newCarsPageRes.data.item;
+  const newCarsBannerData = newCarsPageData.content[0];
+  const newCarsSubheadingData = newCarsPageData.content[1];
+  const newCarsTabBarData = newCarsPageData.content[2];
+  const newCarsModelsData = newCarsPageData.content[3];
+  const newCarsInfoBlockData = newCarsPageData.content[4];
+  const newCarsBuyingWithUsData = newCarsPageData.content[5];
+  const newCarsCustomerReviewData = newCarsPageData.content[6];
   return {
     props: {
       dealers: res.item.dealers,
-      newCarsPageData,
+      newCarsBannerData,
+      newCarsSubheadingData,
+      newCarsTabBarData,
+      newCarsModelsData,
+      newCarsInfoBlockData,
+      newCarsBuyingWithUsData,
+      newCarsCustomerReviewData,
     },
   };
 };

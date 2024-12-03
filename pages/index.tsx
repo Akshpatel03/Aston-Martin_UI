@@ -18,17 +18,41 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import News from "@/components/News";
 import contentfulLandingPageService from "@/services/contentful-landingPage-service";
-import { ContentfulHomePage } from "@/utils/interface/landing-page";
+import {
+  CustomerReviews,
+  HeadingandSubHeading,
+  LatestNews,
+  ModelInformation,
+  PageContent,
+  PageNavigation,
+} from "@/utils/interface/landing-page";
 import { IDealer } from "@/utils/interface/home";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
 interface IHomeProps {
   dealers: IDealer[];
-  homePageData: ContentfulHomePage;
+  homePageCarousalData: PageContent[];
+  homePageNavigationData: PageNavigation[];
+  homePageWelcomeIntroductionData: HeadingandSubHeading[];
+  homePageBenefitData: ModelInformation[];
+  homePageModelRangeData: PageContent[];
+  homePageContentData: PageNavigation[];
+  homePageReviewData: CustomerReviews[];
+  homePageNewsData: LatestNews[];
 }
 
-const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
+const Home: React.FC<IHomeProps> = ({
+  dealers,
+  homePageCarousalData,
+  homePageNavigationData,
+  homePageWelcomeIntroductionData,
+  homePageBenefitData,
+  homePageModelRangeData,
+  homePageContentData,
+  homePageReviewData,
+  homePageNewsData,
+}) => {
   const navigate = useRouter();
 
   const options = [
@@ -66,7 +90,7 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
         navigation
         className="hero-banner-slider default-slider"
       >
-        {homePageData.content[0].map(
+        {homePageCarousalData.map(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (slideData: any, index: any) => (
             <SwiperSlide key={index}>
@@ -151,7 +175,7 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
       <div className="quick-redirects block-spacing-y-80 tablet-spacing-y-16">
         <Container fluid="xxl">
           <div className="row row-gap-3">
-            {homePageData.content[1].map(
+            {homePageNavigationData.map(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (navigation: any, index: any) => (
                 <div key={index} className="col-xxl-3 col-md-6">
@@ -183,22 +207,28 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
             <div className="col-xl-6 ps-xxxl-0">
               <Image
                 className="left-side-image"
-                src={`http:${homePageData.content[2][0].imageFile.url}`}
-                width={homePageData.content[2][0].imageFile.details.image.width}
+                src={`http:${homePageWelcomeIntroductionData[0].imageFile.url}`}
+                width={
+                  homePageWelcomeIntroductionData[0].imageFile.details.image
+                    .width
+                }
                 height={
-                  homePageData.content[2][0].imageFile.details.image.height
+                  homePageWelcomeIntroductionData[0].imageFile.details.image
+                    .height
                 }
                 alt="Aston Martin Dealer"
               />
             </div>
             <div className="col-xl-6">
               <div className="info">
-                <h3 className="title am">{homePageData.content[2][0].title}</h3>
+                <h3 className="title am">
+                  {homePageWelcomeIntroductionData[0].title}
+                </h3>
                 <p className="description">
-                  {homePageData.content[2][0].description1}
+                  {homePageWelcomeIntroductionData[0].description1}
                 </p>
                 <p className="description">
-                  {homePageData.content[2][0].description2}
+                  {homePageWelcomeIntroductionData[0].description2}
                 </p>
               </div>
             </div>
@@ -212,7 +242,7 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
         <Container fluid="xxl">
           <h2 className="mb-32p am">Why Dealer X?</h2>
           <div className="row info-points-wrapper">
-            {homePageData.content[3].map(
+            {homePageBenefitData.map(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (benefit: any, index: any) => (
                 <div key={index} className="col-xxl-3 col-md-6 info-points">
@@ -238,7 +268,7 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
           loop
           className="product-explore-slider"
         >
-          {homePageData.content[4].map(
+          {homePageModelRangeData.map(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (range: any, index: any) => (
               <SwiperSlide key={index}>
@@ -316,17 +346,15 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">
-                    {homePageData.content[5][0].title}
-                  </h3>
+                  <h3 className="title am">{homePageContentData[0].title}</h3>
                   <p className="description">
-                    {homePageData.content[5][0].description}
+                    {homePageContentData[0].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {homePageData.content[5][0].navigationLink}
+                    {homePageContentData[0].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -334,13 +362,9 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${homePageData.content[5][0].imageFile.url}`}
-                  width={
-                    homePageData.content[5][0].imageFile.details.image.width
-                  }
-                  height={
-                    homePageData.content[5][0].imageFile.details.image.height
-                  }
+                  src={`http:${homePageContentData[0].imageFile.url}`}
+                  width={homePageContentData[0].imageFile.details.image.width}
+                  height={homePageContentData[0].imageFile.details.image.height}
                   alt="New Model"
                 />
               </div>
@@ -351,29 +375,23 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${homePageData.content[5][1].imageFile.url}`}
-                  width={
-                    homePageData.content[5][1].imageFile.details.image.width
-                  }
-                  height={
-                    homePageData.content[5][1].imageFile.details.image.height
-                  }
+                  src={`http:${homePageContentData[1].imageFile.url}`}
+                  width={homePageContentData[1].imageFile.details.image.width}
+                  height={homePageContentData[1].imageFile.details.image.height}
                   alt="Timeless Martin"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">
-                    {homePageData.content[5][1].title}
-                  </h3>
+                  <h3 className="title am">{homePageContentData[1].title}</h3>
                   <p className="description">
-                    {homePageData.content[5][1].description}
+                    {homePageContentData[1].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {homePageData.content[5][1].navigationLink}
+                    {homePageContentData[1].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -384,17 +402,15 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">
-                    {homePageData.content[5][2].title}
-                  </h3>
+                  <h3 className="title am">{homePageContentData[2].title}</h3>
                   <p className="description">
-                    {homePageData.content[5][2].description}
+                    {homePageContentData[2].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {homePageData.content[5][2].navigationLink}
+                    {homePageContentData[2].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -402,13 +418,9 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${homePageData.content[5][2].imageFile.url}`}
-                  width={
-                    homePageData.content[5][2].imageFile.details.image.width
-                  }
-                  height={
-                    homePageData.content[5][2].imageFile.details.image.height
-                  }
+                  src={`http:${homePageContentData[2].imageFile.url}`}
+                  width={homePageContentData[2].imageFile.details.image.width}
+                  height={homePageContentData[2].imageFile.details.image.height}
                   alt="Parts and Accessories"
                 />
               </div>
@@ -419,29 +431,23 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={`http:${homePageData.content[5][3].imageFile.url}`}
-                  width={
-                    homePageData.content[5][3].imageFile.details.image.width
-                  }
-                  height={
-                    homePageData.content[5][3].imageFile.details.image.height
-                  }
+                  src={`http:${homePageContentData[3].imageFile.url}`}
+                  width={homePageContentData[3].imageFile.details.image.width}
+                  height={homePageContentData[3].imageFile.details.image.height}
                   alt="Aston Martin Dealer"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">
-                    {homePageData.content[5][3].title}
-                  </h3>
+                  <h3 className="title am">{homePageContentData[3].title}</h3>
                   <p className="description">
-                    {homePageData.content[5][3].description}
+                    {homePageContentData[3].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.DesignerNewCar}
                   >
-                    {homePageData.content[5][3].navigationLink}
+                    {homePageContentData[3].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -457,11 +463,11 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
       {/* Aston Martin Address End */}
 
       {/* Testimonial Start */}
-      <Testimonials customerReview={homePageData.content[6]} />
+      <Testimonials customerReview={homePageReviewData} />
       {/* Testimonial End */}
 
       {/* News Start */}
-      <News latestNews={homePageData.content[7]} />
+      <News latestNews={homePageNewsData} />
       {/* News End */}
     </>
   );
@@ -470,24 +476,34 @@ const Home: React.FC<IHomeProps> = ({ dealers, homePageData }) => {
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.resolvedUrl;
   const route = slug === "/" ? "home" : slug.slice(1);
-  try {
-    const res = await homePageService.getAllBranches();
-    const homePageDataRes =
-      await contentfulLandingPageService.getHomePageContent(route);
-    const homePageData = homePageDataRes.data.item;
+  const res = await homePageService.getAllBranches();
+  const homePageDataRes = await contentfulLandingPageService.getHomePageContent(
+    route
+  );
+  const homePageData = homePageDataRes.data.item;
+  const homePageCarousalData = homePageData.content[0];
+  const homePageNavigationData = homePageData.content[1];
+  const homePageWelcomeIntroductionData = homePageData.content[2];
+  const homePageBenefitData = homePageData.content[3];
+  const homePageModelRangeData = homePageData.content[4];
+  const homePageContentData = homePageData.content[5];
+  const homePageReviewData = homePageData.content[6];
+  const homePageNewsData = homePageData.content[7];
 
-    console.log(homePageDataRes.data.item);
-    return {
-      props: { homePageData, dealers: res.item.dealers },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        homePageData: [],
-      },
-    };
-  }
+  return {
+    props: {
+      homePageData,
+      homePageCarousalData,
+      homePageNavigationData,
+      homePageWelcomeIntroductionData,
+      homePageBenefitData,
+      homePageModelRangeData,
+      homePageContentData,
+      homePageReviewData,
+      homePageNewsData,
+      dealers: res.item.dealers,
+    },
+  };
 };
 
 export default Home;
