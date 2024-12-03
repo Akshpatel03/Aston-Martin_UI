@@ -424,44 +424,31 @@ const NewCar: React.FC<NewCarProps> = ({
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const currentRoute = context.resolvedUrl.slice(1);
-  try {
-    const res = await homePageService.getAllBranches();
-    const newCarsPageRes =
-      await contentfulLandingPageService.getHomePageContent(currentRoute);
-    const newCarsPageData = newCarsPageRes.data.item;
-    const newCarsBannerData = newCarsPageData.content[0];
-    const newCarsSubheadingData = newCarsPageData.content[1];
-    const newCarsTabBarData = newCarsPageData.content[2];
-    const newCarsModelsData = newCarsPageData.content[3];
-    const newCarsInfoBlockData = newCarsPageData.content[4];
-    const newCarsBuyingWithUsData = newCarsPageData.content[5];
-    const newCarsCustomerReviewData = newCarsPageData.content[6];
-    return {
-      props: {
-        dealers: res.item.dealers,
-        newCarsBannerData,
-        newCarsSubheadingData,
-        newCarsTabBarData,
-        newCarsModelsData,
-        newCarsInfoBlockData,
-        newCarsBuyingWithUsData,
-        newCarsCustomerReviewData,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        dealers: [],
-        newCarsBannerData: [],
-        newCarsSubheadingData: [],
-        newCarsTabBarData: [],
-        newCarsModelsData: [],
-        newCarsInfoBlockData: [],
-        newCarsBuyingWithUsData: [],
-        newCarsCustomerReviewData: [],
-      },
-    };
-  }
+
+  const res = await homePageService.getAllBranches();
+  const newCarsPageRes = await contentfulLandingPageService.getHomePageContent(
+    currentRoute
+  );
+  const newCarsPageData = newCarsPageRes.data.item;
+  const newCarsBannerData = newCarsPageData.content[0];
+  const newCarsSubheadingData = newCarsPageData.content[1];
+  const newCarsTabBarData = newCarsPageData.content[2];
+  const newCarsModelsData = newCarsPageData.content[3];
+  const newCarsInfoBlockData = newCarsPageData.content[4];
+  const newCarsBuyingWithUsData = newCarsPageData.content[5];
+  const newCarsCustomerReviewData = newCarsPageData.content[6];
+  return {
+    props: {
+      dealers: res.item.dealers,
+      newCarsBannerData,
+      newCarsSubheadingData,
+      newCarsTabBarData,
+      newCarsModelsData,
+      newCarsInfoBlockData,
+      newCarsBuyingWithUsData,
+      newCarsCustomerReviewData,
+    },
+  };
 };
 
 export default NewCar;

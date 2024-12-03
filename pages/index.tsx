@@ -476,49 +476,34 @@ const Home: React.FC<IHomeProps> = ({
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.resolvedUrl;
   const route = slug === "/" ? "home" : slug.slice(1);
-  try {
-    const res = await homePageService.getAllBranches();
-    const homePageDataRes =
-      await contentfulLandingPageService.getHomePageContent(route);
-    const homePageData = homePageDataRes.data.item;
-    const homePageCarousalData = homePageData.content[0];
-    const homePageNavigationData = homePageData.content[1];
-    const homePageWelcomeIntroductionData = homePageData.content[2];
-    const homePageBenefitData = homePageData.content[3];
-    const homePageModelRangeData = homePageData.content[4];
-    const homePageContentData = homePageData.content[5];
-    const homePageReviewData = homePageData.content[6];
-    const homePageNewsData = homePageData.content[7];
+  const res = await homePageService.getAllBranches();
+  const homePageDataRes = await contentfulLandingPageService.getHomePageContent(
+    route
+  );
+  const homePageData = homePageDataRes.data.item;
+  const homePageCarousalData = homePageData.content[0];
+  const homePageNavigationData = homePageData.content[1];
+  const homePageWelcomeIntroductionData = homePageData.content[2];
+  const homePageBenefitData = homePageData.content[3];
+  const homePageModelRangeData = homePageData.content[4];
+  const homePageContentData = homePageData.content[5];
+  const homePageReviewData = homePageData.content[6];
+  const homePageNewsData = homePageData.content[7];
 
-    return {
-      props: {
-        homePageData,
-        homePageCarousalData,
-        homePageNavigationData,
-        homePageWelcomeIntroductionData,
-        homePageBenefitData,
-        homePageModelRangeData,
-        homePageContentData,
-        homePageReviewData,
-        homePageNewsData,
-        dealers: res.item.dealers,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        homePageData: [],
-        homePageCarousalData: [],
-        homePageNavigationData: [],
-        homePageWelcomeIntroductionData: [],
-        homePageBenefitData: [],
-        homePageModelRangeData: [],
-        homePageContentData: [],
-        homePageReviewData: [],
-        homePageNewsData: [],
-      },
-    };
-  }
+  return {
+    props: {
+      homePageData,
+      homePageCarousalData,
+      homePageNavigationData,
+      homePageWelcomeIntroductionData,
+      homePageBenefitData,
+      homePageModelRangeData,
+      homePageContentData,
+      homePageReviewData,
+      homePageNewsData,
+      dealers: res.item.dealers,
+    },
+  };
 };
 
 export default Home;
