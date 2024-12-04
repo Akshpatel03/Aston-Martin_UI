@@ -29,15 +29,16 @@ import {
 } from "@/utils/interface/landing-page";
 import { GetServerSideProps } from "next";
 import contentfulLandingPageService from "@/services/contentful-landingPage-service";
+import InfoBlock from "@/components/InfoBlock ";
 
 interface NewCarProps {
   dealers: IDealer[];
-  newCarsBannerData: HeadingandSubHeading[];
-  newCarsSubheadingData: ModelInformation[];
+  newCarsBannerData: HeadingandSubHeading;
+  newCarsSubheadingData: ModelInformation;
   newCarsTabBarData: ModelInformation[];
   newCarsModelsData: PageContent[];
   newCarsInfoBlockData: PageNavigation[];
-  newCarsBuyingWithUsData: HeadingandSubHeading[];
+  newCarsBuyingWithUsData: HeadingandSubHeading;
   newCarsCustomerReviewData: CustomerReviews[];
 }
 const NewCar: React.FC<NewCarProps> = ({
@@ -119,7 +120,7 @@ const NewCar: React.FC<NewCarProps> = ({
       <div
         className="hero-banner"
         style={{
-          backgroundImage: `url(${newCarsBannerData[0].imageFile.url})`,
+          backgroundImage: `url(${newCarsBannerData.imageFile.url})`,
         }}
       >
         {/* <Image
@@ -127,9 +128,9 @@ const NewCar: React.FC<NewCarProps> = ({
           src={images.Herobanner}
           alt="Herobanner"
         /> */}
-        <p className="label">{newCarsBannerData[0].title}</p>
-        <h1 className="title">{newCarsBannerData[0].description1}</h1>
-        <p className="description mb-0">{newCarsBannerData[0].description2}</p>
+        <p className="label">{newCarsBannerData.title}</p>
+        <h1 className="title">{newCarsBannerData.description1}</h1>
+        <p className="description mb-0">{newCarsBannerData.description2}</p>
       </div>
       {/* Hero Banner End */}
 
@@ -139,15 +140,13 @@ const NewCar: React.FC<NewCarProps> = ({
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3>{newCarsSubheadingData[0].title}</h3>
-                <p className="subtitle1">
-                  {newCarsSubheadingData[0].description}
-                </p>
+                <h3>{newCarsSubheadingData.title}</h3>
+                <p className="subtitle1">{newCarsSubheadingData.description}</p>
               </div>
             </div>
             <div className="col-lg-6">
               <h1 className="d-lg-block d-none">
-                {newCarsSubheadingData[0].heading}
+                {newCarsSubheadingData.heading}
               </h1>
             </div>
           </div>
@@ -191,69 +190,13 @@ const NewCar: React.FC<NewCarProps> = ({
       {/*car model tab  End */}
 
       {/* Info Blocks Start */}
+
       <div className="multi-info-block">
-        <Container fluid="xxl">
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{newCarsInfoBlockData[0].title}</h3>
-                  <p className="description">
-                    {newCarsInfoBlockData[0].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.NewCar}
-                  >
-                    {newCarsInfoBlockData[0].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${newCarsInfoBlockData[0].imageFile.url}`}
-                  width={newCarsInfoBlockData[0].imageFile.details.image.width}
-                  height={
-                    newCarsInfoBlockData[0].imageFile.details.image.height
-                  }
-                  alt="DealerMartinImg"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${newCarsInfoBlockData[1].imageFile.url}`}
-                  width={newCarsInfoBlockData[1].imageFile.details.image.width}
-                  height={
-                    newCarsInfoBlockData[1].imageFile.details.image.height
-                  }
-                  alt="CustomiseMartinImg"
-                />
-              </div>
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{newCarsInfoBlockData[1].title}</h3>
-                  <p className="description">
-                    {newCarsInfoBlockData[1].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.NewCar}
-                  >
-                    {newCarsInfoBlockData[1].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
+        {newCarsInfoBlockData.map((info, index) => (
+          <Container key={index} fluid="xxl">
+            <InfoBlock newCarInfoBlock={info} isOddIndex={index % 2 !== 0} />
+          </Container>
+        ))}
       </div>
       {/*  */}
 
@@ -263,26 +206,24 @@ const NewCar: React.FC<NewCarProps> = ({
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3 className="title am">{newCarsBuyingWithUsData[0].title}</h3>
+                <h3 className="title am">{newCarsBuyingWithUsData.title}</h3>
                 <p className="description">
-                  {newCarsBuyingWithUsData[0].description1}
+                  {newCarsBuyingWithUsData.description1}
                 </p>
                 <p className="description">
-                  {newCarsBuyingWithUsData[0].description2}
+                  {newCarsBuyingWithUsData.description2}
                 </p>
                 <p className="description">
-                  {newCarsBuyingWithUsData[0].description3}
+                  {newCarsBuyingWithUsData.description3}
                 </p>
               </div>
             </div>
             <div className="col-lg-6 right-img-block">
               <Image
                 className="right-side-image"
-                src={`http:${newCarsBuyingWithUsData[0].imageFile.url}`}
-                width={newCarsBuyingWithUsData[0].imageFile.details.image.width}
-                height={
-                  newCarsBuyingWithUsData[0].imageFile.details.image.height
-                }
+                src={`http:${newCarsBuyingWithUsData.imageFile.url}`}
+                width={newCarsBuyingWithUsData.imageFile.details.image.width}
+                height={newCarsBuyingWithUsData.imageFile.details.image.height}
                 alt="Aston Martin Dealer"
               />
             </div>
@@ -310,12 +251,13 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     currentRoute
   );
   const newCarsPageData = newCarsPageRes.data.item;
-  const newCarsBannerData = newCarsPageData.content["New cars banner"];
-  const newCarsSubheadingData = newCarsPageData.content["New cars sub heading"];
+  const newCarsBannerData = newCarsPageData.content["New cars banner"][0];
+  const newCarsSubheadingData =
+    newCarsPageData.content["New cars sub heading"][0];
   const newCarsTabBarData = newCarsPageData.content["New cars tab-bar"];
   const newCarsModelsData = newCarsPageData.content["Car Models"];
   const newCarsInfoBlockData = newCarsPageData.content["New Cars Info Block"];
-  const newCarsBuyingWithUsData = newCarsPageData.content["Buying with us"];
+  const newCarsBuyingWithUsData = newCarsPageData.content["Buying with us"][0];
   const newCarsCustomerReviewData = newCarsPageData.content["Customer Reviews"];
   return {
     props: {

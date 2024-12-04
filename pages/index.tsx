@@ -11,8 +11,6 @@ import { ROUTES } from "@/shared/routes";
 import AvailableLocation from "@/components/AvailableLocation";
 import Testimonials from "@/components/Testimonials";
 import homePageService from "@/services/home-page-service";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -29,19 +27,19 @@ import {
 import { IDealer } from "@/utils/interface/home";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import InfoBlock from "@/components/InfoBlock ";
 
 interface IHomeProps {
   dealers: IDealer[];
   homePageCarousalData: PageContent[];
   homePageNavigationData: PageNavigation[];
-  homePageWelcomeIntroductionData: HeadingandSubHeading[];
+  homePageWelcomeIntroductionData: HeadingandSubHeading;
   homePageBenefitData: ModelInformation[];
   homePageModelRangeData: PageContent[];
   homePageContentData: PageNavigation[];
   homePageReviewData: CustomerReviews[];
   homePageNewsData: LatestNews[];
 }
-
 const Home: React.FC<IHomeProps> = ({
   dealers,
   homePageCarousalData,
@@ -207,14 +205,12 @@ const Home: React.FC<IHomeProps> = ({
             <div className="col-xl-6 ps-xxxl-0">
               <Image
                 className="left-side-image"
-                src={`http:${homePageWelcomeIntroductionData[0].imageFile.url}`}
+                src={`http:${homePageWelcomeIntroductionData.imageFile.url}`}
                 width={
-                  homePageWelcomeIntroductionData[0].imageFile.details.image
-                    .width
+                  homePageWelcomeIntroductionData.imageFile.details.image.width
                 }
                 height={
-                  homePageWelcomeIntroductionData[0].imageFile.details.image
-                    .height
+                  homePageWelcomeIntroductionData.imageFile.details.image.height
                 }
                 alt="Aston Martin Dealer"
               />
@@ -222,13 +218,13 @@ const Home: React.FC<IHomeProps> = ({
             <div className="col-xl-6">
               <div className="info">
                 <h3 className="title am">
-                  {homePageWelcomeIntroductionData[0].title}
+                  {homePageWelcomeIntroductionData.title}
                 </h3>
                 <p className="description">
-                  {homePageWelcomeIntroductionData[0].description1}
+                  {homePageWelcomeIntroductionData.description1}
                 </p>
                 <p className="description">
-                  {homePageWelcomeIntroductionData[0].description2}
+                  {homePageWelcomeIntroductionData.description2}
                 </p>
               </div>
             </div>
@@ -341,120 +337,11 @@ const Home: React.FC<IHomeProps> = ({
 
       {/* Info Blocks Start */}
       <div className="multi-info-block">
-        <Container fluid="xxl">
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{homePageContentData[0].title}</h3>
-                  <p className="description">
-                    {homePageContentData[0].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.DesignerNewCar}
-                  >
-                    {homePageContentData[0].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${homePageContentData[0].imageFile.url}`}
-                  width={homePageContentData[0].imageFile.details.image.width}
-                  height={homePageContentData[0].imageFile.details.image.height}
-                  alt="New Model"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${homePageContentData[1].imageFile.url}`}
-                  width={homePageContentData[1].imageFile.details.image.width}
-                  height={homePageContentData[1].imageFile.details.image.height}
-                  alt="Timeless Martin"
-                />
-              </div>
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{homePageContentData[1].title}</h3>
-                  <p className="description">
-                    {homePageContentData[1].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.DesignerNewCar}
-                  >
-                    {homePageContentData[1].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{homePageContentData[2].title}</h3>
-                  <p className="description">
-                    {homePageContentData[2].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.DesignerNewCar}
-                  >
-                    {homePageContentData[2].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${homePageContentData[2].imageFile.url}`}
-                  width={homePageContentData[2].imageFile.details.image.width}
-                  height={homePageContentData[2].imageFile.details.image.height}
-                  alt="Parts and Accessories"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${homePageContentData[3].imageFile.url}`}
-                  width={homePageContentData[3].imageFile.details.image.width}
-                  height={homePageContentData[3].imageFile.details.image.height}
-                  alt="Aston Martin Dealer"
-                />
-              </div>
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{homePageContentData[3].title}</h3>
-                  <p className="description">
-                    {homePageContentData[3].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.DesignerNewCar}
-                  >
-                    {homePageContentData[3].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
+        {homePageContentData.map((info, index) => (
+          <Container key={index} fluid="xxl">
+            <InfoBlock newCarInfoBlock={info} isOddIndex={index % 2 !== 0} />
+          </Container>
+        ))}
       </div>
       {/* Info Blocks End */}
 
@@ -484,13 +371,12 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const homePageCarousalData = homePageData.content["Home Page Carousel"];
   const homePageNavigationData = homePageData.content["Home Page Navigations"];
   const homePageWelcomeIntroductionData =
-    homePageData.content["Welcome Introduction"];
+    homePageData.content["Welcome Introduction"][0];
   const homePageBenefitData = homePageData.content["Benefits"];
   const homePageModelRangeData = homePageData.content["Explore Model Range"];
   const homePageContentData = homePageData.content["Home Page Contents"];
   const homePageReviewData = homePageData.content["Customer Reviews"];
   const homePageNewsData = homePageData.content["Latest News"];
-  console.log(homePageData.content);
   return {
     props: {
       homePageData,
