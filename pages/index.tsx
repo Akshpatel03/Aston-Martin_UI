@@ -481,15 +481,16 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     route
   );
   const homePageData = homePageDataRes.data.item;
-  const homePageCarousalData = homePageData.content[0];
-  const homePageNavigationData = homePageData.content[1];
-  const homePageWelcomeIntroductionData = homePageData.content[2];
-  const homePageBenefitData = homePageData.content[3];
-  const homePageModelRangeData = homePageData.content[4];
-  const homePageContentData = homePageData.content[5];
-  const homePageReviewData = homePageData.content[6];
-  const homePageNewsData = homePageData.content[7];
-
+  const homePageCarousalData = homePageData.content["Home Page Carousel"];
+  const homePageNavigationData = homePageData.content["Home Page Navigations"];
+  const homePageWelcomeIntroductionData =
+    homePageData.content["Welcome Introduction"];
+  const homePageBenefitData = homePageData.content["Benefits"];
+  const homePageModelRangeData = homePageData.content["Explore Model Range"];
+  const homePageContentData = homePageData.content["Home Page Contents"];
+  const homePageReviewData = homePageData.content["Customer Reviews"];
+  const homePageNewsData = homePageData.content["Latest News"];
+  console.log(homePageData.content);
   return {
     props: {
       homePageData,
