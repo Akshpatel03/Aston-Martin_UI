@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AvailableLocation from "@/components/AvailableLocation";
 import Testimonials from "@/components/Testimonials";
 
@@ -27,6 +27,8 @@ import {
 import { GetServerSideProps } from "next";
 import contentfulService from "@/services/contentful-service";
 import InfoBlock from "@/components/InfoBlock ";
+import Inquiry from "@/components/Inquiry";
+import { IEnquiryData } from "@/utils/interface";
 
 interface NewCarProps {
   dealers: IDealer[];
@@ -48,6 +50,9 @@ const NewCar: React.FC<NewCarProps> = ({
   newCarsCustomerReviewData,
   newCarsModelsData,
 }) => {
+  const [equireDrawer, setEquireDrawer] = useState<boolean>(false);
+  const [enquireData, setEnquireData] = useState<IEnquiryData>();
+
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
@@ -179,7 +184,11 @@ const NewCar: React.FC<NewCarProps> = ({
               className="s-content"
               id={newCarsTabBarData[index].title}
             >
-              <CarModelSlider carModelSlider={model} />
+              <CarModelSlider
+                carModelSlider={model}
+                setEquireDrawer={setEquireDrawer}
+                setEnquireData={setEnquireData}
+              />
             </div>
           ))}
         </div>
@@ -234,6 +243,12 @@ const NewCar: React.FC<NewCarProps> = ({
       {/* Testimonial Start */}
       <Testimonials customerReview={newCarsCustomerReviewData} />
       {/* Testimonial End */}
+
+      <Inquiry
+        equireDrawer={equireDrawer}
+        setEquireDrawer={setEquireDrawer}
+        enquireData={enquireData}
+      />
     </>
   );
 };

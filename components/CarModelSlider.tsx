@@ -11,11 +11,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { PageContent } from "@/utils/interface/landing-page";
+import { IEnquiryData } from "@/utils/interface";
 
 interface CarModelSliderProps {
   carModelSlider: PageContent;
+  setEquireDrawer: (value: React.SetStateAction<boolean>) => void;
+  setEnquireData: React.Dispatch<
+    React.SetStateAction<IEnquiryData | undefined>
+  >;
 }
-const CarModelSlider: React.FC<CarModelSliderProps> = ({ carModelSlider }) => {
+const CarModelSlider: React.FC<CarModelSliderProps> = ({
+  carModelSlider,
+  setEquireDrawer,
+  setEnquireData,
+}) => {
   const navigate = useRouter();
   return (
     <div className="car-models-block">
@@ -28,7 +37,7 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({ carModelSlider }) => {
             src={`http:${carModelSlider.imageFile.url}`}
             width={carModelSlider.imageFile.details.image.width}
             height={carModelSlider.imageFile.details.image.height}
-            alt="DBXModel"
+            alt={carModelSlider.imageFile.fileName}
           />
           <p className="description mb-0">{carModelSlider.description}</p>
         </div>
@@ -71,18 +80,33 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({ carModelSlider }) => {
                       src={`http:${row.imageFile.url}`}
                       width={row.imageFile.details.image.width}
                       height={row.imageFile.details.image.height}
-                      alt="DBXvariant"
+                      alt={row.imageFile.fileName}
                     />
                   </em>
                   <div className="action">
                     <Button
                       className="size-lg"
                       variant="primary"
-                      onClick={() => row.explorePageRoute && navigate.push(`${ROUTES.Explore}/${row.explorePageRoute}`)}
+                      onClick={() =>
+                        row.explorePageRoute &&
+                        navigate.push(
+                          `${ROUTES.Explore}/${row.explorePageRoute}`
+                        )
+                      }
                     >
                       Explore
                     </Button>
-                    <Button className="size-lg" variant="secondary">
+                    <Button
+                      onClick={() => {
+                        setEquireDrawer(true);
+                        setEnquireData({
+                          tag: carModelSlider.tag,
+                          modelName: row.title,
+                        });
+                      }}
+                      className="size-lg"
+                      variant="secondary"
+                    >
                       Enquire
                     </Button>
                     <Button className="size-lg" variant="light">

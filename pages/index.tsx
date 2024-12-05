@@ -185,7 +185,7 @@ const Home: React.FC<IHomeProps> = ({
                       height={navigation.imageFile.details.image.height}
                       alt="New Car"
                     />
-                    <Link className="quick-link" href={ROUTES.DesignerNewCar}>
+                    <Link className="quick-link" href={ROUTES.NewCar}>
                       {navigation.navigationLink}
                       <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                     </Link>
@@ -362,9 +362,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.resolvedUrl;
   const route = slug === "/" ? "home" : slug.slice(1);
   const res = await homePageService.getAllBranches();
-  const homePageDataRes = await contentfulService.getHomePageContent(
-    route
-  );
+  const homePageDataRes = await contentfulService.getHomePageContent(route);
   const homePageData = homePageDataRes.data.item;
   const homePageCarousalData = homePageData.content["Home Page Carousel"];
   const homePageNavigationData = homePageData.content["Home Page Navigations"];
