@@ -12,12 +12,6 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "react-bootstrap";
-import EngineImg from "@/public/images/explore-model/engine-img.jpg";
-import CarHandlingImg from "@/public/images/explore-model/car-handling-img.jpg";
-import BreakImg from "@/public/images/explore-model/break-img.jpg";
-import CarInteriorControl from "@/public/images/explore-model/car-interior-control-img.jpg";
-import CarInteriorFinishing from "@/public/images/explore-model/car-interior-finishing-img.jpg";
-import CarInteriorSeat from "@/public/images/explore-model/car-interior-seat-img.svg";
 import { Navigation, Pagination, Parallax } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from "react-slot-counter";
@@ -25,37 +19,59 @@ import dynamic from "next/dynamic";
 import ReactPlayer from "react-player";
 import { ROUTES } from "@/shared/routes";
 import Link from "next/link";
-import videos from "@/public/videos";
 import DatePicker from "react-datepicker";
 import DBX707Green from "@/public/images/home/DBX707-green.png";
 import DBX707GreenBack from "@/public/images/explore-model/DBX707-green-back.png";
 import Select from "react-select";
 import Stepper from "@/components/Stepper";
 import { useRouter } from "next/router";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import AvailableLocation from "@/components/AvailableLocation";
 import homePageService from "@/services/home-page-service";
-import { GetServerSideProps } from "next";
+import {  GetStaticPaths, GetStaticProps } from "next";
 import { IDealer } from "@/utils/interface/home";
+import contentfulService from "@/services/contentful-service";
+import {
+  ModelReviews,
+  HeadingandSubHeading,
+  ModelSpecifications,
+  PageContent,
+  PageNavigation,
+  SpecificationOverview,
+} from "@/utils/interface/landing-page";
 
 interface IExploreProps {
   dealers: IDealer[];
+  exploreBannerData: PageContent;
+  exploreSubheadingData: HeadingandSubHeading;
+  exploreSpecificationOverviewData: SpecificationOverview[];
+  exploreModelPerformanceData: PageContent[];
+  explorePromotionalMessageData: ModelReviews[];
+  exploreExteriorData: HeadingandSubHeading[];
+  exploreInteriorData: PageContent[];
+  exploreInfoBlockData: PageNavigation[];
+  exploreModelSpecificationsData: ModelSpecifications[];
 }
 
-const Explore: React.FC<IExploreProps> = ({ dealers }) => {
+const Explore: React.FC<IExploreProps> = ({
+  dealers,
+  exploreBannerData,
+  exploreSubheadingData,
+  exploreSpecificationOverviewData,
+  exploreModelPerformanceData,
+  explorePromotionalMessageData,
+  exploreExteriorData,
+  exploreInteriorData,
+  exploreInfoBlockData,
+  exploreModelSpecificationsData,
+}) => {
   const navigate = useRouter();
-
   const [startDate] = React.useState();
-  // collapse
   const [openENGINE, setENGINEOpen] = useState(true);
   const [openCarHandling, setCarHandlingOpen] = useState(true);
   const [openCarBreak, setCarBreakOpen] = useState(true);
-
-  // off canvas state
   const [specificationDrawer, setSpecificationDrawer] = useState(false);
   const [equireDrawer, setEquireDrawer] = useState(false);
   const [offcanavasPlacement, setoffcanavasPlacement] = useState<
@@ -157,18 +173,16 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
       <div className="hero-banner size-lg">
         {isClient && (
           <ReactPlayer
-            url={videos.ExploreDBX707}
+            url={exploreBannerData.imageFile.url}
             className="banner-video"
             playing
             loop
             muted
           />
         )}
-        <p className="label">Power. driven.</p>
-        <h1 className="title">Aston Martin DBX707</h1>
-        <p className="description mb-0">
-          The world&apos;s most powerful luxury SUV
-        </p>
+        <p className="label">{exploreBannerData.tag}</p>
+        <h1 className="title">{exploreBannerData.title}</h1>
+        <p className="description mb-0">{exploreBannerData.description}</p>
         <div className="action" data-swiper-parallax="-500">
           <Button
             className="size-lg"
@@ -195,22 +209,18 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info  pb-4 pb-lg-0 pt-0">
-                <h3 className="title am">An SUV like no other</h3>
+                <h3 className="title am">{exploreSubheadingData.title}</h3>
                 <p className="description">
-                  The DBX 707 is a genuine supercar. An SUV that drives like a
-                  sports car and exudes muscular beauty. Combining unmatched
-                  engineering mastery with an opulent and refined design, the
-                  DBX 707 owes its name to an engine which produces 707PS which
-                  allows it to unleash new levels of dynamic performance. The
-                  DBX 707 is truly one of a kind; a luxury SUV which looks,
-                  moves, feels and sounds like no other before it.
+                  {exploreSubheadingData.description1}
                 </p>
               </div>
             </div>
             <div className="col-lg-6">
               <Image
                 className="right-side-image"
-                src={images.CarImg}
+                src={`http:${exploreSubheadingData.imageFile.url}`}
+                width={exploreSubheadingData.imageFile.details.image.width}
+                height={exploreSubheadingData.imageFile.details.image.height}
                 alt="car"
               />
             </div>
@@ -223,62 +233,23 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
       <div className="count-section-wrapper">
         <div className="container-xxl">
           <ul className="count-lisitng">
-            <li className="count-item">
-              <p className="title">
-                POWER <span>PS</span>
-              </p>
-              <div className="count">
-                <SlotCounter
-                  value={707}
-                  animateOnVisible={{
-                    triggerOnce: false,
-                    rootMargin: "0px 0px -100px 0px",
-                  }}
-                />
-              </div>
-            </li>
-            <li className="count-item">
-              <p className="title">
-                TOP SPEED <span>MPH</span>
-              </p>
-              <div className="count">
-                <SlotCounter
-                  value={193}
-                  animateOnVisible={{
-                    triggerOnce: false,
-                    rootMargin: "0px 0px -100px 0px",
-                  }}
-                />
-              </div>
-            </li>
-            <li className="count-item">
-              <p className="title">
-                0-62 MPH <span>S</span>
-              </p>
-              <div className="count">
-                <SlotCounter
-                  value={3.3}
-                  animateOnVisible={{
-                    triggerOnce: false,
-                    rootMargin: "0px 0px -100px 0px",
-                  }}
-                />
-              </div>
-            </li>
-            <li className="count-item">
-              <p className="title">
-                TORQUE <span>NM</span>
-              </p>
-              <div className="count">
-                <SlotCounter
-                  value={900}
-                  animateOnVisible={{
-                    triggerOnce: false,
-                    rootMargin: "0px 0px -100px 0px",
-                  }}
-                />
-              </div>
-            </li>
+            {exploreSpecificationOverviewData.map((specification, index) => (
+              <li className="count-item" key={index}>
+                <p className="title">
+                  {specification.specificationAttribute}{" "}
+                  <span>{specification.specificationUnit}</span>
+                </p>
+                <div className="count">
+                  <SlotCounter
+                    value={specification.specificationValue}
+                    animateOnVisible={{
+                      triggerOnce: false,
+                      rootMargin: "0px 0px -100px 0px",
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
           </ul>
 
           <Button
@@ -304,7 +275,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
               <div className="info-thumb-card h-100">
                 <div className="info">
                   <label className="am head subtitle1">
-                    ENGINE
+                    {exploreModelPerformanceData[0].tag}
                     <Button
                       className="acc-btn"
                       onClick={() => setENGINEOpen(!openENGINE)}
@@ -313,24 +284,22 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                       <Image src={images.ChevronDownDark} alt="Previous" />
                     </Button>
                   </label>
-                  <h2 className="title am">Unparalleled power</h2>
+                  <h2 className="title am">
+                    {exploreModelPerformanceData[0].title}
+                  </h2>
                   <Collapse in={openENGINE}>
                     <div>
                       <p className="des">
-                        The DBX707 is fitted with the most powerful engine of
-                        any production luxury SUV in the world and boasts a
-                        staggering 707PS power output and 900Nm of torque. The
-                        new beating heart of the DBX gives you explosive sports
-                        car performance and a new 9-speed wet clutch automatic
-                        transmission for faster gear changes and unrivalled
-                        control.
+                        {exploreModelPerformanceData[0].description}
                       </p>
                     </div>
                   </Collapse>
                 </div>
                 <div
                   className="img-thumb"
-                  style={{ backgroundImage: `url(${EngineImg.src})` }}
+                  style={{
+                    backgroundImage: `url(${exploreModelPerformanceData[0].imageFile.url})`,
+                  }}
                 ></div>
               </div>
             </div>
@@ -340,7 +309,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                   <div className="info-thumb-card side h-100">
                     <div className="info">
                       <label className="am head subtitle1">
-                        HANDLING
+                        {exploreModelPerformanceData[1].tag}
                         <Button
                           className="acc-btn"
                           onClick={() => setCarHandlingOpen(!openCarHandling)}
@@ -349,22 +318,22 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                           <Image src={images.ChevronDownDark} alt="Previous" />
                         </Button>
                       </label>
-                      <h3 className="title am">Dynamism re-defined</h3>
+                      <h3 className="title am">
+                        {exploreModelPerformanceData[1].title}
+                      </h3>
                       <Collapse in={openCarHandling}>
                         <div>
                           <p className="des">
-                            A full suite of handling modifications brings a new
-                            sense of dynamism to the DBX. Re-rated dampers and a
-                            brand-new centre console, which adds functions like
-                            ESP and suspension control, shorten the drive and
-                            allow you to exploit the car’s colossal power.
+                            {exploreModelPerformanceData[1].description}
                           </p>
                         </div>
                       </Collapse>
                     </div>
                     <div
                       className="img-thumb"
-                      style={{ backgroundImage: `url(${CarHandlingImg.src})` }}
+                      style={{
+                        backgroundImage: `url(${exploreModelPerformanceData[1].imageFile.url})`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -372,7 +341,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                   <div className="info-thumb-card side h-100">
                     <div className="info">
                       <label className="am head subtitle1">
-                        BRAKES
+                        {exploreModelPerformanceData[2].tag}
                         <Button
                           className="acc-btn"
                           onClick={() => setCarBreakOpen(!openCarBreak)}
@@ -381,23 +350,22 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                           <Image src={images.ChevronDownDark} alt="Previous" />
                         </Button>
                       </label>
-                      <h3 className="title am">Record braking</h3>
+                      <h3 className="title am">
+                        {exploreModelPerformanceData[2].title}
+                      </h3>
                       <Collapse in={openCarBreak}>
                         <div>
                           <p className="des">
-                            Relentless power demands an indomitable braking
-                            system. The DBX707 engine is kept in check with the
-                            largest brakes ever fitted in any Aston Martin.
-                            These carbon ceramic brakes can cut unsprung mass by
-                            33kg, shorten the stopping distance and give you
-                            control like never before.
+                            {exploreModelPerformanceData[2].description}
                           </p>
                         </div>
                       </Collapse>
                     </div>
                     <div
                       className="img-thumb"
-                      style={{ backgroundImage: `url(${BreakImg.src})` }}
+                      style={{
+                        backgroundImage: `url(${exploreModelPerformanceData[2].imageFile.url})`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -410,9 +378,9 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
 
       {/* Text Animation Start */}
       <TextAnimation
-        paragraph="Our objective was to match immense performance with impeccable control and precision, combined with an authentic sporting character essential in every Aston Martin model."
-        owner="Drummond Jacoy"
-        ownerDesignation="Head of Vehicle Engineering and Procurement, Aston Martin"
+        paragraph={explorePromotionalMessageData[0].reviewMessage}
+        owner={explorePromotionalMessageData[0].authorName}
+        ownerDesignation={explorePromotionalMessageData[0].authorDesignation}
       />
       {/* Text Animation End */}
 
@@ -429,75 +397,29 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
         navigation
         className="hero-banner-slider default-slider h-1080"
       >
-        <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">
-            EXTERIOR
-          </p>
-          <h1 className="title" data-swiper-parallax="-400">
-            Hero banner title
-          </h1>
-          <p className="description mb-4" data-swiper-parallax="-500">
-            The DBX707, the performance SUV, exudes its own style and muscular
-            beauty.{" "}
-          </p>
-          <p className="description m-0" data-swiper-parallax="-500">
-            With dark satin chrome window surrounds and newly designed louvred
-            bonnet blades, the heavily sculpted front grille leads to a stylish
-            carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
-            silhouette.
-          </p>
-          <Image
-            className="banner-img"
-            src={images.CarExteriorImg}
-            alt="CarExteriorImg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">
-            EXTERIOR
-          </p>
-          <h1 className="title" data-swiper-parallax="-400">
-            Hero banner title
-          </h1>
-          <p className="description mb-4" data-swiper-parallax="-500">
-            The DBX707, the performance SUV, exudes its own style and muscular
-            beauty.{" "}
-          </p>
-          <p className="description m-0" data-swiper-parallax="-500">
-            With dark satin chrome window surrounds and newly designed louvred
-            bonnet blades, the heavily sculpted front grille leads to a stylish
-            carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
-            silhouette.
-          </p>
-          <Image
-            className="banner-img"
-            src={images.CarExteriorImg}
-            alt="CarExteriorImg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <p className="label" data-swiper-parallax="-300">
-            EXTERIOR
-          </p>
-          <h1 className="title" data-swiper-parallax="-400">
-            Hero banner title
-          </h1>
-          <p className="description mb-4" data-swiper-parallax="-500">
-            The DBX707, the performance SUV, exudes its own style and muscular
-            beauty.{" "}
-          </p>
-          <p className="description m-0" data-swiper-parallax="-500">
-            With dark satin chrome window surrounds and newly designed louvred
-            bonnet blades, the heavily sculpted front grille leads to a stylish
-            carbon fibre rear spoiler to complete an iconic and aerodynamic SUV
-            silhouette.
-          </p>
-          <Image
-            className="banner-img"
-            src={images.CarExteriorImg}
-            alt="CarExteriorImg"
-          />
-        </SwiperSlide>
+        {exploreExteriorData.map((exteriorData, index) => (
+          <SwiperSlide key={index}>
+            <p className="label" data-swiper-parallax="-300">
+              {exteriorData.title}
+            </p>
+            <h1 className="title" data-swiper-parallax="-400">
+              {exteriorData.description1}
+            </h1>
+            <p className="description mb-4" data-swiper-parallax="-500">
+              {exteriorData.description2}
+            </p>
+            <p className="description m-0" data-swiper-parallax="-500">
+              {exteriorData.description3}
+            </p>
+            <Image
+              className="banner-img"
+              src={`http:${exteriorData.imageFile.url}`}
+              width={exteriorData.imageFile.details.image.width}
+              height={exteriorData.imageFile.details.image.height}
+              alt="CarExteriorImg"
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
       {/* Hero Banner End */}
 
@@ -512,7 +434,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                   <div className="info-thumb-card side h-100">
                     <div className="info">
                       <label className="am head subtitle1">
-                        CENTRE CONSOLE
+                        {exploreInteriorData[0].tag}
                         <Button
                           className="acc-btn"
                           onClick={() => setCarHandlingOpen(!openCarHandling)}
@@ -522,17 +444,12 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                         </Button>
                       </label>
                       <h3 className="title am">
-                        Instant access, ultimate control
+                        {exploreInteriorData[0].title}
                       </h3>
                       <Collapse in={openCarHandling}>
                         <div>
                           <p className="des">
-                            An all-new centre console puts the driver in full
-                            control. With instant commands at your fingertips,
-                            altering the car’s dynamics is now effortless.
-                            Choose from several driving modes, ESP, and
-                            suspension control and embrace the full force of a
-                            supercar.
+                            {exploreInteriorData[0].description}
                           </p>
                         </div>
                       </Collapse>
@@ -540,7 +457,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                     <div
                       className="img-thumb"
                       style={{
-                        backgroundImage: `url(${CarInteriorControl.src})`,
+                        backgroundImage: `url(${exploreInteriorData[0].imageFile.url})`,
                       }}
                     ></div>
                   </div>
@@ -549,7 +466,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                   <div className="info-thumb-card side h-100">
                     <div className="info">
                       <label className="am head subtitle1">
-                        INTERIOR JEWELLERY
+                        {exploreInteriorData[1].tag}
                         <Button
                           className="acc-btn"
                           onClick={() => setCarBreakOpen(!openCarBreak)}
@@ -559,17 +476,12 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                         </Button>
                       </label>
                       <h3 className="title am">
-                        Opulence and refined finishes
+                        {exploreInteriorData[1].title}
                       </h3>
                       <Collapse in={openCarBreak}>
                         <div>
                           <p className="des">
-                            From styling dark chrome to bright chrome or carbon
-                            fibre, take your pick of interior switchgear
-                            finishes. The veneer also comes with various
-                            luxurious finishes with elegant Piano Black set as
-                            standard and carbon fibre or bronze metal mesh as
-                            other available options.
+                            {exploreInteriorData[1].description}
                           </p>
                         </div>
                       </Collapse>
@@ -577,7 +489,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                     <div
                       className="img-thumb"
                       style={{
-                        backgroundImage: `url(${CarInteriorFinishing.src})`,
+                        backgroundImage: `url(${exploreInteriorData[1].imageFile.url})`,
                       }}
                     ></div>
                   </div>
@@ -588,7 +500,7 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
               <div className="info-thumb-card h-100">
                 <div className="info">
                   <label className="am head subtitle1">
-                    Cabin
+                    {exploreInteriorData[2].tag}
                     <Button
                       className="acc-btn"
                       onClick={() => setENGINEOpen(!openENGINE)}
@@ -597,22 +509,20 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
                       <Image src={images.ChevronDownDark} alt="Previous" />
                     </Button>
                   </label>
-                  <h2 className="title am">A marriage of sport and luxury</h2>
+                  <h2 className="title am">{exploreInteriorData[2].title}</h2>
                   <Collapse in={openENGINE}>
                     <div>
                       <p className="des">
-                        Fitted with an exclusive &rsquo;Inspire Sport&lsquo;
-                        interior, the DBX707 elegantly aligns sport and luxury.
-                        An Alcantara headlining, heated and ventilated seats and
-                        semi-aniline leather upholstery completes an ultra
-                        luxurious look and feel.
+                        {exploreInteriorData[2].description}
                       </p>
                     </div>
                   </Collapse>
                 </div>
                 <div
                   className="img-thumb"
-                  style={{ backgroundImage: `url(${CarInteriorSeat.src})` }}
+                  style={{
+                    backgroundImage: `url(${exploreInteriorData[2].imageFile.url})`,
+                  }}
                 ></div>
               </div>
             </div>
@@ -624,9 +534,9 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
       {/* Text Animation Start */}
       <TextAnimation
         classname="black-bg"
-        paragraph="The DBX707 encapsulates raw power, relentless architectural design and master craftsmanship that can only be seen from a marque as renowned as Aston Martin."
-        owner="Sam Field"
-        ownerDesignation="Technician, Dealer X"
+        paragraph={explorePromotionalMessageData[1].reviewMessage}
+        owner={explorePromotionalMessageData[1].authorName}
+        ownerDesignation={explorePromotionalMessageData[1].authorDesignation}
       />
       {/* Text Animation End */}
 
@@ -637,18 +547,15 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
             <div className="row align-items-center">
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">After-sales with Dealer X</h3>
+                  <h3 className="title am">{exploreInfoBlockData[0].title}</h3>
                   <p className="description">
-                    Choosing to buy an Aston Martin with us means choosing the
-                    expertise of Aston Martin approved technicians. Our
-                    after-sales team offer everything from skilled servicing,
-                    extensive accident repairs or bespoke modifications.
+                    {exploreInfoBlockData[0].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.NewCar}
                   >
-                    Explore after-sales
+                    {exploreInfoBlockData[0].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -656,7 +563,11 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.DealerMartinImg}
+                  src={`http:${exploreInfoBlockData[0].imageFile.url}`}
+                  width={exploreInfoBlockData[0].imageFile.details.image.width}
+                  height={
+                    exploreInfoBlockData[0].imageFile.details.image.height
+                  }
                   alt="DealerMartinImg"
                 />
               </div>
@@ -667,24 +578,23 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
               <div className="col-lg-7 col-md-6">
                 <Image
                   className="banner"
-                  src={images.CustomiseMartinImg}
+                  src={`http:${exploreInteriorData[1].imageFile.url}`}
+                  width={exploreInteriorData[1].imageFile.details.image.width}
+                  height={exploreInteriorData[1].imageFile.details.image.height}
                   alt="CustomiseMartinImg"
                 />
               </div>
               <div className="col-lg-5 col-md-6">
                 <div className="info">
-                  <h3 className="title am">Customise an Aston Martin</h3>
+                  <h3 className="title am">{exploreInfoBlockData[1].title}</h3>
                   <p className="description">
-                    Use the Aston Martin configurator to design the car of your
-                    dreams. From specific grille finishes to the colour of your
-                    hand stitched leather interior, take your new Aston Martin
-                    to new levels of luxury and customise a car like no other.
+                    {exploreInfoBlockData[1].description}
                   </p>
                   <Link
                     className="quick-link color-primary"
                     href={ROUTES.NewCar}
                   >
-                    Start configuration
+                    {exploreInfoBlockData[1].navigationLink}
                     <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                   </Link>
                 </div>
@@ -720,83 +630,18 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
             defaultActiveKey={["0", "1", "2"]}
             alwaysOpen
           >
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Body</Accordion.Header>
-              <Accordion.Body>
-                <ul className="specs-lisitng">
-                  <li>Two-door body style with decklid and 2 GT seats</li>
-                  <li>
-                    Extruded bonded aluminium body structure with Cast Magnesium
-                    door structures
-                  </li>
-                  <li>
-                    LED headlamps with integrated daytime running, side lights
-                    and cornering lights
-                  </li>
-                  <li>LED light blade taillamps</li>
-                  <li>Curlicue aero feature in front fender</li>
-                  <li>
-                    Deployable spoiler with Aston Martin Aeroblade™ system ₁
-                  </li>
-                  <li>One-piece clamshell with soft-close latches</li>
-                </ul>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Engine</Accordion.Header>
-              <Accordion.Body>
-                <ul className="specs-lisitng">
-                  <li>
-                    All-alloy quad overhead cam, 48 valve, 5.2l bi-turbo, V12
-                    with stop/start cylinder de-activation
-                  </li>
-                  <li>Water-to-Air Charge Cooling</li>
-                  <li>Front mid-mounted engine, rear-wheel drive</li>
-                  <li>
-                    Fully catalysed stainless steel exhaust system with cross
-                    pipes
-                  </li>
-                  <li>Compression ratio 9.3:1</li>
-                  <li>Dual Variable Camshaft Timing</li>
-                  <li>Knock-sensing</li>
-                  <li>Fully CNC machined combustion chambers</li>
-                  <li>Electrically controlled exhaust</li>
-                </ul>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Fuel economy & emissions</Accordion.Header>
-              <Accordion.Body>
-                <p className="specs-para">
-                  Official government fuel consumption figures in litres/100km
-                  (mpg) for the Aston Martin DB11 V12 Coupe: Urban FE 16.6
-                  (17.0); Extra Urban FE 8.5 (33.2); Combined 11.4 (24.8); CO2
-                  265 g/km
-                </p>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
-              <Accordion.Header>Performance & weight</Accordion.Header>
-              <Accordion.Body>
-                <ul className="specs-lisitng">
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </li>
-                </ul>
-              </Accordion.Body>
-            </Accordion.Item>
+            {exploreModelSpecificationsData.map((specification, index) => (
+              <Accordion.Item eventKey={index.toString()} key={index}>
+                <Accordion.Header>{specification.title}</Accordion.Header>
+                <Accordion.Body>
+                  <ul className="specs-lisitng">
+                    {specification.specifications.map((specs,index) => 
+                      <li key={index}>{specs}</li>
+                    )}
+                  </ul>
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
           </Accordion>
         </Offcanvas.Body>
       </Offcanvas>
@@ -1324,11 +1169,48 @@ const Explore: React.FC<IExploreProps> = ({ dealers }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const exploreRouteRes = await contentfulService.getExploreModelRoutes();
+  const exploreModelRoutes = exploreRouteRes.data.item;
+  const paths = exploreModelRoutes.map((car) => ({
+    params: { model: car },
+  }));
+
+  return {
+    paths,
+    fallback: false
+  };
+}
+
+export const getStaticProps: GetStaticProps = async ({params}) => {
+  const currentRoute = params?.model as string;
+  if(!currentRoute){
+    return { notFound: true };
+  }
   const res = await homePageService.getAllBranches();
+  const newCarsPageRes = await contentfulService.getHomePageContent(currentRoute);
+  const explorePageData = newCarsPageRes.data.item;
+  const exploreBannerData = explorePageData.content["Explore Model Banner"][0];
+  const exploreSubheadingData = explorePageData.content["Explore Model Sub Heading"][0];
+  const exploreSpecificationOverviewData = explorePageData.content["DBX707 Model Specification Overview"];
+  const exploreModelPerformanceData = explorePageData.content["Explore Model Performance"];
+  const explorePromotionalMessageData = explorePageData.content["Explore Model Promotional Text"];
+  const exploreExteriorData = explorePageData.content["Explore Model Exterior"];
+  const exploreInteriorData = explorePageData.content["Explore Model Interior"];
+  const exploreInfoBlockData = explorePageData.content["New Cars Info Block"];
+  const exploreModelSpecificationsData = explorePageData.content["DBX707 Model Specifications"];
   return {
     props: {
       dealers: res.item.dealers,
+      exploreBannerData,
+      exploreSubheadingData,
+      exploreSpecificationOverviewData,
+      exploreModelPerformanceData,
+      explorePromotionalMessageData,
+      exploreExteriorData,
+      exploreInteriorData,
+      exploreInfoBlockData,
+      exploreModelSpecificationsData,
     },
   };
 };

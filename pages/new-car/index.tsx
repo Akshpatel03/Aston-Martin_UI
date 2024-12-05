@@ -18,14 +18,14 @@ import { Container } from "react-bootstrap";
 import homePageService from "@/services/home-page-service";
 import { IDealer } from "@/utils/interface/home";
 import {
-  CustomerReviews,
+  ModelReviews,
   HeadingandSubHeading,
   ModelInformation,
   PageContent,
   PageNavigation,
 } from "@/utils/interface/landing-page";
 import { GetServerSideProps } from "next";
-import contentfulLandingPageService from "@/services/contentful-landingPage-service";
+import contentfulService from "@/services/contentful-service";
 import InfoBlock from "@/components/InfoBlock ";
 
 interface NewCarProps {
@@ -36,7 +36,7 @@ interface NewCarProps {
   newCarsModelsData: PageContent[];
   newCarsInfoBlockData: PageNavigation[];
   newCarsBuyingWithUsData: HeadingandSubHeading;
-  newCarsCustomerReviewData: CustomerReviews[];
+  newCarsCustomerReviewData: ModelReviews[];
 }
 const NewCar: React.FC<NewCarProps> = ({
   dealers,
@@ -242,7 +242,7 @@ const NewCar: React.FC<NewCarProps> = ({
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const currentRoute = context.resolvedUrl.slice(1);
   const res = await homePageService.getAllBranches();
-  const newCarsPageRes = await contentfulLandingPageService.getHomePageContent(
+  const newCarsPageRes = await contentfulService.getHomePageContent(
     currentRoute
   );
   const newCarsPageData = newCarsPageRes.data.item;
