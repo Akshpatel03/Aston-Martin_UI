@@ -6,7 +6,6 @@ import Testimonials from "@/components/Testimonials";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import images from "@/public/images";
 import Image from "next/image";
 
 // Import Swiper styles
@@ -14,13 +13,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import CarModelSlider from "@/components/CarModelSlider";
-import Link from "next/link";
-import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
 import { Container } from "react-bootstrap";
 import homePageService from "@/services/home-page-service";
 import { IDealer } from "@/utils/interface/home";
-
 import {
   CustomerReviews,
   HeadingandSubHeading,
@@ -30,127 +26,18 @@ import {
 } from "@/utils/interface/landing-page";
 import { GetServerSideProps } from "next";
 import contentfulLandingPageService from "@/services/contentful-landingPage-service";
-
-const DBXCarModel = {
-  modelname: "DBX",
-  modelImg: images.DBXModel,
-  mode: "PoweR.Driven.",
-  des: "A commanding and powerful SUV that drives like a sports car.",
-  variant: [
-    {
-      name: "DBX707",
-      modelImg: images.DBX707variant,
-    },
-    {
-      name: "DBX",
-      modelImg: images.DBXvariant,
-    },
-  ],
-};
-const VantageCarModel = {
-  modelname: "Vantage",
-  modelImg: images.VantageModel,
-  mode: "Thrill.Driven.",
-  des: "NGV. Redefining and reinventing what it means to be a tourer.",
-  variant: [
-    {
-      name: "Vantage",
-      modelImg: images.VantageVariant,
-    },
-  ],
-};
-const DB12CarModel = {
-  modelname: "DB12",
-  modelImg: images.DB12Model,
-  mode: "Icon.Driven..",
-  des: "The world’s first super tourer and a truly next generation sports car.",
-  variant: [
-    {
-      name: "DB12",
-      modelImg: images.DB12Variant,
-    },
-    {
-      name: "DB12 Volante",
-      modelImg: images.DB12VolanteVariant,
-    },
-  ],
-};
-const DBSCarModel = {
-  modelname: "DBS",
-  modelImg: images.DBSModel,
-  mode: "Ferocity.Driven.",
-  des: "A ‘brute in a suit’. Muscular, powerful and thrillingly potent to drive.",
-  variant: [
-    {
-      name: "DBS 770 Ultimate",
-      modelImg: images.DBS770Variant,
-    },
-    {
-      name: "DBS 770 Ultimate Volante",
-      modelImg: images.DBS770VolanteVariant,
-    },
-    {
-      name: "DBS 770 Ultimate Volante",
-      modelImg: images.DBS770VolanteVariant,
-    },
-    {
-      name: "DBS 770 Ultimate Volante",
-      modelImg: images.DBS770VolanteVariant,
-    },
-    {
-      name: "DBS 770 Ultimate Volante",
-      modelImg: images.DBS770VolanteVariant,
-    },
-  ],
-};
-const ValhallaCarModel = {
-  modelname: "Valhalla",
-  modelImg: images.ValhallaModel,
-  mode: "Mystery.Driven.",
-  des: "The first true production mid-engine sports car and Aston Martin’s first hybrid.",
-  variant: [
-    {
-      name: "Valhalla",
-      modelImg: images.ValhallaVariant,
-    },
-  ],
-};
-const ValkyrieCarModel = {
-  modelname: "Valkyrie",
-  modelImg: images.ValkyrieModel,
-  mode: "Impossible.Driven.",
-  des: "A Hypercar engineered to the impossible which takes F1 technology to the road.",
-  variant: [
-    {
-      name: "Valkyrie Coupe",
-      modelImg: images.ValkyrieVariant,
-    },
-    {
-      name: "Valkyrie AMR Pro",
-      modelImg: images.ValkyrieVariant,
-    },
-    {
-      name: "Valkyrie Coupe",
-      modelImg: images.ValkyrieVariant,
-    },
-    {
-      name: "Valkyrie Coupe",
-      modelImg: images.ValkyrieVariant,
-    },
-  ],
-};
+import InfoBlock from "@/components/InfoBlock ";
 
 interface NewCarProps {
   dealers: IDealer[];
-  newCarsBannerData: HeadingandSubHeading[];
-  newCarsSubheadingData: ModelInformation[];
+  newCarsBannerData: HeadingandSubHeading;
+  newCarsSubheadingData: ModelInformation;
   newCarsTabBarData: ModelInformation[];
   newCarsModelsData: PageContent[];
   newCarsInfoBlockData: PageNavigation[];
-  newCarsBuyingWithUsData: HeadingandSubHeading[];
+  newCarsBuyingWithUsData: HeadingandSubHeading;
   newCarsCustomerReviewData: CustomerReviews[];
 }
-
 const NewCar: React.FC<NewCarProps> = ({
   dealers,
   newCarsBannerData,
@@ -159,6 +46,7 @@ const NewCar: React.FC<NewCarProps> = ({
   newCarsInfoBlockData,
   newCarsBuyingWithUsData,
   newCarsCustomerReviewData,
+  newCarsModelsData,
 }) => {
   //JS srollspy Start---------------------------------------------------
   function ScrollspyClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
@@ -229,7 +117,7 @@ const NewCar: React.FC<NewCarProps> = ({
       <div
         className="hero-banner"
         style={{
-          backgroundImage: `url(${newCarsBannerData[0].imageFile.url})`,
+          backgroundImage: `url(${newCarsBannerData.imageFile.url})`,
         }}
       >
         {/* <Image
@@ -237,9 +125,9 @@ const NewCar: React.FC<NewCarProps> = ({
           src={images.Herobanner}
           alt="Herobanner"
         /> */}
-        <p className="label">{newCarsBannerData[0].title}</p>
-        <h1 className="title">{newCarsBannerData[0].description1}</h1>
-        <p className="description mb-0">{newCarsBannerData[0].description2}</p>
+        <p className="label">{newCarsBannerData.title}</p>
+        <h1 className="title">{newCarsBannerData.description1}</h1>
+        <p className="description mb-0">{newCarsBannerData.description2}</p>
       </div>
       {/* Hero Banner End */}
 
@@ -249,15 +137,13 @@ const NewCar: React.FC<NewCarProps> = ({
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3>{newCarsSubheadingData[0].title}</h3>
-                <p className="subtitle1">
-                  {newCarsSubheadingData[0].description}
-                </p>
+                <h3>{newCarsSubheadingData.title}</h3>
+                <p className="subtitle1">{newCarsSubheadingData.description}</p>
               </div>
             </div>
             <div className="col-lg-6">
               <h1 className="d-lg-block d-none">
-                {newCarsSubheadingData[0].heading}
+                {newCarsSubheadingData.heading}
               </h1>
             </div>
           </div>
@@ -287,91 +173,24 @@ const NewCar: React.FC<NewCarProps> = ({
           </ul>
         </div>
         <div className="scrollspy-content car-models-content">
-          <div className="s-content" id="DBX">
-            <CarModelSlider {...DBXCarModel} />
-          </div>
-          <div className="s-content" id="VANTAGE">
-            <CarModelSlider {...VantageCarModel} />
-          </div>
-          <div className="s-content" id="DB12">
-            <CarModelSlider {...DB12CarModel} />
-          </div>
-          <div className="s-content" id="DBS">
-            <CarModelSlider {...DBSCarModel} />
-          </div>
-          <div className="s-content" id="VALHALLA">
-            <CarModelSlider {...ValhallaCarModel} />
-          </div>
-          <div className="s-content" id="VALKYRIE">
-            <CarModelSlider {...ValkyrieCarModel} />
-          </div>
+          {newCarsModelsData.map((model, index) => (
+            <div
+              key={index}
+              className="s-content"
+              id={newCarsTabBarData[index].title}
+            >
+              <CarModelSlider carModelSlider={model} />
+            </div>
+          ))}
         </div>
       </div>
       {/*car model tab  End */}
 
       {/* Info Blocks Start */}
+
       <div className="multi-info-block">
         <Container fluid="xxl">
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{newCarsInfoBlockData[0].title}</h3>
-                  <p className="description">
-                    {newCarsInfoBlockData[0].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.NewCar}
-                  >
-                    {newCarsInfoBlockData[0].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${newCarsInfoBlockData[0].imageFile.url}`}
-                  width={newCarsInfoBlockData[0].imageFile.details.image.width}
-                  height={
-                    newCarsInfoBlockData[0].imageFile.details.image.height
-                  }
-                  alt="DealerMartinImg"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${newCarsInfoBlockData[1].imageFile.url}`}
-                  width={newCarsInfoBlockData[1].imageFile.details.image.width}
-                  height={
-                    newCarsInfoBlockData[1].imageFile.details.image.height
-                  }
-                  alt="CustomiseMartinImg"
-                />
-              </div>
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{newCarsInfoBlockData[1].title}</h3>
-                  <p className="description">
-                    {newCarsInfoBlockData[1].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.NewCar}
-                  >
-                    {newCarsInfoBlockData[1].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <InfoBlock newCarInfoBlock={newCarsInfoBlockData} />
         </Container>
       </div>
       {/*  */}
@@ -382,26 +201,24 @@ const NewCar: React.FC<NewCarProps> = ({
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="info">
-                <h3 className="title am">{newCarsBuyingWithUsData[0].title}</h3>
+                <h3 className="title am">{newCarsBuyingWithUsData.title}</h3>
                 <p className="description">
-                  {newCarsBuyingWithUsData[0].description1}
+                  {newCarsBuyingWithUsData.description1}
                 </p>
                 <p className="description">
-                  {newCarsBuyingWithUsData[0].description2}
+                  {newCarsBuyingWithUsData.description2}
                 </p>
                 <p className="description">
-                  {newCarsBuyingWithUsData[0].description3}
+                  {newCarsBuyingWithUsData.description3}
                 </p>
               </div>
             </div>
             <div className="col-lg-6 right-img-block">
               <Image
                 className="right-side-image"
-                src={`http:${newCarsBuyingWithUsData[0].imageFile.url}`}
-                width={newCarsBuyingWithUsData[0].imageFile.details.image.width}
-                height={
-                  newCarsBuyingWithUsData[0].imageFile.details.image.height
-                }
+                src={`http:${newCarsBuyingWithUsData.imageFile.url}`}
+                width={newCarsBuyingWithUsData.imageFile.details.image.width}
+                height={newCarsBuyingWithUsData.imageFile.details.image.height}
                 alt="Aston Martin Dealer"
               />
             </div>
@@ -424,19 +241,19 @@ const NewCar: React.FC<NewCarProps> = ({
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const currentRoute = context.resolvedUrl.slice(1);
-
   const res = await homePageService.getAllBranches();
   const newCarsPageRes = await contentfulLandingPageService.getHomePageContent(
     currentRoute
   );
   const newCarsPageData = newCarsPageRes.data.item;
-  const newCarsBannerData = newCarsPageData.content[0];
-  const newCarsSubheadingData = newCarsPageData.content[1];
-  const newCarsTabBarData = newCarsPageData.content[2];
-  const newCarsModelsData = newCarsPageData.content[3];
-  const newCarsInfoBlockData = newCarsPageData.content[4];
-  const newCarsBuyingWithUsData = newCarsPageData.content[5];
-  const newCarsCustomerReviewData = newCarsPageData.content[6];
+  const newCarsBannerData = newCarsPageData.content["New cars banner"][0];
+  const newCarsSubheadingData =
+    newCarsPageData.content["New cars sub heading"][0];
+  const newCarsTabBarData = newCarsPageData.content["New cars tab-bar"];
+  const newCarsModelsData = newCarsPageData.content["Car Models"];
+  const newCarsInfoBlockData = newCarsPageData.content["New Cars Info Block"];
+  const newCarsBuyingWithUsData = newCarsPageData.content["Buying with us"][0];
+  const newCarsCustomerReviewData = newCarsPageData.content["Customer Reviews"];
   return {
     props: {
       dealers: res.item.dealers,

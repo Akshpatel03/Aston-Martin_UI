@@ -173,7 +173,6 @@ const DesignerNewCar = () => {
         winScrollTop >= sectionOffset &&
         winScrollTop < sectionOffset + sectionHeight
       ) {
-        console.log(sectionId);
         setTimeout(function () {
           document
             .querySelectorAll(".car-models-links .scrollspy > li > a")

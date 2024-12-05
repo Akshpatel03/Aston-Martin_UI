@@ -10,38 +10,29 @@ import { ROUTES } from "@/shared/routes";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { PageContent } from "@/utils/interface/landing-page";
 
 interface CarModelSliderProps {
-  modelImg: string;
-  modelname: string;
-  mode: string;
-  des: string;
-  variant: Variant[];
+  carModelSlider: PageContent;
 }
-
-interface Variant {
-  name: string;
-  modelImg: string;
-}
-
-const CarModelSlider: React.FC<CarModelSliderProps> = ({
-  modelImg,
-  modelname,
-  des,
-  variant,
-  mode,
-}) => {
+const CarModelSlider: React.FC<CarModelSliderProps> = ({ carModelSlider }) => {
   const navigate = useRouter();
-
   return (
     <div className="car-models-block">
       <div className="container-xxl">
         <div className="left-car-models-block">
-          <p className="label">{mode}</p>
-          <h1 className="title">{modelname}</h1>
-          <Image className="model-img" src={modelImg} alt="DBXModel" />
-          <p className="description mb-0">{des}</p>
+          <p className="label">{carModelSlider.tag}</p>
+          <h1 className="title">{carModelSlider.title}</h1>
+          <Image
+            className="model-img"
+            src={`http:${carModelSlider.imageFile.url}`}
+            width={carModelSlider.imageFile.details.image.width}
+            height={carModelSlider.imageFile.details.image.height}
+            alt="DBXModel"
+          />
+          <p className="description mb-0">{carModelSlider.description}</p>
         </div>
+
         <div className="right-car-models-block">
           <Swiper
             modules={[Navigation, Pagination, Parallax]}
@@ -49,7 +40,10 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
             parallax
             freeMode={true}
             slidesPerView="auto"
-            breakpoints={{ 0: { spaceBetween: 16 }, 768: { spaceBetween: 32 } }}
+            breakpoints={{
+              0: { spaceBetween: 16 },
+              768: { spaceBetween: 32 },
+            }}
             navigation={{
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
@@ -60,21 +54,23 @@ const CarModelSlider: React.FC<CarModelSliderProps> = ({
             }}
             className="default-slider testimonial"
           >
-            {variant.map((row, index) => (
+            {carModelSlider.content.map((row, index) => (
               <SwiperSlide
                 key={index}
-                className={`${variant.length == 1 ? "one" : ""}`}
+                className={`${carModelSlider.content.length == 1 ? "one" : ""}`}
               >
                 <div
                   className={`car-variant-card ${
-                    variant.length == 1 ? "one" : ""
+                    carModelSlider.content.length == 1 ? "one" : ""
                   }`}
                 >
-                  <h3>{row.name}</h3>
+                  <h3>{row.title}</h3>
                   <em className="thumb">
                     <Image
                       className="model-img"
-                      src={row.modelImg}
+                      src={`http:${row.imageFile.url}`}
+                      width={row.imageFile.details.image.width}
+                      height={row.imageFile.details.image.height}
                       alt="DBXvariant"
                     />
                   </em>

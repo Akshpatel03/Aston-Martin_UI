@@ -49,6 +49,6 @@ export interface CustomerReviews {
     title:string;
     tag:string;
     description:string;
-    model : HeadingandSubHeading[];
+    content : HeadingandSubHeading[];
     imageFile : ImageFile;
   }
