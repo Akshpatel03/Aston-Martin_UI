@@ -22,10 +22,11 @@ export interface ContentfulHomePage {
     content: any; 
 }
 
-export interface CustomerReviews {
+export interface ModelReviews {
     reviewMessage: string;
     authorName:string;
     reviewDate: Date;
+    authorDesignation: string;
   }
   export interface HeadingandSubHeading{
     title: string;
@@ -33,6 +34,7 @@ export interface CustomerReviews {
     description2:string;
     description3:string;
     imageFile: ImageFile;
+    explorePageRoute: string;
   }
   export interface PageNavigation{
     title:string;
@@ -51,4 +53,13 @@ export interface CustomerReviews {
     description:string;
     content : HeadingandSubHeading[];
     imageFile : ImageFile;
+  }
+  export interface SpecificationOverview {
+    specificationAttribute: string;
+    specificationValue: number;
+    specificationUnit: string;
+  }
+  export interface ModelSpecifications {
+    title: string;
+    specifications: string[];
   }

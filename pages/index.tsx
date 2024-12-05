@@ -15,9 +15,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import News from "@/components/News";
-import contentfulLandingPageService from "@/services/contentful-landingPage-service";
+import contentfulService from "@/services/contentful-service";
 import {
-  CustomerReviews,
+  ModelReviews,
   HeadingandSubHeading,
   LatestNews,
   ModelInformation,
@@ -37,7 +37,7 @@ interface IHomeProps {
   homePageBenefitData: ModelInformation[];
   homePageModelRangeData: PageContent[];
   homePageContentData: PageNavigation[];
-  homePageReviewData: CustomerReviews[];
+  homePageReviewData: ModelReviews[];
   homePageNewsData: LatestNews[];
 }
 const Home: React.FC<IHomeProps> = ({
@@ -362,7 +362,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const slug = context.resolvedUrl;
   const route = slug === "/" ? "home" : slug.slice(1);
   const res = await homePageService.getAllBranches();
-  const homePageDataRes = await contentfulLandingPageService.getHomePageContent(
+  const homePageDataRes = await contentfulService.getHomePageContent(
     route
   );
   const homePageData = homePageDataRes.data.item;

@@ -8,9 +8,9 @@ import { Navigation, Pagination, Parallax } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { CustomerReviews } from "@/utils/interface/landing-page";
+import { ModelReviews } from "@/utils/interface/landing-page";
 interface testimonialProps {
-  customerReview: CustomerReviews[];
+  customerReview: ModelReviews[];
 }
 const Testimonials = (customerReview: testimonialProps) => {
   return (
