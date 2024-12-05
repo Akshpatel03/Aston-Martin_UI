@@ -14,8 +14,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SlotCounter from "react-slot-counter";
 import dynamic from "next/dynamic";
 import ReactPlayer from "react-player";
-import { ROUTES } from "@/shared/routes";
-import Link from "next/link";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -33,6 +31,7 @@ import {
   SpecificationOverview,
 } from "@/utils/interface/landing-page";
 import Inquiry from "@/components/Inquiry";
+import InfoBlock from "@/components/InfoBlock ";
 
 interface IExploreProps {
   dealers: IDealer[];
@@ -487,64 +486,7 @@ const Explore: React.FC<IExploreProps> = ({
       {/* Info Blocks Start */}
       <div className="multi-info-block">
         <Container fluid="xxl">
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{exploreInfoBlockData[0].title}</h3>
-                  <p className="description">
-                    {exploreInfoBlockData[0].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.NewCar}
-                  >
-                    {exploreInfoBlockData[0].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${exploreInfoBlockData[0].imageFile.url}`}
-                  width={exploreInfoBlockData[0].imageFile.details.image.width}
-                  height={
-                    exploreInfoBlockData[0].imageFile.details.image.height
-                  }
-                  alt="DealerMartinImg"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="info-block">
-            <div className="row align-items-center">
-              <div className="col-lg-7 col-md-6">
-                <Image
-                  className="banner"
-                  src={`http:${exploreInteriorData[1].imageFile.url}`}
-                  width={exploreInteriorData[1].imageFile.details.image.width}
-                  height={exploreInteriorData[1].imageFile.details.image.height}
-                  alt="CustomiseMartinImg"
-                />
-              </div>
-              <div className="col-lg-5 col-md-6">
-                <div className="info">
-                  <h3 className="title am">{exploreInfoBlockData[1].title}</h3>
-                  <p className="description">
-                    {exploreInfoBlockData[1].description}
-                  </p>
-                  <Link
-                    className="quick-link color-primary"
-                    href={ROUTES.NewCar}
-                  >
-                    {exploreInfoBlockData[1].navigationLink}
-                    <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <InfoBlock newCarInfoBlock={exploreInfoBlockData} />
         </Container>
       </div>
       {/* Info Blocks End */}

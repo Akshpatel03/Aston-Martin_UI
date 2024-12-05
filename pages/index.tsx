@@ -185,8 +185,11 @@ const Home: React.FC<IHomeProps> = ({
                       height={navigation.imageFile.details.image.height}
                       alt="New Car"
                     />
-                    <Link className="quick-link" href={ROUTES.NewCar}>
-                      {navigation.navigationLink}
+                    <Link
+                      className="quick-link"
+                      href={navigation.pageLink[0].url}
+                    >
+                      {navigation.pageLink[0].link}
                       <Image src={images.ArrowNarrowRightSMWhite} alt="Next" />
                     </Link>
                   </div>

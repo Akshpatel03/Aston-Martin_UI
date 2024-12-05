@@ -39,8 +39,8 @@ export interface ModelReviews {
   export interface PageNavigation{
     title:string;
     description:string;
-    navigationLink: string;
     imageFile:ImageFile;
+    pageLink: ExternalLink[];
   }
   export interface ModelInformation{
     title:string;
@@ -62,4 +62,8 @@ export interface ModelReviews {
   export interface ModelSpecifications {
     title: string;
     specifications: string[];
+  }
+  export interface ExternalLink{
+    link: string;
+    url:string;
   }
