@@ -1,5 +1,4 @@
 import images from "@/public/images";
-import { ROUTES } from "@/shared/routes";
 import { PageNavigation } from "@/utils/interface/landing-page";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,8 +32,11 @@ const InfoBlock: React.FC<modelInfoBlockProps> = ({ newCarInfoBlock }) => {
               <div className="info">
                 <h3 className="title am">{info.title}</h3>
                 <p className="description">{info.description}</p>
-                <Link className="quick-link color-primary" href={ROUTES.NewCar}>
-                  {info.navigationLink}
+                <Link
+                  className="quick-link color-primary"
+                  href={info.pageLink[0].url}
+                >
+                  {info.pageLink[0].link}
                   <Image src={images.ArrowNarrowRightSMPrimary} alt="Next" />
                 </Link>
               </div>
