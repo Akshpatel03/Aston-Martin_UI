@@ -11,7 +11,7 @@ const InfoBlock: React.FC<modelInfoBlockProps> = ({ newCarInfoBlock }) => {
   return (
     <Fragment>
       {newCarInfoBlock.map((info, index) => (
-        <div className="info-block">
+        <div key={index} className="info-block">
           <div
             className={`row align-items-center ${
               index % 2 === 0 && "flex-row-reverse"
