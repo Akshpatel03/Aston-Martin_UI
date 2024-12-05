@@ -337,11 +337,9 @@ const Home: React.FC<IHomeProps> = ({
 
       {/* Info Blocks Start */}
       <div className="multi-info-block">
-        {homePageContentData.map((info, index) => (
-          <Container key={index} fluid="xxl">
-            <InfoBlock newCarInfoBlock={info} isOddIndex={index % 2 !== 0} />
-          </Container>
-        ))}
+        <Container fluid="xxl">
+          <InfoBlock newCarInfoBlock={homePageContentData} />
+        </Container>
       </div>
       {/* Info Blocks End */}
 

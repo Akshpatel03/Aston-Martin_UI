@@ -6,7 +6,6 @@ import Testimonials from "@/components/Testimonials";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import images from "@/public/images";
 import Image from "next/image";
 
 // Import Swiper styles
@@ -14,8 +13,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import CarModelSlider from "@/components/CarModelSlider";
-import Link from "next/link";
-import { ROUTES } from "@/shared/routes";
 // import ScrollspyNav from "react-scrollspy-nav";
 import { Container } from "react-bootstrap";
 import homePageService from "@/services/home-page-service";
@@ -192,11 +189,9 @@ const NewCar: React.FC<NewCarProps> = ({
       {/* Info Blocks Start */}
 
       <div className="multi-info-block">
-        {newCarsInfoBlockData.map((info, index) => (
-          <Container key={index} fluid="xxl">
-            <InfoBlock newCarInfoBlock={info} isOddIndex={index % 2 !== 0} />
-          </Container>
-        ))}
+        <Container fluid="xxl">
+          <InfoBlock newCarInfoBlock={newCarsInfoBlockData} />
+        </Container>
       </div>
       {/*  */}
 
